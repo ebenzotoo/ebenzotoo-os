@@ -3,6 +3,7 @@ import MobileDock from "../../components/MobileDock";
 import SystemDock from "../../components/SystemDock";
 import { FlaskConical, Code2, Play, Terminal, Palette } from "lucide-react";
 import PageTransition from "../../components/PageTransition";
+import LiveClock from "@/components/LiveClock";
 
 
 export default function Lab() {
@@ -34,31 +35,21 @@ export default function Lab() {
   ];
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center w-full pb-16 md:pb-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#111827] via-[#0A0F1C] to-[#050810]">
+    <div className="relative h-screen overflow-hidden flex flex-col w-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#111827] via-[#0A0F1C] to-[#050810]">
       
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none z-0" />
 
-      <div className="w-full flex flex-col items-center justify-center pt-24 pb-16 text-center z-10 px-4">
-        <h1 className="text-4xl md:text-[40px] font-semibold tracking-[0.15em] text-white mb-6 font-sans">
-          EBENEZER ZOTOO
-        </h1>
-        <div className="flex flex-col gap-2 text-[17px] text-os-text-muted mb-12 tracking-wide font-sans font-light">
-          <p>Full-Stack Developer</p>
-          <p>Systems Architect</p>
-          <p>UI/UX Designer</p>
-        </div>
-      </div>
 
-      <div className="w-full max-w-[1440px] flex-1 flex border-t border-white/10 bg-[#0A0F1C]/40 backdrop-blur-2xl z-10 shadow-2xl">
-        
+<div className="w-full max-w-[1440px] mx-auto flex-1 overflow-hidden flex border-t border-white/10 bg-[#0A0F1C]/40 backdrop-blur-2xl z-10 shadow-2xl">
+
         <Sidebar />
 
-        <main className="flex-1 flex flex-col min-h-[800px] overflow-y-auto">
+        <main className="flex-1 flex flex-col overflow-y-auto pb-16 md:pb-0">
             <PageTransition>
-          <div className="h-16 border-b border-white/5 flex justify-end items-center px-8 text-os-text-muted text-sm gap-5 hidden md:flex font-mono sticky top-0 bg-[#0A0F1C]/90 backdrop-blur-md z-20">
+          <div className="border-b border-white/5 flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex font-mono sticky top-0 bg-[#0A0F1C]/90 backdrop-blur-md z-20">
             <span>🔔</span>
             <span>☁️</span>
-            <span>~/LAB_ENVIRONMENT</span>
+            <span>~/LAB_ENVIRONMENT <LiveClock /></span>
           </div>
           
           <div className="p-6 md:p-10 flex-1 max-w-6xl w-full">

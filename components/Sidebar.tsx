@@ -6,8 +6,8 @@ import { User, FolderClosed, Share2, FileText, FlaskConical, Mail, MapPin, Link 
 
 // This is our list of pages matching your design
 const navItems = [
-  { name: "About", path: "/about", icon: User },
-  { name: "Projects", path: "/", icon: FolderClosed }, // We are making Projects the default home page for now
+  { name: "About", path: "/", icon: User },
+  { name: "Projects", path: "/projects", icon: FolderClosed },
   { name: "Systems", path: "/systems", icon: Share2 },
   { name: "Notes", path: "/notes", icon: FileText },
   { name: "Lab", path: "/lab", icon: FlaskConical },
@@ -18,7 +18,7 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <div className="w-[260px] h-full bg-os-panel border-r border-os-border hidden md:flex flex-col">
+    <div className="w-[260px] h-full bg-os-panel border-r border-white/20 hidden md:flex flex-col">
       {/* Top Branding */}
       <div className="h-16 flex items-center px-6 border-b border-os-border">
         <h1 className="text-sm font-semibold tracking-widest text-os-text-muted">EBENEZER ZOTOO</h1>

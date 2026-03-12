@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Syne, Space_Grotesk, Fira_Code } from "next/font/google";
 import "./globals.css";
+import CommandPalette from "../components/CommandPalette"; // <-- 1. Import here
 
-// Load the fonts
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
+const syne = Syne({ subsets: ["latin"], variable: "--font-syne", weight: ["400", "500", "600", "700", "800"] });
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk" });
+const firaCode = Fira_Code({ subsets: ["latin"], variable: "--font-fira" });
 
 export const metadata: Metadata = {
-  title: "Ebenezer Zotoo | OS",
-  description: "Portfolio and OS Workspace of Ebenezer Zotoo",
+  title: "Ebenezer Zotoo | OS Workspace",
+  description: "Systems Architect & Full-Stack Developer",
 };
 
 export default function RootLayout({
@@ -17,9 +18,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      {/* Apply the fonts to the entire body */}
-      <body className={`${inter.variable} ${jetbrains.variable} font-sans min-h-screen bg-os-bg text-os-text-main antialiased selection:bg-os-accent-blue/30 flex flex-col`}>
+    <html lang="en" className="dark">
+      <body className={`${syne.variable} ${spaceGrotesk.variable} ${firaCode.variable} bg-os-bg text-os-text-main font-sans antialiased`}>
+        {/* 2. Drop the command palette right here */}
+        <CommandPalette />
+        
         {children}
       </body>
     </html>

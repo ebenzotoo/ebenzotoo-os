@@ -1,0 +1,133 @@
+import { notFound } from "next/navigation";
+import Sidebar from "../../../components/Sidebar";
+import MobileDock from "../../../components/MobileDock";
+import SystemDock from "../../../components/SystemDock";
+import PageTransition from "../../../components/PageTransition";
+import LiveClock from "@/components/LiveClock";
+import { supabase } from "../../../lib/supabase";
+import { ArrowLeft, Calendar, Code2 } from "lucide-react";
+import Link from "next/link";
+
+export default async function ProjectDetail({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+
+  const { data: project, error } = await supabase
+    .from("projects")
+    .select("*")
+    .eq("slug", slug)
+    .single();
+
+  if (error || !project) notFound();
+
+  const previewImage = project.image_url ?? "/project1.png";
+
+  return (
+    <div className="relative h-screen overflow-hidden flex flex-col w-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#111827] via-[#0A0F1C] to-[#050810]">
+
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none z-0" />
+
+      <div className="w-full max-w-[1440px] mx-auto flex-1 overflow-hidden flex border-t border-white/10 bg-[#0A0F1C]/40 backdrop-blur-2xl z-10 shadow-2xl">
+
+        <Sidebar />
+
+        <main className="flex-1 flex flex-col overflow-y-auto pb-16 md:pb-0">
+          <PageTransition>
+
+            {/* Top Bar */}
+            <div className="border-b border-white/5 flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex font-mono sticky top-0 bg-[#0A0F1C]/90 backdrop-blur-md z-20">
+              <span>🔔</span>
+              <span>☁️</span>
+              <span>~/PROJECTS/{slug.toUpperCase()} <LiveClock /></span>
+            </div>
+
+            <div className="p-6 md:p-10 max-w-4xl w-full">
+
+              {/* Back link */}
+              <Link href="/projects" className="inline-flex items-center gap-2 text-xs font-mono text-os-text-muted hover:text-white transition-colors mb-8 group">
+                <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
+                cd .. /projects
+              </Link>
+
+              {/* Title + date */}
+              <h1 className="text-2xl md:text-3xl font-bold text-white mb-3 tracking-wide">{project.title}</h1>
+              <div className="flex items-center gap-2 text-xs font-mono text-os-text-muted mb-6">
+                <Calendar className="w-3.5 h-3.5" />
+                {new Date(project.created_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+                <span className="ml-2 px-2 py-0.5 rounded bg-white/5 border border-white/10 text-white">STATUS: DEPLOYED</span>
+              </div>
+
+              <p className="text-os-text-muted text-sm leading-relaxed mb-8 max-w-2xl">{project.description}</p>
+
+              {/* Tech stack tags */}
+              {project.tech_stack?.length > 0 && (
+                <div className="mb-10">
+                  <h3 className="text-xs font-bold tracking-[0.2em] text-os-text-muted mb-4 flex items-center gap-2">
+                    <Code2 className="w-4 h-4" /> ARCHITECTURE_STACK
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech_stack.map((tech: string, i: number) => (
+                      <span key={i} className="px-3 py-1.5 text-xs font-mono text-os-accent-green bg-os-accent-green/10 border border-os-accent-green/20 rounded-md">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* App Window Preview */}
+              <div className="rounded-xl overflow-hidden border border-white/10 shadow-2xl shadow-black/60 mb-10">
+                {/* Mac-style title bar */}
+                <div className="flex items-center gap-2 px-4 py-3 bg-[#1C2333] border-b border-white/5">
+                  <span className="w-3 h-3 rounded-full bg-[#FF5F57]" />
+                  <span className="w-3 h-3 rounded-full bg-[#FEBC2E]" />
+                  <span className="w-3 h-3 rounded-full bg-[#28C840]" />
+                  <span className="ml-3 text-[11px] font-mono text-os-text-muted tracking-wide flex-1 text-center truncate">
+                    {project.live_url ?? project.title}
+                  </span>
+                </div>
+                {/* Screenshot */}
+                <div className="bg-[#0A0F1C] max-h-[460px] overflow-hidden">
+                  <img
+                    src={previewImage}
+                    alt={`${project.title} preview`}
+                    className="w-full object-cover object-top"
+                  />
+                </div>
+              </div>
+
+              {/* README content */}
+              {project.content && (
+                <div className="bg-[#111827]/40 border border-white/5 rounded-xl p-6 md:p-8">
+                  <h3 className="text-xs font-bold tracking-[0.2em] text-os-text-muted mb-6">README.md</h3>
+                  <div className="text-os-text-main leading-relaxed font-sans whitespace-pre-wrap text-sm">
+                    {project.content}
+                  </div>
+                </div>
+              )}
+
+              {/* CTA Links */}
+              <div className="flex items-center gap-4 mt-8">
+                {project.live_url && (
+                  <a href={project.live_url} target="_blank" rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-mono text-white bg-white/5 hover:bg-white/10 border border-white/10 px-5 py-2.5 rounded-lg transition-colors">
+                    LIVE_SITE ↗
+                  </a>
+                )}
+                {project.github_url && (
+                  <a href={project.github_url} target="_blank" rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-mono text-os-text-muted hover:text-white border border-white/10 px-5 py-2.5 rounded-lg transition-colors">
+                    SOURCE_CODE ↗
+                  </a>
+                )}
+              </div>
+
+            </div>
+          </PageTransition>
+        </main>
+      </div>
+
+      <SystemDock />
+      <MobileDock />
+    </div>
+  );
+}
