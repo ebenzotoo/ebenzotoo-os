@@ -54,3 +54,166 @@ body {
 * {
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* ─── Clean / Simple Mode ───────────────────────────────────────────────── */
+
+html[data-theme="clean"] {
+  /* Override OS color tokens */
+  --color-os-bg:               #F3F4F6;
+  --color-os-surface:          #FFFFFF;
+  --color-os-surface-hover:    #F9FAFB;
+  --color-os-border:           #E5E7EB;
+  --color-os-text-main:        #111827;
+  --color-os-text-muted:       #6B7280;
+  --color-os-accent-blue:      #2563EB;
+  --color-os-accent-green:     #16A34A;
+  --color-os-accent-gold:      #92400E;
+  --color-os-accent-gold-muted: rgba(146,64,14,0.08);
+
+  /* Reset the radial gradient stops used by pages */
+  --tw-gradient-from:    #F3F4F6;
+  --tw-gradient-via:     #F9FAFB;
+  --tw-gradient-to:      #FFFFFF;
+}
+
+html[data-theme="clean"] body {
+  background: #F3F4F6;
+  color: #111827;
+}
+
+/* Scrollbar: lighter in clean mode */
+html[data-theme="clean"] ::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.12);
+}
+html[data-theme="clean"] ::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0,0,0,0.22);
+}
+
+/* Page root gradient wrapper → white background */
+html[data-theme="clean"] .from-\[\#111827\] {
+  --tw-gradient-from: #F3F4F6 var(--tw-gradient-from-position);
+}
+html[data-theme="clean"] .via-\[\#0A0F1C\] {
+  --tw-gradient-via: #F9FAFB var(--tw-gradient-via-position);
+}
+html[data-theme="clean"] .to-\[\#050810\] {
+  --tw-gradient-to: #FFFFFF var(--tw-gradient-to-position);
+}
+
+/* Hide the dot grid overlay */
+html[data-theme="clean"] .pointer-events-none.absolute.inset-0 {
+  display: none;
+}
+
+/* Ghost watermarks → invisible */
+html[data-theme="clean"] .text-white\/\[0\.03\] {
+  color: transparent !important;
+}
+
+/* Main content container */
+html[data-theme="clean"] .bg-\[\#0A0F1C\]\/40 {
+  background-color: rgba(255,255,255,0.85) !important;
+  border-color: #E5E7EB !important;
+}
+
+/* Sidebar */
+html[data-theme="clean"] .bg-os-panel,
+html[data-theme="clean"] [class*="bg-[#0D1117]"],
+html[data-theme="clean"] [class*="bg-[#111827]"] {
+  background-color: #FFFFFF !important;
+}
+
+/* Top bar + sticky header */
+html[data-theme="clean"] .bg-\[\#0A0F1C\]\/90 {
+  background-color: rgba(255,255,255,0.92) !important;
+  border-color: #E5E7EB !important;
+}
+
+/* SystemDock */
+html[data-theme="clean"] .bg-\[\#0A0F1C\]\/80 {
+  background-color: rgba(248,250,252,0.95) !important;
+  border-color: #E5E7EB !important;
+}
+
+/* Sidebar border */
+html[data-theme="clean"] .border-white\/20 {
+  border-color: #E5E7EB !important;
+}
+html[data-theme="clean"] .border-white\/10 {
+  border-color: #E5E7EB !important;
+}
+html[data-theme="clean"] .border-white\/5 {
+  border-color: #F3F4F6 !important;
+}
+
+/* Active sidebar item */
+html[data-theme="clean"] .bg-\[\#1F2937\] {
+  background-color: #EFF6FF !important;
+}
+
+/* Sidebar active indicator dot (amber → blue) */
+html[data-theme="clean"] .bg-os-accent-green {
+  background-color: #2563EB !important;
+}
+
+/* Cards and surface panels */
+html[data-theme="clean"] .bg-white\/\[0\.03\],
+html[data-theme="clean"] .bg-white\/\[0\.02\] {
+  background-color: #FFFFFF !important;
+  border-color: #E5E7EB !important;
+}
+
+/* White text headings → dark */
+html[data-theme="clean"] .text-white {
+  color: #111827 !important;
+}
+html[data-theme="clean"] .hover\:text-white:hover {
+  color: #111827 !important;
+}
+
+/* Gold accents → slate blue */
+html[data-theme="clean"] .text-\[\#D4AF37\] {
+  color: #2563EB !important;
+}
+html[data-theme="clean"] .border-\[\#D4AF37\]\/60,
+html[data-theme="clean"] .border-\[\#D4AF37\]\/30,
+html[data-theme="clean"] .border-\[\#D4AF37\]\/20 {
+  border-color: #BFDBFE !important;
+}
+
+/* Amber notification color → blue */
+html[data-theme="clean"] .text-\[\#F9A41E\] {
+  color: #2563EB !important;
+}
+html[data-theme="clean"] .bg-\[\#F9A41E\]\/10 {
+  background-color: #EFF6FF !important;
+}
+
+/* Skill bar backgrounds */
+html[data-theme="clean"] .bg-white\/5 {
+  background-color: #F3F4F6 !important;
+}
+
+/* Note/project terminal-style top bar label */
+html[data-theme="clean"] .text-os-accent-blue {
+  color: #2563EB !important;
+}
+
+/* Blockquote border in notes */
+html[data-theme="clean"] .border-\[\#D4AF37\]\/60 {
+  border-color: #93C5FD !important;
+}
+
+/* DesktopHint bar */
+html[data-theme="clean"] .bg-\[\#0D1117\] {
+  background-color: #F9FAFB !important;
+  border-color: #E5E7EB !important;
+}
+
+/* Image grayscale off in clean mode — let brand colors show */
+html[data-theme="clean"] .grayscale {
+  filter: none !important;
+}
+html[data-theme="clean"] .opacity-50 {
+  opacity: 0.85 !important;
+}

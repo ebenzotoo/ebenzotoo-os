@@ -47,15 +47,19 @@ export default function Home() {
                   <h2 className="text-xs font-mono tracking-[0.2em] text-os-text-muted">// about_user</h2>
                   <p className="text-white font-semibold text-base mt-1 font-heading">Ebenezer Zotoo</p>
                   <p className="text-os-accent-blue text-xs font-mono">Full-Stack Developer · Systems Architect · UI/UX Designer</p>
+                  <p className="text-os-text-muted text-xs mt-2 font-sans italic leading-snug max-w-xs">
+                    Bridging Logic &amp; Creativity — Building Seamless, User-Centric Digital Experiences.
+                  </p>
                 </div>
               </div>
 
               {/* Stats block */}
-              <div className="grid grid-cols-3 gap-4 mb-8">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
                 {[
-                  { value: "10+", label: "Years of Experience" },
-                  { value: "50+", label: "Projects Shipped" },
-                  { value: "3",   label: "Countries Worked Across" },
+                  { value: "10+",    label: "Years Experience"     },
+                  { value: "50+",    label: "Projects Shipped"     },
+                  { value: "4,000+", label: "Platform Users Built" },
+                  { value: "3",      label: "Countries"            },
                 ].map((stat) => (
                   <div key={stat.label} className="bg-white/[0.03] border border-white/5 hover:border-[#D4AF37]/30 hover:shadow-[0_4px_20px_rgba(212,175,55,0.06)] rounded-lg px-4 py-3 text-center transition-all duration-300">
                     <p className="text-white font-heading font-bold text-2xl">{stat.value}</p>

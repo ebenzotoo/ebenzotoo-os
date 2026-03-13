@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Syne, Space_Grotesk, Fira_Code } from "next/font/google";
 import "./globals.css";
-import CommandPalette from "../components/CommandPalette"; // <-- 1. Import here
+import CommandPalette from "../components/CommandPalette";
+import DesktopHint from "../components/DesktopHint";
+import ThemeProvider from "../components/ThemeProvider";
+import ThemeToggle from "../components/ThemeToggle";
 
 const syne = Syne({ subsets: ["latin"], variable: "--font-syne", weight: ["400", "500", "600", "700", "800"] });
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk" });
@@ -19,11 +22,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `
+          (function(){
+            try {
+              var t = localStorage.getItem('portfolio-theme');
+              if (t === 'clean' || t === 'os') document.documentElement.setAttribute('data-theme', t);
+            } catch(e) {}
+          })();
+        ` }} />
+      </head>
       <body className={`${syne.variable} ${spaceGrotesk.variable} ${firaCode.variable} bg-os-bg text-os-text-main font-sans antialiased`}>
-        {/* 2. Drop the command palette right here */}
-        <CommandPalette />
-        
-        {children}
+        <ThemeProvider>
+          <CommandPalette />
+          <DesktopHint />
+          {children}
+          <ThemeToggle />
+        </ThemeProvider>
       </body>
     </html>
   );

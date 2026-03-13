@@ -82,7 +82,9 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
                 <span className="ml-2 px-2 py-0.5 rounded bg-white/5 border border-white/10 text-white">STATUS: DEPLOYED</span>
               </div>
 
-              <p className="text-os-text-muted text-sm leading-relaxed mb-8 max-w-2xl">{project.description}</p>
+              {project.content && (
+                <p className="text-os-text-muted text-sm leading-relaxed mb-8 max-w-2xl">{project.content}</p>
+              )}
 
               {/* Tech stack tags */}
               {project.tech_stack?.length > 0 && (
@@ -122,11 +124,11 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
               </div>
 
               {/* README content */}
-              {project.content && (
+              {project.description && (
                 <div className="bg-[#111827]/40 border border-white/5 rounded-xl p-6 md:p-8">
                   <h3 className="text-xs font-bold tracking-[0.2em] text-os-text-muted mb-6">README.md</h3>
                   <div className="text-os-text-main leading-relaxed font-sans whitespace-pre-wrap text-sm">
-                    {project.content}
+                    {project.description}
                   </div>
                 </div>
               )}

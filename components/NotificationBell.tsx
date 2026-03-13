@@ -7,6 +7,13 @@ const notifications = [
   {
     icon: CheckCircle2,
     color: "text-[#F9A41E]",
+    title: "PROJECT_DEPLOYED",
+    body: "Ghana Law Society - live in production",
+    time: "Feb 2026",
+  },
+  {
+    icon: CheckCircle2,
+    color: "text-[#F9A41E]",
     title: "ROLE_UPDATE",
     body: "Senior Web & Graphics Designer · Industrial Coatings Africa",
     time: "Mar 2025",
@@ -15,8 +22,8 @@ const notifications = [
     icon: Folder,
     color: "text-[#D4AF37]",
     title: "PROJECT_DEPLOYED",
-    body: "NSS Ghana Portal — live in production",
-    time: "Feb 2025",
+    body: "NextEra Skills Hub — live in production",
+    time: "Sep 2025",
   },
   {
     icon: FileText,
