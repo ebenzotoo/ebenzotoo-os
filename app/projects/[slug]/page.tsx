@@ -4,14 +4,14 @@ import MobileDock from "../../../components/MobileDock";
 import SystemDock from "../../../components/SystemDock";
 import PageTransition from "../../../components/PageTransition";
 import LiveClock from "@/components/LiveClock";
-import { supabase } from "../../../lib/supabase";
+import { getSupabase } from "../../../lib/supabase";
 import { ArrowLeft, Calendar, Code2 } from "lucide-react";
 import Link from "next/link";
 
 export default async function ProjectDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
 
-  const { data: project, error } = await supabase
+  const { data: project, error } = await getSupabase()
     .from("projects")
     .select("*")
     .eq("slug", slug)

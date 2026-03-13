@@ -3,13 +3,13 @@ import MobileDock from "../../components/MobileDock";
 import SystemDock from "../../components/SystemDock";
 import PageTransition from "../../components/PageTransition";
 import Link from "next/link";
-import { supabase } from "../../lib/supabase";
+import { getSupabase } from "../../lib/supabase";
 import { FileText, Clock, Calendar, ChevronRight } from "lucide-react";
 import LiveClock from "@/components/LiveClock";
 
 export default async function Notes() {
   // Fetch live articles from Supabase
-  const { data: notes, error } = await supabase
+  const { data: notes, error } = await getSupabase()
     .from("notes")
     .select("*")
     .order("created_at", { ascending: false });

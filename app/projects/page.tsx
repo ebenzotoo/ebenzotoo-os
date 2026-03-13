@@ -3,7 +3,7 @@ import MobileDock from "../../components/MobileDock";
 import SystemDock from "../../components/SystemDock";
 import PageTransition from "../../components/PageTransition";
 import Link from "next/link";
-import { supabase } from "../../lib/supabase";
+import { getSupabase } from "../../lib/supabase";
 import LiveClock from "@/components/LiveClock";
 import {
   Smartphone, Globe, Palette, Terminal, Database,
@@ -21,7 +21,7 @@ const techIconMap: Record<string, React.ReactNode> = {
 };
 
 export default async function Projects() {
-  const { data: projects, error } = await supabase
+  const { data: projects, error } = await getSupabase()
     .from("projects")
     .select("*")
     .order("created_at", { ascending: false });

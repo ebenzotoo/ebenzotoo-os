@@ -2,7 +2,7 @@ import Sidebar from "../../../components/Sidebar";
 import MobileDock from "../../../components/MobileDock";
 import SystemDock from "../../../components/SystemDock";
 import PageTransition from "../../../components/PageTransition";
-import { supabase } from "../../../lib/supabase";
+import { getSupabase } from "../../../lib/supabase";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, FileText, Calendar, Clock, Terminal } from "lucide-react";
@@ -10,7 +10,7 @@ import { ArrowLeft, FileText, Calendar, Clock, Terminal } from "lucide-react";
 export default async function NoteDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
 
-  const { data: note, error } = await supabase
+  const { data: note, error } = await getSupabase()
     .from("notes")
     .select("*")
     .eq("slug", slug)
