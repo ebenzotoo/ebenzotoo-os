@@ -4,6 +4,8 @@ import SystemDock from "../components/SystemDock";
 import { Terminal, Code2, Paintbrush, Briefcase } from "lucide-react";
 import PageTransition from "../components/PageTransition";
 import LiveClock from "@/components/LiveClock";
+import NotificationBell from "@/components/NotificationBell";
+import CloudStatus from "@/components/CloudStatus";
 
 export default function Home() {
   return (
@@ -18,12 +20,12 @@ export default function Home() {
         <main className="flex-1 flex flex-col overflow-y-auto pb-16 md:pb-0">
           <PageTransition>
             <div className="border-b border-white/5 flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex font-mono sticky top-0 bg-[#0A0F1C]/90 backdrop-blur-md z-20">
-              <span>🔔</span>
-              <span>☁️</span>
+              <NotificationBell />
+              <CloudStatus />
               <span>SYSTEM_INFO <LiveClock /></span>
             </div>
 
-            <div className="p-6 md:p-10 flex-1 max-w-4xl relative">
+            <div className="p-6 md:p-10 flex-1 w-full relative">
               {/* Ghost watermark */}
               <div className="absolute top-6 right-0 text-[100px] font-heading font-black text-white/[0.03] leading-none select-none pointer-events-none tracking-tighter">
                 ABOUT
@@ -131,17 +133,25 @@ export default function Home() {
                 <h2 className="text-xs font-mono tracking-[0.2em] text-os-text-muted mb-6 flex items-center gap-2">
                   // trusted_by
                 </h2>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <div className="grid grid-cols-3 gap-3">
                   {[
-                    "Ghana Law Society",
-                    "National Service Authority",
-                    "Aurateq",
-                    "Ani Medical Consult",
-                    "God Alone Int Ministry",
-                    "NASPA Ghana",
+                    { name: "Ghana Law Society",         logo: "/clients/gls.png"     },
+                    { name: "National Service Authority", logo: "/clients/nsa.png"     },
+                    { name: "Aurateq",                   logo: "/clients/aurateq.png" },
+                    { name: "Ani Medical Consult",        logo: "/clients/ani.png"     },
+                    { name: "God Alone Int Ministry",     logo: "/clients/gaim.png"    },
+                    { name: "NASPA Ghana",               logo: "/clients/naspa.png"   },
                   ].map((client) => (
-                    <div key={client} className="bg-white/[0.02] border border-white/5 hover:border-[#D4AF37]/25 rounded-lg px-3 py-2.5 text-center transition-all duration-300">
-                      <p className="text-os-text-muted text-[11px] font-mono tracking-wide">{client}</p>
+                    <div key={client.name} className="bg-white/[0.02] border border-white/5 hover:border-[#D4AF37]/20 rounded-xl p-4 flex flex-col items-center justify-center gap-2 transition-all duration-300 group">
+                      <img
+                        src={client.logo}
+                        alt={client.name}
+                        title={client.name}
+                        className="max-h-8 max-w-full object-contain opacity-50 group-hover:opacity-100 grayscale group-hover:grayscale-0 transition-all duration-300"
+                      />
+                      <span className="text-[10px] font-mono text-os-text-muted text-center leading-tight opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                        {client.name}
+                      </span>
                     </div>
                   ))}
                 </div>

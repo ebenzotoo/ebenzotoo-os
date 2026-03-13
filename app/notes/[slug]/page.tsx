@@ -2,10 +2,171 @@ import Sidebar from "../../../components/Sidebar";
 import MobileDock from "../../../components/MobileDock";
 import SystemDock from "../../../components/SystemDock";
 import PageTransition from "../../../components/PageTransition";
+import LiveClock from "@/components/LiveClock";
+import NotificationBell from "@/components/NotificationBell";
+import CloudStatus from "@/components/CloudStatus";
 import { getSupabase } from "../../../lib/supabase";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, FileText, Calendar, Clock, Terminal } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, Terminal } from "lucide-react";
+
+/* ─── Inline markdown renderer ─────────────────────────────────────────── */
+
+function parseInline(text: string) {
+  // **bold**, *italic*, `code`
+  const parts: React.ReactNode[] = [];
+  const re = /(\*\*(.+?)\*\*|\*(.+?)\*|`(.+?)`)/g;
+  let last = 0, m: RegExpExecArray | null;
+  let key = 0;
+  while ((m = re.exec(text)) !== null) {
+    if (m.index > last) parts.push(text.slice(last, m.index));
+    if (m[2]) parts.push(<strong key={key++} className="text-white font-semibold">{m[2]}</strong>);
+    else if (m[3]) parts.push(<em key={key++} className="italic">{m[3]}</em>);
+    else if (m[4]) parts.push(<code key={key++} className="px-1.5 py-0.5 bg-white/10 rounded text-[#F9A41E] font-mono text-[0.85em]">{m[4]}</code>);
+    last = m.index + m[0].length;
+  }
+  if (last < text.length) parts.push(text.slice(last));
+  return parts.length === 1 && typeof parts[0] === "string" ? text : parts;
+}
+
+function renderContent(raw: string) {
+  const lines = raw.split("\n");
+  const nodes: React.ReactNode[] = [];
+  let i = 0;
+  let key = 0;
+
+  while (i < lines.length) {
+    const line = lines[i];
+
+    // blank
+    if (!line.trim()) { i++; continue; }
+
+    // H1
+    if (/^# /.test(line)) {
+      nodes.push(
+        <h1 key={key++} className="text-3xl font-bold text-white mt-10 mb-4 leading-snug font-heading">
+          {parseInline(line.replace(/^# /, ""))}
+        </h1>
+      );
+      i++; continue;
+    }
+
+    // H2
+    if (/^## /.test(line)) {
+      nodes.push(
+        <h2 key={key++} className="text-2xl font-bold text-white mt-10 mb-4 leading-snug font-heading">
+          {parseInline(line.replace(/^## /, ""))}
+        </h2>
+      );
+      i++; continue;
+    }
+
+    // H3
+    if (/^### /.test(line)) {
+      nodes.push(
+        <h3 key={key++} className="text-lg font-semibold text-white mt-8 mb-3 font-heading">
+          {parseInline(line.replace(/^### /, ""))}
+        </h3>
+      );
+      i++; continue;
+    }
+
+    // Blockquote
+    if (/^> /.test(line)) {
+      const quoteLines: string[] = [];
+      while (i < lines.length && /^> /.test(lines[i])) {
+        quoteLines.push(lines[i].replace(/^> /, ""));
+        i++;
+      }
+      nodes.push(
+        <blockquote key={key++} className="relative my-8 pl-6 border-l-2 border-[#D4AF37]/60">
+          <span className="absolute -top-2 left-4 text-4xl text-[#D4AF37]/30 font-serif leading-none select-none">&ldquo;</span>
+          <p className="text-os-text-main italic text-base leading-relaxed pt-2 font-sans">
+            {parseInline(quoteLines.join(" "))}
+          </p>
+        </blockquote>
+      );
+      continue;
+    }
+
+    // Horizontal rule
+    if (/^---+$/.test(line.trim())) {
+      nodes.push(<hr key={key++} className="my-8 border-white/10" />);
+      i++; continue;
+    }
+
+    // Unordered list
+    if (/^[-*] /.test(line)) {
+      const items: string[] = [];
+      while (i < lines.length && /^[-*] /.test(lines[i])) {
+        items.push(lines[i].replace(/^[-*] /, ""));
+        i++;
+      }
+      nodes.push(
+        <ul key={key++} className="my-5 space-y-2 pl-1">
+          {items.map((item, idx) => (
+            <li key={idx} className="flex items-start gap-3 text-os-text-main text-base leading-relaxed font-sans">
+              <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#D4AF37]/60 shrink-0" />
+              <span>{parseInline(item)}</span>
+            </li>
+          ))}
+        </ul>
+      );
+      continue;
+    }
+
+    // Ordered list
+    if (/^\d+\. /.test(line)) {
+      const items: string[] = [];
+      while (i < lines.length && /^\d+\. /.test(lines[i])) {
+        items.push(lines[i].replace(/^\d+\. /, ""));
+        i++;
+      }
+      nodes.push(
+        <ol key={key++} className="my-5 space-y-2 pl-1">
+          {items.map((item, idx) => (
+            <li key={idx} className="flex items-start gap-3 text-os-text-main text-base leading-relaxed font-sans">
+              <span className="shrink-0 text-xs font-mono text-[#F9A41E] mt-1 w-5">{idx + 1}.</span>
+              <span>{parseInline(item)}</span>
+            </li>
+          ))}
+        </ol>
+      );
+      continue;
+    }
+
+    // Paragraph — collect until blank or block-level token
+    const paraLines: string[] = [];
+    while (
+      i < lines.length &&
+      lines[i].trim() &&
+      !/^#{1,3} /.test(lines[i]) &&
+      !/^> /.test(lines[i]) &&
+      !/^[-*] /.test(lines[i]) &&
+      !/^\d+\. /.test(lines[i]) &&
+      !/^---+$/.test(lines[i].trim())
+    ) {
+      paraLines.push(lines[i]);
+      i++;
+    }
+    if (paraLines.length) {
+      nodes.push(
+        <p key={key++} className="text-os-text-main text-base leading-relaxed mb-5 font-sans">
+          {parseInline(paraLines.join(" "))}
+        </p>
+      );
+    }
+  }
+
+  return nodes;
+}
+
+const noteImageMap: Record<string, string> = {
+  "losing-ability-to-explain-tech":   "/notes/explain-tech.jpg",
+  "liberating-power-of-self-honesty": "/notes/power.jpg",
+};
+
+/* ─── Page ──────────────────────────────────────────────────────────────── */
 
 export default async function NoteDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -16,9 +177,9 @@ export default async function NoteDetail({ params }: { params: Promise<{ slug: s
     .eq("slug", slug)
     .single();
 
-  if (error || !note) {
-    notFound();
-  }
+  if (error || !note) notFound();
+
+  const coverImage = note.cover_image ?? note.image_url ?? noteImageMap[slug] ?? null;
 
   return (
     <div className="relative h-screen overflow-hidden flex flex-col w-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#111827] via-[#0A0F1C] to-[#050810]">
@@ -31,60 +192,75 @@ export default async function NoteDetail({ params }: { params: Promise<{ slug: s
 
         <main className="flex-1 flex flex-col overflow-y-auto pb-16 md:pb-0">
           <PageTransition>
-            
-            <div className="h-16 border-b border-white/5 flex justify-between items-center px-8 text-os-text-muted text-sm sticky top-0 bg-[#0A0F1C]/90 backdrop-blur-md z-20 font-mono">
-              <div className="flex items-center gap-2 text-os-accent-green">
+
+            {/* Top bar */}
+            <div className="border-b border-white/5 flex justify-between items-center px-8 py-6 text-os-text-muted text-sm sticky top-0 bg-[#0A0F1C]/90 backdrop-blur-md z-20 font-mono">
+              <div className="flex items-center gap-2 text-[#F9A41E]">
                 <Terminal className="w-4 h-4" />
                 <span>~/notes/{note.slug}.md</span>
               </div>
-              <div className="hidden md:flex gap-5">
-                <span>🔔</span>
-                <span>☁️</span>
-                <span>SYSTEM_READ</span>
+              <div className="hidden md:flex items-center gap-5">
+                <NotificationBell />
+                <CloudStatus />
+                <LiveClock />
               </div>
             </div>
-            
-            <div className="p-6 md:p-10 flex-1 max-w-3xl mx-auto w-full relative">
 
-              {/* Ghost watermark */}
-              <div className="absolute top-4 right-0 text-[100px] font-heading font-black text-white/[0.025] leading-none select-none pointer-events-none tracking-tighter">
-                NOTES
-              </div>
+            <div className="p-6 md:px-12 md:py-10 w-full max-w-3xl mx-auto">
 
+              {/* Back link */}
               <Link href="/notes" className="inline-flex items-center gap-2 text-xs font-mono text-os-text-muted hover:text-white transition-colors mb-8 group">
                 <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
                 cd .. /notes
               </Link>
-              
-              <div className="mb-12">
-                <span className="text-[10px] font-mono tracking-widest text-os-accent-green px-2 py-1 rounded bg-os-accent-green/10 border border-os-accent-green/20 mb-6 inline-block">
-                  {note.tag}
+
+              {/* Cover image */}
+              {coverImage && (
+                <div className="rounded-2xl overflow-hidden mb-8 border border-white/10 shadow-2xl shadow-black/60">
+                  <img
+                    src={coverImage}
+                    alt={note.title}
+                    className="w-full object-cover max-h-72 object-center"
+                  />
+                </div>
+              )}
+
+              {/* Meta */}
+              <div className="flex flex-wrap items-center gap-4 mb-4 text-xs font-mono text-[#F9A41E]">
+                <span className="flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5" />
+                  {new Date(note.created_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
                 </span>
-                
-                <h1 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-wide leading-tight">
-                  {note.title}
-                </h1>
-                
-                <div className="flex flex-wrap items-center gap-6 text-xs font-mono text-os-text-muted border-b border-white/5 pb-8">
-                  <span className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4" />
-                    {new Date(note.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-                  </span>
-                  <span className="flex items-center gap-2">
-                    <Clock className="w-4 h-4" />
+                {note.read_time && (
+                  <span className="flex items-center gap-1.5 text-os-text-muted">
+                    <Clock className="w-3.5 h-3.5" />
                     {note.read_time}
                   </span>
-                  <span className="flex items-center gap-2 text-os-accent-green">
-                    <FileText className="w-4 h-4" />
-                    STATUS: PUBLISHED
+                )}
+                {note.tag && (
+                  <span className="px-2 py-0.5 rounded bg-[#F9A41E]/10 border border-[#F9A41E]/20 text-[#F9A41E]">
+                    {note.tag}
                   </span>
-                </div>
+                )}
               </div>
 
-              <article className="prose prose-invert prose-p:text-os-text-main prose-p:leading-relaxed prose-p:font-sans prose-a:text-os-accent-green max-w-none">
-                {note.content.split('\n\n').map((paragraph: string, index: number) => (
-                  <p key={index} className="mb-6">{paragraph}</p>
-                ))}
+              {/* Title */}
+              <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight font-heading">
+                {note.title}
+              </h1>
+
+              {/* Excerpt / subtitle */}
+              {note.excerpt && (
+                <p className="text-os-text-muted text-base leading-relaxed mb-8 font-sans border-b border-white/5 pb-8">
+                  {note.excerpt}
+                </p>
+              )}
+
+              {!note.excerpt && <div className="border-b border-white/5 mb-8" />}
+
+              {/* Article body */}
+              <article>
+                {renderContent(note.content ?? "")}
               </article>
 
             </div>

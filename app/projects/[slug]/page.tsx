@@ -4,9 +4,35 @@ import MobileDock from "../../../components/MobileDock";
 import SystemDock from "../../../components/SystemDock";
 import PageTransition from "../../../components/PageTransition";
 import LiveClock from "@/components/LiveClock";
+import NotificationBell from "@/components/NotificationBell";
+import CloudStatus from "@/components/CloudStatus";
 import { getSupabase } from "../../../lib/supabase";
 import { ArrowLeft, Calendar, Code2 } from "lucide-react";
 import Link from "next/link";
+
+const projectImageMap: Record<string, string> = {
+  "naspa-skills-hub":              "/projects/skillshub.png",
+  "ani-surgical":                  "/projects/ani-medical.png",
+  "ani-surgical-medical-consult":  "/projects/ani-medical.png",
+  "ani-medical-consult":           "/projects/ani-medical.png",
+  "aurateq":                       "/projects/aurateq.png",
+  "aurateq-consult":               "/projects/aurateq.png",
+  "empower-communities-ghana":     "/projects/empower.png",
+  "empower-communities":           "/projects/empower.png",
+  "gaim-church-app":               "/projects/gaim.png",
+  "gaim":                          "/projects/gaim.png",
+  "kwahu-asabi-royal-foundation":  "/projects/kwahu-asabi.png",
+  "karf":                          "/projects/kwahu-asabi.png",
+  "kwahu-asabi-foundation":        "/projects/kwahu-asabi.png",
+  "naspa-ghana":                   "/projects/naspa1.png",
+  "naspa":                         "/projects/naspa1.png",
+  "nss-internal-portal":           "/projects/nss-portal.png",
+  "nss-contributor-portal":        "/projects/nss-portal.png",
+  "nss-revenue-portal":            "/projects/nss-portal.png",
+  "nss-ghana-portal":              "/projects/nss-portal.png",
+  "nss-restaurant-app":            "/projects/nss-restaurant.png",
+  "nss-restaurant":                "/projects/nss-restaurant.png",
+};
 
 export default async function ProjectDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -19,12 +45,12 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
 
   if (error || !project) notFound();
 
-  const previewImage = project.image_url ?? "/project1.png";
+  const previewImage = project.image_url ?? projectImageMap[slug] ?? "/project1.png";
 
   return (
     <div className="relative h-screen overflow-hidden flex flex-col w-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#111827] via-[#0A0F1C] to-[#050810]">
 
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(212,175,55,0.07)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none z-0" />
 
       <div className="w-full max-w-[1440px] mx-auto flex-1 overflow-hidden flex border-t border-white/10 bg-[#0A0F1C]/40 backdrop-blur-2xl z-10 shadow-2xl">
 
@@ -35,8 +61,8 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
 
             {/* Top Bar */}
             <div className="border-b border-white/5 flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex font-mono sticky top-0 bg-[#0A0F1C]/90 backdrop-blur-md z-20">
-              <span>🔔</span>
-              <span>☁️</span>
+              <NotificationBell />
+              <CloudStatus />
               <span>~/PROJECTS/{slug.toUpperCase()} <LiveClock /></span>
             </div>
 

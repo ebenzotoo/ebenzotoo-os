@@ -4,6 +4,8 @@ import SystemDock from "../../components/SystemDock";
 import { Terminal, Code2, Paintbrush, Briefcase } from "lucide-react";
 import PageTransition from "../../components/PageTransition";
 import LiveClock from "@/components/LiveClock";
+import NotificationBell from "@/components/NotificationBell";
+import CloudStatus from "@/components/CloudStatus";
 
 export default function About() {
   return (
@@ -21,8 +23,8 @@ export default function About() {
             <PageTransition>
           {/* Top Bar */}
           <div className="border-b border-white/5 flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex font-mono sticky top-0 bg-[#0A0F1C]/90 backdrop-blur-md z-20">
-            <span>🔔</span>
-            <span>☁️</span>
+            <NotificationBell />
+            <CloudStatus />
             <span>SYSTEM_INFO <LiveClock /></span>
             
           </div>

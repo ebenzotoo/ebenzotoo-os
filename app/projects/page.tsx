@@ -5,6 +5,8 @@ import PageTransition from "../../components/PageTransition";
 import Link from "next/link";
 import { getSupabase } from "../../lib/supabase";
 import LiveClock from "@/components/LiveClock";
+import NotificationBell from "@/components/NotificationBell";
+import CloudStatus from "@/components/CloudStatus";
 import {
   Smartphone, Globe, Palette, Terminal, Database,
   LayoutTemplate, Code2, AppWindow, ArrowUpRight,
@@ -18,6 +20,30 @@ const techIconMap: Record<string, React.ReactNode> = {
   "Python":             <Terminal className="w-4 h-4" />,
   "Database Management":<Database className="w-4 h-4" />,
   "WordPress":          <LayoutTemplate className="w-4 h-4" />,
+};
+
+const projectImageMap: Record<string, string> = {
+  "naspa-skills-hub":              "/projects/skillshub.png",
+  "ani-surgical":                  "/projects/ani-medical.png",
+  "ani-surgical-medical-consult":  "/projects/ani-medical.png",
+  "ani-medical-consult":           "/projects/ani-medical.png",
+  "aurateq":                       "/projects/aurateq.png",
+  "aurateq-consult":               "/projects/aurateq.png",
+  "empower-communities-ghana":     "/projects/empower.png",
+  "empower-communities":           "/projects/empower.png",
+  "gaim-church-app":               "/projects/gaim.png",
+  "gaim":                          "/projects/gaim.png",
+  "kwahu-asabi-royal-foundation":  "/projects/kwahu-asabi.png",
+  "karf":                          "/projects/kwahu-asabi.png",
+  "kwahu-asabi-foundation":        "/projects/kwahu-asabi.png",
+  "naspa-ghana":                   "/projects/naspa1.png",
+  "naspa":                         "/projects/naspa1.png",
+  "nss-internal-portal":           "/projects/nss-portal.png",
+  "nss-contributor-portal":        "/projects/nss-portal.png",
+  "nss-revenue-portal":            "/projects/nss-portal.png",
+  "nss-ghana-portal":              "/projects/nss-portal.png",
+  "nss-restaurant-app":            "/projects/nss-restaurant.png",
+  "nss-restaurant":                "/projects/nss-restaurant.png",
 };
 
 export default async function Projects() {
@@ -40,8 +66,8 @@ export default async function Projects() {
         <main className="flex-1 flex flex-col overflow-y-auto pb-16 md:pb-0">
           <PageTransition>
             <div className="border-b border-white/5 flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex font-mono sticky top-0 bg-[#0A0F1C]/90 backdrop-blur-md z-20">
-              <span>🔔</span>
-              <span>☁️</span>
+              <NotificationBell />
+              <CloudStatus />
               <LiveClock />
             </div>
 
@@ -85,7 +111,7 @@ export default async function Projects() {
                       {/* Card Preview */}
                       <div className="mx-4 mb-4 rounded-xl overflow-hidden h-44 border border-white/5 relative">
                         <img
-                          src={project.image_url ?? "/project1.png"}
+                          src={project.image_url ?? projectImageMap[project.slug] ?? "/project1.png"}
                           alt={project.title}
                           className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                         />

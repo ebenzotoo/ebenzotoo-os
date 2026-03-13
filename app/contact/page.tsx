@@ -7,6 +7,8 @@ import SystemDock from "../../components/SystemDock";
 import PageTransition from "../../components/PageTransition";
 import { Terminal, Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, LucideLinkedin, LucideTwitter, LucideFacebook } from "lucide-react";
 import LiveClock from "@/components/LiveClock";
+import NotificationBell from "@/components/NotificationBell";
+import CloudStatus from "@/components/CloudStatus";
 
 export default function Contact() {
   // Form State
@@ -71,12 +73,12 @@ export default function Contact() {
         <main className="flex-1 flex flex-col overflow-y-auto pb-16 md:pb-0">
           <PageTransition>
             <div className="border-b border-white/5 flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex font-mono sticky top-0 bg-[#0A0F1C]/90 backdrop-blur-md z-20">
-              <span>🔔</span>
-              <span>☁️</span>
+              <NotificationBell />
+              <CloudStatus />
               <span>~/SECURE_COMMS <LiveClock /></span>
             </div>
             
-            <div className="p-6 md:p-10 flex-1 max-w-5xl w-full relative">
+            <div className="p-6 md:p-10 flex-1 w-full relative">
 
               {/* Ghost watermark */}
               <div className="absolute top-4 right-0 text-[85px] font-heading font-black text-white/[0.025] leading-none select-none pointer-events-none tracking-tighter">
