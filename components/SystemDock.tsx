@@ -2,9 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Monitor, Folder, Layers, MessageSquare, User, Mail } from "lucide-react";
+import { Monitor, Folder, Layers, MessageSquare, User, Mail, LinkedinIcon, TwitterIcon, FacebookIcon } from "lucide-react";
 
 const WHATSAPP_URL = "https://wa.me/233200012873";
+
+const socialLinks = [
+  { icon: LinkedinIcon,  href: "https://linkedin.com/in/ebenzotoo",       label: "LinkedIn"  },
+  { icon: TwitterIcon,   href: "https://twitter.com/st_romario1",         label: "Twitter/X" },
+  { icon: FacebookIcon,  href: "https://facebook.com/ebenezerromario",    label: "Facebook"  },
+];
 
 const dockItems = [
   { icon: User,          path: "/",         title: "About"    },
@@ -30,10 +36,20 @@ export default function SystemDock() {
           <span className="text-os-accent-green tracking-wide">available for freelance work</span>
         </div>
 
-        {/* Center: Supabase Info */}
-        <div className="hidden md:flex items-center gap-2">
-          <span className="w-1 h-1 rounded-full bg-os-text-muted" />
-          <span className="tracking-wide">All data is synced with Supabase on a PostgreSQL database.</span>
+        {/* Center: Social Links */}
+        <div className="hidden md:flex items-center gap-4">
+          {socialLinks.map(({ icon: Icon, href, label }) => (
+            <Link
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={label}
+              className="text-os-text-muted hover:text-[#D4AF37] transition-colors duration-200"
+            >
+              <Icon className="w-3.5 h-3.5" />
+            </Link>
+          ))}
         </div>
 
         {/* Right: Dual CTAs */}

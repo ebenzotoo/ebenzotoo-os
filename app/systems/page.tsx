@@ -1,7 +1,7 @@
 import Sidebar from "../../components/Sidebar";
 import MobileDock from "../../components/MobileDock";
 import SystemDock from "../../components/SystemDock";
-import { Server, Database, Smartphone, Layout, Workflow, GitBranch } from "lucide-react";
+import { Server, Database, Smartphone, Layout, Workflow, GitBranch, TrendingUp, SearchCode, MousePointer2, Globe, AppWindow } from "lucide-react";
 import PageTransition from "../../components/PageTransition";
 import LiveClock from "@/components/LiveClock";
 
@@ -100,6 +100,31 @@ export default function Systems() {
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* Services Section */}
+            <div className="mt-14 mb-10">
+              <h2 className="text-xs font-mono tracking-[0.2em] text-os-text-muted mb-8 flex items-center gap-2">
+                <AppWindow className="w-4 h-4" /> // services_offered
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {[
+                  { icon: TrendingUp,    title: "Business Strategy",      desc: "Optimising processes to maximise profitability, eliminate costs, and align technology with business goals." },
+                  { icon: Globe,         title: "Web Design & Full Stack", desc: "End-to-end web experiences — responsive, performant, and pixel-perfect from Figma to production." },
+                  { icon: AppWindow,     title: "App Development",         desc: "Complete development cycle from architecture to launch, with a focus on clean code and scalable systems." },
+                  { icon: Smartphone,    title: "Mobile App Development",  desc: "Cross-platform iOS and Android apps using Flutter, built to pixel-perfect specs with smooth UX." },
+                  { icon: SearchCode,    title: "SEO Optimisation",        desc: "Technical and content-level SEO strategies that improve ranking, discoverability, and organic traffic." },
+                  { icon: MousePointer2, title: "UX Consulting",           desc: "User research, prototyping, and design systems that put the end-user at the centre of every decision." },
+                ].map((service) => (
+                  <div key={service.title} className="group bg-[#111827]/40 border border-white/5 hover:border-[#D4AF37]/30 rounded-xl p-5 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] hover:-translate-y-0.5">
+                    <div className="p-2 bg-[#0A0F1C] border border-white/5 rounded-lg w-fit mb-4 group-hover:border-[#D4AF37]/20 transition-colors">
+                      <service.icon className="w-4 h-4 text-[#D4AF37]" />
+                    </div>
+                    <h3 className="text-white font-heading font-semibold text-sm mb-2">{service.title}</h3>
+                    <p className="text-xs text-os-text-muted leading-relaxed font-sans">{service.desc}</p>
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* Process Section */}

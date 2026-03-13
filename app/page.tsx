@@ -126,6 +126,27 @@ export default function Home() {
                 </div>
               </div>
 
+              {/* Trusted By */}
+              <div className="mb-12">
+                <h2 className="text-xs font-mono tracking-[0.2em] text-os-text-muted mb-6 flex items-center gap-2">
+                  // trusted_by
+                </h2>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  {[
+                    "Ghana Law Society",
+                    "National Service Authority",
+                    "Aurateq",
+                    "Ani Medical Consult",
+                    "God Alone Int Ministry",
+                    "NASPA Ghana",
+                  ].map((client) => (
+                    <div key={client} className="bg-white/[0.02] border border-white/5 hover:border-[#D4AF37]/25 rounded-lg px-3 py-2.5 text-center transition-all duration-300">
+                      <p className="text-os-text-muted text-[11px] font-mono tracking-wide">{client}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               {/* Experience Timeline */}
               <h2 className="text-xs font-mono tracking-[0.2em] text-os-text-muted mb-8 mt-16 flex items-center gap-2">
                 <Briefcase className="w-4 h-4" /> // experience_log

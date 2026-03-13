@@ -5,7 +5,7 @@ import Sidebar from "../../components/Sidebar";
 import MobileDock from "../../components/MobileDock";
 import SystemDock from "../../components/SystemDock";
 import PageTransition from "../../components/PageTransition";
-import { Terminal, Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { Terminal, Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, LucideLinkedin, LucideTwitter, LucideFacebook } from "lucide-react";
 import LiveClock from "@/components/LiveClock";
 
 export default function Contact() {
@@ -126,6 +126,23 @@ export default function Contact() {
                   
                   <div className="text-xs text-os-text-muted font-mono bg-os-accent-green/5 border border-os-accent-green/10 p-4 rounded-lg">
                     <span className="text-os-accent-green">{'>'}</span> SYSTEM_MESSAGE: Connect with me via email and call. Response time is typically within 24 hours.
+                  </div>
+
+                  {/* Social Links */}
+                  <div className="bg-[#111827]/60 border border-white/5 rounded-lg p-4 flex items-center justify-between">
+                    <span className="text-[10px] font-mono tracking-widest text-os-text-muted">// social_links</span>
+                    <div className="flex items-center gap-4">
+                      {[
+                        { icon: LucideLinkedin, href: "https://linkedin.com/in/ebenzotoo",    label: "LinkedIn"  },
+                        { icon: LucideTwitter,  href: "https://twitter.com/st_romario1",      label: "Twitter/X" },
+                        { icon: LucideFacebook, href: "https://facebook.com/ebenezerromario", label: "Facebook"  },
+                      ].map(({ icon: Icon, href, label }) => (
+                        <a key={label} href={href} target="_blank" rel="noopener noreferrer" title={label}
+                          className="text-os-text-muted hover:text-[#D4AF37] transition-colors duration-200">
+                          <Icon className="w-4 h-4" />
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
