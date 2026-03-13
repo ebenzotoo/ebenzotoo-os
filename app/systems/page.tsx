@@ -1,6 +1,3 @@
-import Sidebar from "../../components/Sidebar";
-import MobileDock from "../../components/MobileDock";
-import SystemDock from "../../components/SystemDock";
 import { Server, Database, Smartphone, Layout, Workflow, GitBranch, TrendingUp, SearchCode, MousePointer2, Globe, AppWindow } from "lucide-react";
 import PageTransition from "../../components/PageTransition";
 import LiveClock from "@/components/LiveClock";
@@ -38,14 +35,6 @@ export default function Systems() {
 
   return (
     <div className="relative h-screen overflow-hidden flex flex-col w-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#111827] via-[#0A0F1C] to-[#050810]">
-      
-      <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(212,175,55,0.07)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none z-0" />
-
-
-<div className="w-full max-w-[1440px] mx-auto flex-1 overflow-hidden flex border-t border-white/10 bg-[#0A0F1C]/40 backdrop-blur-2xl z-10 shadow-2xl">
-
-        <Sidebar />
-
         <main className="flex-1 flex flex-col overflow-y-auto pb-16 md:pb-0">
             <PageTransition>
           <div className="border-b border-white/5 flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex font-mono sticky top-0 bg-[#0A0F1C]/90 backdrop-blur-md z-20">
@@ -165,11 +154,3 @@ export default function Systems() {
 
           </div>
           </PageTransition>
-        </main>
-      </div>
-
-      <SystemDock />
-      <MobileDock />
-    </div>
-  );
-}

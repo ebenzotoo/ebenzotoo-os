@@ -5,6 +5,7 @@ import CommandPalette from "../components/CommandPalette";
 import DesktopHint from "../components/DesktopHint";
 import ThemeProvider from "../components/ThemeProvider";
 import ThemeToggle from "../components/ThemeToggle";
+import OSShell from "../components/OSShell";
 
 const syne = Syne({ subsets: ["latin"], variable: "--font-syne", weight: ["400", "500", "600", "700", "800"] });
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk" });
@@ -36,7 +37,9 @@ export default function RootLayout({
         <ThemeProvider>
           <CommandPalette />
           <DesktopHint />
-          {children}
+          <OSShell>
+            {children}
+          </OSShell>
           <ThemeToggle />
         </ThemeProvider>
       </body>

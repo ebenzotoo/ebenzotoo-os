@@ -1,7 +1,4 @@
 import { notFound } from "next/navigation";
-import Sidebar from "../../../components/Sidebar";
-import MobileDock from "../../../components/MobileDock";
-import SystemDock from "../../../components/SystemDock";
 import PageTransition from "../../../components/PageTransition";
 import LiveClock from "@/components/LiveClock";
 import NotificationBell from "@/components/NotificationBell";
@@ -48,14 +45,6 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
   const previewImage = project.image_url ?? projectImageMap[slug] ?? "/project1.png";
 
   return (
-    <div className="relative h-screen overflow-hidden flex flex-col w-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#111827] via-[#0A0F1C] to-[#050810]">
-
-      <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(212,175,55,0.07)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none z-0" />
-
-      <div className="w-full max-w-[1440px] mx-auto flex-1 overflow-hidden flex border-t border-white/10 bg-[#0A0F1C]/40 backdrop-blur-2xl z-10 shadow-2xl">
-
-        <Sidebar />
-
         <main className="flex-1 flex flex-col overflow-y-auto pb-16 md:pb-0">
           <PageTransition>
 
@@ -151,11 +140,3 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
 
             </div>
           </PageTransition>
-        </main>
-      </div>
-
-      <SystemDock />
-      <MobileDock />
-    </div>
-  );
-}

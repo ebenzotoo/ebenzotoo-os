@@ -75,7 +75,7 @@ html[data-theme="clean"] body {
   color: #1E293B;
 }
 
-/* ── Scrollbar ── */
+/* Scrollbar */
 html[data-theme="clean"] ::-webkit-scrollbar-thumb {
   background-color: rgba(0,0,0,0.1);
 }
@@ -83,21 +83,17 @@ html[data-theme="clean"] ::-webkit-scrollbar-thumb:hover {
   background-color: rgba(0,0,0,0.2);
 }
 
-/* ── Remove OS background gradient → plain white ── */
-html[data-theme="clean"] .from-\[\#111827\] {
-  --tw-gradient-from: #F8FAFC var(--tw-gradient-from-position);
-}
-html[data-theme="clean"] .via-\[\#0A0F1C\] {
-  --tw-gradient-via: #F1F5F9 var(--tw-gradient-via-position);
-}
-html[data-theme="clean"] .to-\[\#050810\] {
-  --tw-gradient-to: #FFFFFF var(--tw-gradient-to-position);
+/* ── Main element: let it flow naturally (no overflow scroll in clean mode) ── */
+html[data-theme="clean"] main {
+  overflow-y: visible !important;
+  flex: none !important;
+  padding-bottom: 0 !important;
 }
 
-/* ── Hide OS chrome decorations ── */
+/* ── Hide residual OS chrome still in page JSX ── */
 
-/* Dot grid overlay */
-html[data-theme="clean"] .pointer-events-none.absolute.inset-0 {
+/* SYSTEM_INFO sticky top bar */
+html[data-theme="clean"] .bg-\[\#0A0F1C\]\/90 {
   display: none !important;
 }
 
@@ -106,60 +102,35 @@ html[data-theme="clean"] .text-white\/\[0\.03\] {
   display: none !important;
 }
 
-/* SYSTEM_INFO sticky top bar (has NotificationBell / clock) */
-html[data-theme="clean"] .bg-\[\#0A0F1C\]\/90 {
-  display: none !important;
-}
-
-/* Bottom SystemDock */
-html[data-theme="clean"] .bg-\[\#0A0F1C\]\/80 {
-  display: none !important;
-}
-
-/* DesktopHint mobile banner */
+/* DesktopHint banner in clean mode */
 html[data-theme="clean"] .bg-\[\#0D1117\] {
   display: none !important;
 }
 
-/* ── Main content card → clean white card ── */
-html[data-theme="clean"] .bg-\[\#0A0F1C\]\/40 {
-  background-color: #FFFFFF !important;
-  border-color: #E2E8F0 !important;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04) !important;
-}
-
-/* ── Sidebar → clean white nav panel ── */
-html[data-theme="clean"] .bg-os-panel {
-  background-color: #FFFFFF !important;
-}
-html[data-theme="clean"] [class*="bg-[#0D1117]"],
-html[data-theme="clean"] [class*="bg-[#111827]"] {
-  background-color: #FFFFFF !important;
-}
-
-/* Sidebar border */
-html[data-theme="clean"] .border-white\/20,
-html[data-theme="clean"] .border-white\/10,
-html[data-theme="clean"] .border-white\/5 {
-  border-color: #E2E8F0 !important;
-}
-
-/* Active sidebar item */
-html[data-theme="clean"] .bg-\[\#1F2937\] {
-  background-color: #EFF6FF !important;
-}
-
-/* Active indicator bar */
-html[data-theme="clean"] .bg-os-accent-green {
-  background-color: #2563EB !important;
-}
-
-/* ── Cards and content panels ── */
+/* ── Content cards ── */
 html[data-theme="clean"] .bg-white\/\[0\.03\],
 html[data-theme="clean"] .bg-white\/\[0\.02\] {
   background-color: #FFFFFF !important;
   border-color: #E2E8F0 !important;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06) !important;
+}
+
+/* Terminal-style blocks (bio, code snippets) */
+html[data-theme="clean"] .bg-\[\#111827\]\/80,
+html[data-theme="clean"] .bg-\[\#111827\]\/60,
+html[data-theme="clean"] .bg-\[\#111827\]\/40 {
+  background-color: #F8FAFC !important;
+  border-color: #E2E8F0 !important;
+}
+
+/* Lab: header bar of experiment cards */
+html[data-theme="clean"] .bg-\[\#0A0F1C\] {
+  background-color: #F1F5F9 !important;
+}
+
+/* Lab: code editor dark panel */
+html[data-theme="clean"] .bg-\[\#050810\]\/50 {
+  background-color: #F8FAFC !important;
 }
 
 /* Skill bar track */
@@ -167,15 +138,12 @@ html[data-theme="clean"] .bg-white\/5 {
   background-color: #F1F5F9 !important;
 }
 
-/* Terminal-style bio / code blocks */
-html[data-theme="clean"] .bg-\[\#111827\]\/80 {
-  background-color: #F8FAFC !important;
-  border-color: #E2E8F0 !important;
+/* Inline code in notes */
+html[data-theme="clean"] .bg-white\/10 {
+  background-color: #F1F5F9 !important;
 }
 
 /* ── Typography ── */
-
-/* White headings → dark slate */
 html[data-theme="clean"] .text-white {
   color: #1E293B !important;
 }
@@ -183,12 +151,10 @@ html[data-theme="clean"] .hover\:text-white:hover {
   color: #0F172A !important;
 }
 
-/* Gold → professional amber-brown */
 html[data-theme="clean"] .text-\[\#D4AF37\] {
   color: #B45309 !important;
 }
 
-/* Amber/orange → blue */
 html[data-theme="clean"] .text-\[\#F9A41E\] {
   color: #2563EB !important;
 }
@@ -197,24 +163,20 @@ html[data-theme="clean"] .bg-\[\#F9A41E\]\/10 {
   border-color: #BFDBFE !important;
 }
 
-/* Gold borders → soft slate */
+/* ── Borders ── */
+html[data-theme="clean"] .border-white\/20,
+html[data-theme="clean"] .border-white\/10,
+html[data-theme="clean"] .border-white\/5 {
+  border-color: #E2E8F0 !important;
+}
+
 html[data-theme="clean"] .border-\[\#D4AF37\]\/60,
 html[data-theme="clean"] .border-\[\#D4AF37\]\/30,
 html[data-theme="clean"] .border-\[\#D4AF37\]\/20 {
   border-color: #CBD5E1 !important;
 }
 
-/* Blockquote gold accent → slate blue */
-html[data-theme="clean"] .border-l-2.border-\[\#D4AF37\]\/60 {
-  border-color: #93C5FD !important;
-}
-
-/* Inline code blocks */
-html[data-theme="clean"] .bg-white\/10 {
-  background-color: #F1F5F9 !important;
-}
-
-/* ── Images: show in full colour, no grayscale ── */
+/* ── Images: full colour, no grayscale ── */
 html[data-theme="clean"] .grayscale {
   filter: none !important;
 }
@@ -226,14 +188,4 @@ html[data-theme="clean"] .opacity-50 {
 html[data-theme="clean"] .bg-green-500\/10 {
   background-color: #F0FDF4 !important;
   border-color: #BBF7D0 !important;
-}
-
-/* Mobile bottom dock → hide (content is accessible via sidebar-equivalent) */
-html[data-theme="clean"] .fixed.bottom-0 {
-  display: none !important;
-}
-
-/* ThemeToggle: bump it to bottom-6 now that dock is hidden */
-html[data-theme="clean"] button[data-clean="true"] {
-  bottom: 1.5rem !important;
 }
