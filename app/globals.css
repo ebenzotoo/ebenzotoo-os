@@ -102,9 +102,10 @@ html[data-theme="clean"] .text-white\/\[0\.03\] {
   display: none !important;
 }
 
-/* DesktopHint banner in clean mode */
+/* bg-[#0D1117] → white (used by project cards, notification dropdown, etc.) */
 html[data-theme="clean"] .bg-\[\#0D1117\] {
-  display: none !important;
+  background-color: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
 }
 
 /* ── Content cards ── */

@@ -258,7 +258,5 @@ export default async function NoteDetail({ params }: { params: Promise<{ slug: s
             </div>
           </PageTransition>
         </main>
-      </div>
-    </div>
   );
 }

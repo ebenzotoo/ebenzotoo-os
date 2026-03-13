@@ -140,3 +140,6 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
 
             </div>
           </PageTransition>
+    </main>
+  );
+}

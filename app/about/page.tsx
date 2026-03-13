@@ -6,10 +6,7 @@ import CloudStatus from "@/components/CloudStatus";
 
 export default function About() {
   return (
-    <div className="relative h-screen overflow-hidden flex flex-col w-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#111827] via-[#0A0F1C] to-[#050810]">
       
-      {/* Background Grid */}
-      {/* The OS Workspace */}
         <main className="flex-1 flex flex-col overflow-y-auto pb-16 md:pb-0">
             <PageTransition>
           {/* Top Bar */}
@@ -113,3 +110,6 @@ export default function About() {
 
           </div>
           </PageTransition>
+    </main>
+  );
+}

@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import { Monitor, X } from "lucide-react";
+import { useTheme } from "./ThemeProvider";
 
 export default function DesktopHint() {
   const [dismissed, setDismissed] = useState(false);
+  const { theme } = useTheme();
 
-  if (dismissed) return null;
+  if (dismissed || theme === "clean") return null;
 
   return (
     <div className="md:hidden flex items-center justify-between gap-3 px-4 py-2.5 bg-[#0D1117] border-b border-[#D4AF37]/20 text-xs font-mono z-50">

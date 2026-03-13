@@ -210,3 +210,6 @@ export default function Contact() {
               </div>
             </div>
           </PageTransition>
+    </main>
+  );
+}

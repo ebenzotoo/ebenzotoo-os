@@ -21,7 +21,6 @@ export default async function Notes() {
   if (error) console.error("Error fetching notes:", error);
 
   return (
-    <div className="relative h-screen overflow-hidden flex flex-col w-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#111827] via-[#0A0F1C] to-[#050810]">
         <main className="flex-1 flex flex-col overflow-y-auto pb-16 md:pb-0">
           <PageTransition>
             <div className="border-b border-white/5 flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex font-mono sticky top-0 bg-[#0A0F1C]/90 backdrop-blur-md z-20">
@@ -105,3 +104,6 @@ export default async function Notes() {
 
             </div>
           </PageTransition>
+    </main>
+  );
+}
