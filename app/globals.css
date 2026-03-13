@@ -12,7 +12,7 @@
   --color-os-text-main: #F0EDE6;
   --color-os-text-muted: #7A8499;
   --color-os-accent-blue: #007ACC;
-  --color-os-accent-green: #22C55E;
+  --color-os-accent-green: #F9A41E;
   --color-os-accent-gold: #D4AF37;
   --color-os-accent-gold-muted: rgba(212,175,55,0.12);
 
@@ -25,7 +25,7 @@
   --color-vscode-text-main: #D4D4D4;
   --color-vscode-text-muted: #858585;
   --color-vscode-accent-blue: #007ACC;
-  --color-vscode-accent-green: #22C55E;
+  --color-vscode-accent-green: #F9A41E;
 }
 
 body {

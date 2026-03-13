@@ -45,7 +45,7 @@ export default async function Projects() {
               <LiveClock />
             </div>
 
-            <div className="p-6 md:p-10 relative overflow-hidden">
+            <div className="p-6 md:p-10 relative">
 
               {/* Ghost watermark */}
               <div className="absolute top-4 right-0 text-[90px] font-heading font-black text-white/[0.025] leading-none select-none pointer-events-none tracking-tighter">

@@ -44,7 +44,7 @@ export default async function NoteDetail({ params }: { params: Promise<{ slug: s
               </div>
             </div>
             
-            <div className="p-6 md:p-10 flex-1 max-w-3xl mx-auto w-full relative overflow-hidden">
+            <div className="p-6 md:p-10 flex-1 max-w-3xl mx-auto w-full relative">
 
               {/* Ghost watermark */}
               <div className="absolute top-4 right-0 text-[100px] font-heading font-black text-white/[0.025] leading-none select-none pointer-events-none tracking-tighter">

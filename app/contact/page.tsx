@@ -76,7 +76,7 @@ export default function Contact() {
               <span>~/SECURE_COMMS <LiveClock /></span>
             </div>
             
-            <div className="p-6 md:p-10 flex-1 max-w-5xl w-full relative overflow-hidden">
+            <div className="p-6 md:p-10 flex-1 max-w-5xl w-full relative">
 
               {/* Ghost watermark */}
               <div className="absolute top-4 right-0 text-[85px] font-heading font-black text-white/[0.025] leading-none select-none pointer-events-none tracking-tighter">
