@@ -37,7 +37,7 @@ export default function Systems() {
   return (
     <div className="relative h-screen overflow-hidden flex flex-col w-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#111827] via-[#0A0F1C] to-[#050810]">
       
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(212,175,55,0.07)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none z-0" />
 
 
 <div className="w-full max-w-[1440px] mx-auto flex-1 overflow-hidden flex border-t border-white/10 bg-[#0A0F1C]/40 backdrop-blur-2xl z-10 shadow-2xl">
@@ -52,7 +52,13 @@ export default function Systems() {
             <span>~/ARCHITECTURE_NODES <LiveClock /></span>
           </div>
           
-          <div className="p-6 md:p-10 flex-1 max-w-5xl w-full">
+          <div className="p-6 md:p-10 flex-1 max-w-5xl w-full relative overflow-hidden">
+
+            {/* Ghost watermark */}
+            <div className="absolute top-4 right-0 text-[90px] font-heading font-black text-white/[0.025] leading-none select-none pointer-events-none tracking-tighter">
+              SYSTEMS
+            </div>
+
             <div className="flex items-center justify-between mb-8">
               <h2 className="text-xs font-bold tracking-[0.2em] text-os-text-muted font-sans">SYSTEM_ARCHITECTURE</h2>
               <div className="flex items-center gap-2 text-xs font-mono text-os-accent-green">
@@ -69,7 +75,7 @@ export default function Systems() {
               <div className="hidden md:block absolute top-0 left-1/2 w-[1px] h-full bg-white/5 -z-10" />
 
               {nodes.map((node, i) => (
-                <div key={i} className="bg-[#111827]/60 border border-white/5 hover:border-white/20 p-6 rounded-xl transition-all duration-300 group flex flex-col h-full backdrop-blur-sm relative overflow-hidden">
+                <div key={i} className="bg-[#111827]/60 border border-white/5 hover:border-[#D4AF37]/30 p-6 rounded-xl transition-all duration-300 group flex flex-col h-full backdrop-blur-sm relative overflow-hidden hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] hover:-translate-y-1">
                   
                   {/* Subtle hover gradient */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/0 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

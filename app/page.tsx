@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="relative h-screen overflow-hidden flex flex-col w-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#111827] via-[#0A0F1C] to-[#050810]">
 
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(212,175,55,0.07)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none z-0" />
 
       <div className="w-full max-w-[1440px] mx-auto flex-1 overflow-hidden flex border-t border-white/10 bg-[#0A0F1C]/40 backdrop-blur-2xl z-10 shadow-2xl">
 
@@ -32,14 +32,14 @@ export default function Home() {
               {/* Avatar + identity header */}
               <div className="flex items-center gap-5 mb-8">
                 <div className="shrink-0 group cursor-pointer relative hidden sm:block">
-                  <div className="w-16 h-16 rounded-xl overflow-hidden border border-white/10 group-hover:border-os-accent-blue/50 transition-all duration-500 shadow-lg shadow-black/50">
+                  <div className="w-16 h-16 rounded-xl overflow-hidden border border-white/10 group-hover:border-[#D4AF37]/50 transition-all duration-500 shadow-lg shadow-black/50">
                     <img
                       src="/avatar.png"
                       alt="Ebenezer Zotoo"
                       className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                     />
                   </div>
-                  <div className="absolute -inset-1 rounded-xl bg-os-accent-blue/0 group-hover:bg-os-accent-blue/10 blur-md transition-all duration-500 -z-10" />
+                  <div className="absolute -inset-1 rounded-xl bg-[#D4AF37]/0 group-hover:bg-[#D4AF37]/8 blur-md transition-all duration-500 -z-10" />
                 </div>
                 <div>
                   <h2 className="text-xs font-mono tracking-[0.2em] text-os-text-muted">// about_user</h2>
@@ -55,7 +55,7 @@ export default function Home() {
                   { value: "50+", label: "Projects Shipped" },
                   { value: "3",   label: "Countries Worked Across" },
                 ].map((stat) => (
-                  <div key={stat.label} className="bg-white/[0.03] border border-white/5 rounded-lg px-4 py-3 text-center">
+                  <div key={stat.label} className="bg-white/[0.03] border border-white/5 hover:border-[#D4AF37]/30 hover:shadow-[0_4px_20px_rgba(212,175,55,0.06)] rounded-lg px-4 py-3 text-center transition-all duration-300">
                     <p className="text-white font-heading font-bold text-2xl">{stat.value}</p>
                     <p className="text-os-text-muted text-[10px] font-mono tracking-wide mt-1">{stat.label}</p>
                   </div>
@@ -139,7 +139,7 @@ export default function Home() {
                   { role: "Director, Information Technology", company: "B.A United FC", year: "2015 – 2018" },
                 ].map((job, index) => (
                   <div key={index} className="relative">
-                    <div className="absolute -left-[31px] top-1.5 w-3 h-3 bg-os-bg border border-os-accent-blue rounded-full" />
+                    <div className="absolute -left-[31px] top-1.5 w-3 h-3 bg-[#0A0F1C] border border-[#D4AF37]/60 rounded-full" />
                     <h3 className="text-white font-medium text-sm">{job.role}</h3>
                     <p className="text-os-accent-blue text-xs font-mono mt-1">{job.company}</p>
                     <p className="text-os-text-muted text-xs mt-2">{job.year}</p>

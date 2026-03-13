@@ -19,7 +19,7 @@ export default async function Notes() {
   return (
     <div className="relative h-screen overflow-hidden flex flex-col w-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#111827] via-[#0A0F1C] to-[#050810]">
       
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(212,175,55,0.07)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none z-0" />
 
 
 <div className="w-full max-w-[1440px] mx-auto flex-1 overflow-hidden flex border-t border-white/10 bg-[#0A0F1C]/40 backdrop-blur-2xl z-10 shadow-2xl">
@@ -34,13 +34,19 @@ export default async function Notes() {
               <span>~/LOGS/NOTES <LiveClock /></span>
             </div>
             
-            <div className="p-6 md:p-10 flex-1 max-w-4xl w-full">
+            <div className="p-6 md:p-10 flex-1 max-w-4xl w-full relative overflow-hidden">
+
+              {/* Ghost watermark */}
+              <div className="absolute top-4 right-0 text-[100px] font-heading font-black text-white/[0.025] leading-none select-none pointer-events-none tracking-tighter">
+                NOTES
+              </div>
+
               <h2 className="text-xs font-bold tracking-[0.2em] text-os-text-muted mb-8 font-sans">SYSTEM_NOTES</h2>
               
               <div className="flex flex-col gap-6">
                 {notes?.map((article) => (
                   <Link href={`/notes/${article.slug}`} key={article.id} className="block group">
-                    <div className="relative flex flex-col gap-3 p-6 rounded-xl bg-[#111827]/40 border border-white/5 hover:border-os-accent-green/50 hover:bg-[#111827]/80 transition-all duration-300 overflow-hidden">
+                    <div className="relative flex flex-col gap-3 p-6 rounded-xl bg-[#111827]/40 border border-white/5 hover:border-[#D4AF37]/35 hover:bg-[#111827]/80 hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] hover:-translate-y-1 transition-all duration-300 overflow-hidden">
                       
                       <div className="absolute inset-0 bg-gradient-to-r from-os-accent-green/0 via-os-accent-green/5 to-os-accent-green/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                       

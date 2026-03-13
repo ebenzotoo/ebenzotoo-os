@@ -31,7 +31,7 @@ export default async function Projects() {
   return (
     <div className="relative h-screen overflow-hidden flex flex-col w-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#111827] via-[#0A0F1C] to-[#050810]">
 
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(212,175,55,0.07)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none z-0" />
 
       <div className="w-full max-w-[1440px] mx-auto flex-1 overflow-hidden flex border-t border-white/10 bg-[#0A0F1C]/40 backdrop-blur-2xl z-10 shadow-2xl">
 
@@ -45,7 +45,12 @@ export default async function Projects() {
               <LiveClock />
             </div>
 
-            <div className="p-6 md:p-10">
+            <div className="p-6 md:p-10 relative overflow-hidden">
+
+              {/* Ghost watermark */}
+              <div className="absolute top-4 right-0 text-[90px] font-heading font-black text-white/[0.025] leading-none select-none pointer-events-none tracking-tighter">
+                PROJECTS
+              </div>
 
               {/* Section Header */}
               <div className="flex items-center justify-between mb-8">
@@ -65,11 +70,11 @@ export default async function Projects() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {projects?.map((project) => (
                   <Link href={`/projects/${project.slug}`} key={project.id} className="block group">
-                    <div className="bg-[#0D1117] border border-white/10 rounded-2xl overflow-hidden hover:border-white/25 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-black/40 group-hover:-translate-y-0.5">
+                    <div className="bg-[#0D1117] border border-white/10 rounded-2xl overflow-hidden hover:border-[#D4AF37]/35 transition-all duration-300 group-hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] group-hover:-translate-y-1">
 
                       {/* Card Text */}
                       <div className="p-5 pb-4">
-                        <h3 className="text-[15px] font-semibold text-white mb-2 group-hover:text-os-accent-blue transition-colors">
+                        <h3 className="text-[15px] font-semibold text-white mb-2 group-hover:text-[#D4AF37] transition-colors">
                           {project.title}
                         </h3>
                         <p className="text-sm text-os-text-muted line-clamp-2 leading-relaxed">

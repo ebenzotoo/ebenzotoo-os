@@ -5,6 +5,18 @@
   --font-heading: var(--font-syne), 'Syne', sans-serif;
   --font-mono: var(--font-fira), 'Fira Code', monospace;
 
+  --color-os-bg: #0A0F1C;
+  --color-os-surface: #111827;
+  --color-os-surface-hover: #1A2236;
+  --color-os-border: #1E2A40;
+  --color-os-text-main: #F0EDE6;
+  --color-os-text-muted: #7A8499;
+  --color-os-accent-blue: #007ACC;
+  --color-os-accent-green: #22C55E;
+  --color-os-accent-gold: #D4AF37;
+  --color-os-accent-gold-muted: rgba(212,175,55,0.12);
+
+  /* Legacy aliases */
   --color-vscode-bg: #1E1E1E;
   --color-vscode-sidebar: #252526;
   --color-vscode-activity: #333333;
@@ -32,9 +44,13 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: var(--color-vscode-border);
+  background-color: rgba(212, 175, 55, 0.2);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-vscode-text-muted);
+  background-color: rgba(212, 175, 55, 0.4);
+}
+
+* {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }
