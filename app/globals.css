@@ -58,92 +58,90 @@ body {
 /* ─── Clean / Simple Mode ───────────────────────────────────────────────── */
 
 html[data-theme="clean"] {
-  /* Override OS color tokens */
-  --color-os-bg:               #F3F4F6;
-  --color-os-surface:          #FFFFFF;
-  --color-os-surface-hover:    #F9FAFB;
-  --color-os-border:           #E5E7EB;
-  --color-os-text-main:        #111827;
-  --color-os-text-muted:       #6B7280;
-  --color-os-accent-blue:      #2563EB;
-  --color-os-accent-green:     #16A34A;
-  --color-os-accent-gold:      #92400E;
-  --color-os-accent-gold-muted: rgba(146,64,14,0.08);
-
-  /* Reset the radial gradient stops used by pages */
-  --tw-gradient-from:    #F3F4F6;
-  --tw-gradient-via:     #F9FAFB;
-  --tw-gradient-to:      #FFFFFF;
+  --color-os-bg:                #F8FAFC;
+  --color-os-surface:           #FFFFFF;
+  --color-os-surface-hover:     #F1F5F9;
+  --color-os-border:            #E2E8F0;
+  --color-os-text-main:         #1E293B;
+  --color-os-text-muted:        #64748B;
+  --color-os-accent-blue:       #2563EB;
+  --color-os-accent-green:      #16A34A;
+  --color-os-accent-gold:       #B45309;
+  --color-os-accent-gold-muted: rgba(180,83,9,0.08);
 }
 
 html[data-theme="clean"] body {
-  background: #F3F4F6;
-  color: #111827;
+  background: #F8FAFC;
+  color: #1E293B;
 }
 
-/* Scrollbar: lighter in clean mode */
+/* ── Scrollbar ── */
 html[data-theme="clean"] ::-webkit-scrollbar-thumb {
-  background-color: rgba(0,0,0,0.12);
+  background-color: rgba(0,0,0,0.1);
 }
 html[data-theme="clean"] ::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0,0,0,0.22);
+  background-color: rgba(0,0,0,0.2);
 }
 
-/* Page root gradient wrapper → white background */
+/* ── Remove OS background gradient → plain white ── */
 html[data-theme="clean"] .from-\[\#111827\] {
-  --tw-gradient-from: #F3F4F6 var(--tw-gradient-from-position);
+  --tw-gradient-from: #F8FAFC var(--tw-gradient-from-position);
 }
 html[data-theme="clean"] .via-\[\#0A0F1C\] {
-  --tw-gradient-via: #F9FAFB var(--tw-gradient-via-position);
+  --tw-gradient-via: #F1F5F9 var(--tw-gradient-via-position);
 }
 html[data-theme="clean"] .to-\[\#050810\] {
   --tw-gradient-to: #FFFFFF var(--tw-gradient-to-position);
 }
 
-/* Hide the dot grid overlay */
+/* ── Hide OS chrome decorations ── */
+
+/* Dot grid overlay */
 html[data-theme="clean"] .pointer-events-none.absolute.inset-0 {
-  display: none;
+  display: none !important;
 }
 
-/* Ghost watermarks → invisible */
+/* Ghost watermarks */
 html[data-theme="clean"] .text-white\/\[0\.03\] {
-  color: transparent !important;
+  display: none !important;
 }
 
-/* Main content container */
+/* SYSTEM_INFO sticky top bar (has NotificationBell / clock) */
+html[data-theme="clean"] .bg-\[\#0A0F1C\]\/90 {
+  display: none !important;
+}
+
+/* Bottom SystemDock */
+html[data-theme="clean"] .bg-\[\#0A0F1C\]\/80 {
+  display: none !important;
+}
+
+/* DesktopHint mobile banner */
+html[data-theme="clean"] .bg-\[\#0D1117\] {
+  display: none !important;
+}
+
+/* ── Main content card → clean white card ── */
 html[data-theme="clean"] .bg-\[\#0A0F1C\]\/40 {
-  background-color: rgba(255,255,255,0.85) !important;
-  border-color: #E5E7EB !important;
+  background-color: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04) !important;
 }
 
-/* Sidebar */
-html[data-theme="clean"] .bg-os-panel,
+/* ── Sidebar → clean white nav panel ── */
+html[data-theme="clean"] .bg-os-panel {
+  background-color: #FFFFFF !important;
+}
 html[data-theme="clean"] [class*="bg-[#0D1117]"],
 html[data-theme="clean"] [class*="bg-[#111827]"] {
   background-color: #FFFFFF !important;
 }
 
-/* Top bar + sticky header */
-html[data-theme="clean"] .bg-\[\#0A0F1C\]\/90 {
-  background-color: rgba(255,255,255,0.92) !important;
-  border-color: #E5E7EB !important;
-}
-
-/* SystemDock */
-html[data-theme="clean"] .bg-\[\#0A0F1C\]\/80 {
-  background-color: rgba(248,250,252,0.95) !important;
-  border-color: #E5E7EB !important;
-}
-
 /* Sidebar border */
-html[data-theme="clean"] .border-white\/20 {
-  border-color: #E5E7EB !important;
-}
-html[data-theme="clean"] .border-white\/10 {
-  border-color: #E5E7EB !important;
-}
+html[data-theme="clean"] .border-white\/20,
+html[data-theme="clean"] .border-white\/10,
 html[data-theme="clean"] .border-white\/5 {
-  border-color: #F3F4F6 !important;
+  border-color: #E2E8F0 !important;
 }
 
 /* Active sidebar item */
@@ -151,69 +149,91 @@ html[data-theme="clean"] .bg-\[\#1F2937\] {
   background-color: #EFF6FF !important;
 }
 
-/* Sidebar active indicator dot (amber → blue) */
+/* Active indicator bar */
 html[data-theme="clean"] .bg-os-accent-green {
   background-color: #2563EB !important;
 }
 
-/* Cards and surface panels */
+/* ── Cards and content panels ── */
 html[data-theme="clean"] .bg-white\/\[0\.03\],
 html[data-theme="clean"] .bg-white\/\[0\.02\] {
   background-color: #FFFFFF !important;
-  border-color: #E5E7EB !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
 }
 
-/* White text headings → dark */
+/* Skill bar track */
+html[data-theme="clean"] .bg-white\/5 {
+  background-color: #F1F5F9 !important;
+}
+
+/* Terminal-style bio / code blocks */
+html[data-theme="clean"] .bg-\[\#111827\]\/80 {
+  background-color: #F8FAFC !important;
+  border-color: #E2E8F0 !important;
+}
+
+/* ── Typography ── */
+
+/* White headings → dark slate */
 html[data-theme="clean"] .text-white {
-  color: #111827 !important;
+  color: #1E293B !important;
 }
 html[data-theme="clean"] .hover\:text-white:hover {
-  color: #111827 !important;
+  color: #0F172A !important;
 }
 
-/* Gold accents → slate blue */
+/* Gold → professional amber-brown */
 html[data-theme="clean"] .text-\[\#D4AF37\] {
-  color: #2563EB !important;
-}
-html[data-theme="clean"] .border-\[\#D4AF37\]\/60,
-html[data-theme="clean"] .border-\[\#D4AF37\]\/30,
-html[data-theme="clean"] .border-\[\#D4AF37\]\/20 {
-  border-color: #BFDBFE !important;
+  color: #B45309 !important;
 }
 
-/* Amber notification color → blue */
+/* Amber/orange → blue */
 html[data-theme="clean"] .text-\[\#F9A41E\] {
   color: #2563EB !important;
 }
 html[data-theme="clean"] .bg-\[\#F9A41E\]\/10 {
   background-color: #EFF6FF !important;
+  border-color: #BFDBFE !important;
 }
 
-/* Skill bar backgrounds */
-html[data-theme="clean"] .bg-white\/5 {
-  background-color: #F3F4F6 !important;
+/* Gold borders → soft slate */
+html[data-theme="clean"] .border-\[\#D4AF37\]\/60,
+html[data-theme="clean"] .border-\[\#D4AF37\]\/30,
+html[data-theme="clean"] .border-\[\#D4AF37\]\/20 {
+  border-color: #CBD5E1 !important;
 }
 
-/* Note/project terminal-style top bar label */
-html[data-theme="clean"] .text-os-accent-blue {
-  color: #2563EB !important;
-}
-
-/* Blockquote border in notes */
-html[data-theme="clean"] .border-\[\#D4AF37\]\/60 {
+/* Blockquote gold accent → slate blue */
+html[data-theme="clean"] .border-l-2.border-\[\#D4AF37\]\/60 {
   border-color: #93C5FD !important;
 }
 
-/* DesktopHint bar */
-html[data-theme="clean"] .bg-\[\#0D1117\] {
-  background-color: #F9FAFB !important;
-  border-color: #E5E7EB !important;
+/* Inline code blocks */
+html[data-theme="clean"] .bg-white\/10 {
+  background-color: #F1F5F9 !important;
 }
 
-/* Image grayscale off in clean mode — let brand colors show */
+/* ── Images: show in full colour, no grayscale ── */
 html[data-theme="clean"] .grayscale {
   filter: none !important;
 }
 html[data-theme="clean"] .opacity-50 {
-  opacity: 0.85 !important;
+  opacity: 1 !important;
+}
+
+/* Availability badge */
+html[data-theme="clean"] .bg-green-500\/10 {
+  background-color: #F0FDF4 !important;
+  border-color: #BBF7D0 !important;
+}
+
+/* Mobile bottom dock → hide (content is accessible via sidebar-equivalent) */
+html[data-theme="clean"] .fixed.bottom-0 {
+  display: none !important;
+}
+
+/* ThemeToggle: bump it to bottom-6 now that dock is hidden */
+html[data-theme="clean"] button[data-clean="true"] {
+  bottom: 1.5rem !important;
 }
