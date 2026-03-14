@@ -5,9 +5,15 @@ import Sidebar from "./Sidebar";
 import SystemDock from "./SystemDock";
 import MobileDock from "./MobileDock";
 import CleanNav from "./CleanNav";
+import { usePathname } from "next/navigation";
 
 export default function OSShell({ children }: { children: React.ReactNode }) {
   const { theme } = useTheme();
+  const pathname = usePathname();
+
+  if (pathname.startsWith("/admin")) {
+    return <>{children}</>;
+  }
 
   if (theme === "clean") {
     return (

@@ -203,3 +203,51 @@ html[data-theme="clean"] main > div {
   height: auto !important;
   flex: none !important;
 }
+
+/* ── Admin panel: always dark, immune to clean mode overrides ──────────────── */
+html[data-theme="clean"] [data-admin] body,
+html[data-theme="clean"] [data-admin] {
+  color: rgba(255, 255, 255, 0.7);
+}
+html[data-theme="clean"] [data-admin] .bg-white\/5 {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+html[data-theme="clean"] [data-admin] .bg-white\/10 {
+  background-color: rgba(255, 255, 255, 0.10) !important;
+}
+html[data-theme="clean"] [data-admin] .bg-white\/\[0\.03\],
+html[data-theme="clean"] [data-admin] .bg-white\/\[0\.02\] {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: none !important;
+}
+html[data-theme="clean"] [data-admin] .text-white {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+html[data-theme="clean"] [data-admin] .hover\:text-white:hover {
+  color: #ffffff !important;
+}
+html[data-theme="clean"] [data-admin] .border-white\/10,
+html[data-theme="clean"] [data-admin] .border-white\/5,
+html[data-theme="clean"] [data-admin] .border-white\/20 {
+  border-color: rgba(255, 255, 255, 0.10) !important;
+}
+html[data-theme="clean"] [data-admin] .bg-\[\#0A0F1C\]\/90 {
+  display: flex !important;
+  background-color: rgba(10, 15, 28, 0.9) !important;
+}
+html[data-theme="clean"] [data-admin] .bg-\[\#0A0F1C\]\/60 {
+  background-color: rgba(10, 15, 28, 0.6) !important;
+}
+html[data-theme="clean"] [data-admin] .bg-\[\#0A0F1C\] {
+  background-color: #0A0F1C !important;
+}
+html[data-theme="clean"] [data-admin] .bg-\[\#050810\] {
+  background-color: #050810 !important;
+}
+html[data-theme="clean"] [data-admin] .text-\[\#D4AF37\] {
+  color: #D4AF37 !important;
+}
+html[data-theme="clean"] [data-admin] .border-\[\#D4AF37\]\/30 {
+  border-color: rgba(212, 175, 55, 0.3) !important;
+}
