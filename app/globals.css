@@ -190,3 +190,16 @@ html[data-theme="clean"] .bg-green-500\/10 {
   background-color: #F0FDF4 !important;
   border-color: #BBF7D0 !important;
 }
+
+/* ── OS / Clean structural content switching ── */
+.os-only   { display: block; }
+.clean-only { display: none;  }
+
+html[data-theme="clean"] .os-only   { display: none  !important; }
+html[data-theme="clean"] .clean-only { display: block !important; }
+
+/* PageTransition in clean mode: auto height, not fixed */
+html[data-theme="clean"] main > div {
+  height: auto !important;
+  flex: none !important;
+}

@@ -4,20 +4,7 @@ import { getSupabase } from "../../lib/supabase";
 import LiveClock from "@/components/LiveClock";
 import NotificationBell from "@/components/NotificationBell";
 import CloudStatus from "@/components/CloudStatus";
-import {
-  Smartphone, Globe, Palette, Terminal, Database,
-  LayoutTemplate, Code2, AppWindow, ArrowUpRight,
-} from "lucide-react";
-
-const techIconMap: Record<string, React.ReactNode> = {
-  "Flutter":            <Smartphone className="w-4 h-4" />,
-  "Mobile App Dev":     <AppWindow className="w-4 h-4" />,
-  "Web Development":    <Globe className="w-4 h-4" />,
-  "UI/UX Design":       <Palette className="w-4 h-4" />,
-  "Python":             <Terminal className="w-4 h-4" />,
-  "Database Management":<Database className="w-4 h-4" />,
-  "WordPress":          <LayoutTemplate className="w-4 h-4" />,
-};
+import { ArrowUpRight } from "lucide-react";
 
 const projectImageMap: Record<string, string> = {
   "naspa-skills-hub":              "/projects/skillshub.png",
@@ -52,72 +39,110 @@ export default async function Projects() {
   if (error) console.error("Error fetching projects:", error);
 
   return (
-        <main className="flex-1 flex flex-col overflow-y-auto pb-16 md:pb-0">
-          <PageTransition>
-            <div className="border-b border-white/5 flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex font-mono sticky top-0 bg-[#0A0F1C]/90 backdrop-blur-md z-20">
-              <NotificationBell />
-              <CloudStatus />
-              <LiveClock />
+    <main className="flex-1 flex flex-col overflow-y-auto pb-16 md:pb-0">
+      <PageTransition>
+
+        {/* ========== OS VERSION ========== */}
+        <div className="os-only">
+          <div className="border-b border-white/5 flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex font-mono sticky top-0 bg-[#0A0F1C]/90 backdrop-blur-md z-20">
+            <NotificationBell />
+            <CloudStatus />
+            <LiveClock />
+          </div>
+
+          <div className="p-6 md:p-10 relative">
+            {/* Ghost watermark */}
+            <div className="absolute top-4 right-0 text-[90px] font-heading font-black text-white/[0.025] leading-none select-none pointer-events-none tracking-tighter">
+              PROJECTS
             </div>
 
-            <div className="p-6 md:p-10 relative">
-
-              {/* Ghost watermark */}
-              <div className="absolute top-4 right-0 text-[90px] font-heading font-black text-white/[0.025] leading-none select-none pointer-events-none tracking-tighter">
-                PROJECTS
+            {/* Section Header */}
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-xs font-bold tracking-[0.2em] text-os-text-muted font-sans">PROJECTS</h2>
+              <div className="flex items-center gap-3">
+                <span className="text-xs font-mono text-os-text-muted px-3 py-1.5 border border-white/10 rounded-md">
+                  {projects?.length ?? 0} total
+                </span>
+                <span className="flex items-center gap-1.5 text-xs font-mono text-os-accent-green px-3 py-1.5 border border-os-accent-green/20 rounded-md bg-os-accent-green/5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-os-accent-green animate-pulse" />
+                  All active
+                </span>
               </div>
+            </div>
 
-              {/* Section Header */}
-              <div className="flex items-center justify-between mb-8">
-                <h2 className="text-xs font-bold tracking-[0.2em] text-os-text-muted font-sans">PROJECTS</h2>
-                <div className="flex items-center gap-3">
-                  <span className="text-xs font-mono text-os-text-muted px-3 py-1.5 border border-white/10 rounded-md">
-                    {projects?.length ?? 0} total
-                  </span>
-                  <span className="flex items-center gap-1.5 text-xs font-mono text-os-accent-green px-3 py-1.5 border border-os-accent-green/20 rounded-md bg-os-accent-green/5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-os-accent-green animate-pulse" />
-                    All active
-                  </span>
-                </div>
-              </div>
-
-              {/* Project Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                {projects?.map((project) => (
-                  <Link href={`/projects/${project.slug}`} key={project.id} className="block group">
-                    <div className="bg-[#0D1117] border border-white/10 rounded-2xl overflow-hidden hover:border-[#D4AF37]/35 transition-all duration-300 group-hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] group-hover:-translate-y-1">
-
-                      {/* Card Text */}
-                      <div className="p-5 pb-4">
-                        <h3 className="text-[15px] font-semibold text-white mb-2 group-hover:text-[#D4AF37] transition-colors">
-                          {project.title}
-                        </h3>
-                        <p className="text-sm text-os-text-muted line-clamp-2 leading-relaxed">
-                          {project.description}
-                        </p>
-                      </div>
-
-                      {/* Card Preview */}
-                      <div className="mx-4 mb-4 rounded-xl overflow-hidden h-44 border border-white/5 relative">
-                        <img
-                          src={project.image_url ?? projectImageMap[project.slug] ?? "/project1.png"}
-                          alt={project.title}
-                          className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                        />
-                        {/* Hover overlay with "open" hint */}
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
-                          <span className="text-[11px] font-mono tracking-widest text-white/0 group-hover:text-white/80 transition-all duration-300">
-                            OPEN_PROJECT ↗
-                          </span>
-                        </div>
-                      </div>
-
+            {/* Project Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              {projects?.map((project) => (
+                <Link href={`/projects/${project.slug}`} key={project.id} className="block group">
+                  <div className="bg-[#0D1117] border border-white/10 rounded-2xl overflow-hidden hover:border-[#D4AF37]/35 transition-all duration-300 group-hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] group-hover:-translate-y-1">
+                    <div className="p-5 pb-4">
+                      <h3 className="text-[15px] font-semibold text-white mb-2 group-hover:text-[#D4AF37] transition-colors">
+                        {project.title}
+                      </h3>
+                      <p className="text-sm text-os-text-muted line-clamp-2 leading-relaxed">
+                        {project.description}
+                      </p>
                     </div>
-                  </Link>
-                ))}
-              </div>
+                    <div className="mx-4 mb-4 rounded-xl overflow-hidden h-44 border border-white/5 relative">
+                      <img
+                        src={project.image_url ?? projectImageMap[project.slug] ?? "/project1.png"}
+                        alt={project.title}
+                        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
+                        <span className="text-[11px] font-mono tracking-widest text-white/0 group-hover:text-white/80 transition-all duration-300">
+                          OPEN_PROJECT ↗
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
             </div>
-          </PageTransition>
+          </div>
+        </div>
+
+        {/* ========== CLEAN VERSION ========== */}
+        <div className="clean-only">
+          <div className="py-14 px-6">
+            <div className="max-w-3xl mx-auto mb-10">
+              <p className="text-xs tracking-[0.15em] text-slate-400 mb-3">// my_work</p>
+              <h1 className="text-2xl sm:text-3xl font-bold font-heading text-slate-900 mb-2">Projects</h1>
+              <p className="text-slate-500 text-sm">
+                {projects?.length ?? 0} projects shipped across web, mobile, and design.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+              {projects?.map((project) => (
+                <Link
+                  href={`/projects/${project.slug}`}
+                  key={project.id}
+                  className="group block bg-white rounded-xl shadow-sm border border-slate-200 hover:shadow-md hover:border-slate-300 transition-all duration-300 overflow-hidden"
+                >
+                  <div className="aspect-video overflow-hidden">
+                    <img
+                      src={project.image_url ?? projectImageMap[project.slug] ?? "/project1.png"}
+                      alt={project.title}
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="p-5">
+                    <div className="flex items-start justify-between gap-2">
+                      <h3 className="font-semibold text-slate-900 text-base mb-1.5 group-hover:text-blue-600 transition-colors leading-snug">
+                        {project.title}
+                      </h3>
+                      <ArrowUpRight className="w-4 h-4 text-slate-300 group-hover:text-blue-500 transition-colors shrink-0 mt-0.5" />
+                    </div>
+                    <p className="text-sm text-slate-500 line-clamp-2 leading-relaxed">{project.description}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+
+      </PageTransition>
     </main>
   );
 }
