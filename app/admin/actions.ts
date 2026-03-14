@@ -22,6 +22,7 @@ export async function upsertProject(formData: FormData) {
     tech_stack: techRaw
       ? techRaw.split(",").map((t) => t.trim()).filter(Boolean)
       : [],
+    images: JSON.parse((formData.get("images") as string) || "[]"),
     published: formData.get("published") === "true",
   };
 

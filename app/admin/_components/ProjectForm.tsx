@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import ImageUpload from "./ImageUpload";
+import MultiImageUpload from "./MultiImageUpload";
 
 type Project = {
   id?: string;
@@ -9,6 +11,7 @@ type Project = {
   description?: string;
   content?: string;
   image_url?: string;
+  images?: string[];
   live_url?: string;
   github_url?: string;
   tech_stack?: string[];
@@ -30,7 +33,23 @@ export default function ProjectForm({
       <Field label="Slug" name="slug" defaultValue={project?.slug} required placeholder="my-project" />
       <Field label="Description" name="description" defaultValue={project?.description} textarea rows={2} />
       <Field label="Content (Markdown)" name="content" defaultValue={project?.content} textarea rows={8} />
-      <Field label="Image URL" name="image_url" defaultValue={project?.image_url} placeholder="https://..." />
+
+      {/* Cover image */}
+      <ImageUpload
+        name="image_url"
+        label="Cover Image"
+        folder="projects"
+        defaultUrl={project?.image_url ?? ""}
+      />
+
+      {/* Gallery / additional screenshots */}
+      <MultiImageUpload
+        name="images"
+        label="Screenshots / Gallery"
+        folder="projects"
+        defaultUrls={project?.images ?? []}
+      />
+
       <Field label="Live URL" name="live_url" defaultValue={project?.live_url} placeholder="https://..." />
       <Field label="GitHub URL" name="github_url" defaultValue={project?.github_url} placeholder="https://github.com/..." />
       <Field
