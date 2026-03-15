@@ -112,6 +112,25 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
                 </div>
               </div>
 
+              {/* Gallery screenshots */}
+              {project.images?.length > 0 && (
+                <div className="mb-10">
+                  <h3 className="text-xs font-bold tracking-[0.2em] text-os-text-muted mb-4">SCREENSHOTS</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {project.images.map((img: string, i: number) => (
+                      <a key={i} href={img} target="_blank" rel="noopener noreferrer"
+                        className="block rounded-xl overflow-hidden border border-white/10 hover:border-[#D4AF37]/30 transition-colors group">
+                        <img
+                          src={img}
+                          alt={`${project.title} screenshot ${i + 1}`}
+                          className="w-full object-cover object-top max-h-56 group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* README content */}
               {project.description && (
                 <div className="bg-[#111827]/40 border border-white/5 rounded-xl p-6 md:p-8">

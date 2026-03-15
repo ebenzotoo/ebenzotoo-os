@@ -5,10 +5,14 @@ import DeleteButton from "../_components/DeleteButton";
 
 export default async function AdminNotesPage() {
   const supabase = await createSupabaseServerClient();
-  const { data: notes } = await supabase
+  const { data: notes, error } = await supabase
     .from("notes")
     .select("id, slug, title, tag, created_at, published")
     .order("created_at", { ascending: false });
+
+  const safeNotes = error
+    ? (await supabase.from("notes").select("id, slug, title, tag, created_at").order("created_at", { ascending: false })).data
+    : notes;
 
   return (
     <div>
@@ -28,7 +32,7 @@ export default async function AdminNotesPage() {
       </div>
 
       <div className="bg-[#0A0F1C]/60 border border-white/10 rounded-xl backdrop-blur-xl overflow-hidden">
-        {!notes?.length ? (
+        {!safeNotes?.length ? (
           <p className="text-white/30 text-sm text-center py-12">
             No notes yet.
           </p>
@@ -44,7 +48,7 @@ export default async function AdminNotesPage() {
               </tr>
             </thead>
             <tbody>
-              {notes.map((n) => (
+              {safeNotes!.map((n) => (
                 <tr
                   key={n.id}
                   className="border-b border-white/5 hover:bg-white/3 transition-colors"
@@ -58,9 +62,11 @@ export default async function AdminNotesPage() {
                     )}
                   </td>
                   <td className="px-5 py-3 hidden md:table-cell">
-                    <span className={`text-xs px-2 py-0.5 rounded-full ${n.published ? "bg-emerald-500/15 text-emerald-400" : "bg-white/5 text-white/30"}`}>
-                      {n.published ? "Live" : "Draft"}
-                    </span>
+                    {"published" in n ? (
+                      <span className={`text-xs px-2 py-0.5 rounded-full ${"published" in n && n.published ? "bg-emerald-500/15 text-emerald-400" : "bg-white/5 text-white/30"}`}>
+                        {"published" in n && n.published ? "Live" : "Draft"}
+                      </span>
+                    ) : null}
                   </td>
                   <td className="px-5 py-3 text-white/30 hidden lg:table-cell text-xs">
                     {new Date(n.created_at).toLocaleDateString()}

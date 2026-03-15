@@ -171,10 +171,6 @@ create table system_config (
 # Install dependencies
 npm install
 
-# Set environment variables
-cp .env.example .env.local
-# Fill in NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, NEXT_PUBLIC_WEB3FORMS_KEY
-
 # Run dev server
 npm run dev
 ```
@@ -185,16 +181,4 @@ Admin panel: [http://localhost:3000/admin](http://localhost:3000/admin) — requ
 
 ---
 
-## Environment Variables
 
-```env
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
-NEXT_PUBLIC_WEB3FORMS_KEY=
-```
-
----
-
-## Deployment
-
-Deployed on Vercel. Add the environment variables in the Vercel project settings. The Supabase client is initialized lazily to prevent build-time crashes when env vars are absent.

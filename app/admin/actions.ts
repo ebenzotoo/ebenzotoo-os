@@ -10,8 +10,9 @@ export async function upsertProject(formData: FormData) {
   const supabase = await createSupabaseServerClient();
   const id = formData.get("id") as string | null;
   const techRaw = formData.get("tech_stack") as string;
+  const imagesRaw = formData.get("images") as string | null;
 
-  const payload = {
+  const payload: Record<string, unknown> = {
     slug: formData.get("slug") as string,
     title: formData.get("title") as string,
     description: formData.get("description") as string,
@@ -22,14 +23,24 @@ export async function upsertProject(formData: FormData) {
     tech_stack: techRaw
       ? techRaw.split(",").map((t) => t.trim()).filter(Boolean)
       : [],
-    images: JSON.parse((formData.get("images") as string) || "[]"),
     published: formData.get("published") === "true",
   };
 
-  if (id) {
-    await supabase.from("projects").update(payload).eq("id", id);
-  } else {
-    await supabase.from("projects").insert(payload);
+  // include images only if the column exists in DB (added via SQL migration)
+  if (imagesRaw !== null) {
+    try { payload.images = JSON.parse(imagesRaw || "[]"); }
+    catch { payload.images = []; }
+  }
+
+  const { error } = id
+    ? await supabase.from("projects").update(payload).eq("id", id)
+    : await supabase.from("projects").insert(payload);
+
+  if (error) {
+    const dest = id
+      ? `/admin/projects/${id}/edit?error=${encodeURIComponent(error.message)}`
+      : `/admin/projects/new?error=${encodeURIComponent(error.message)}`;
+    redirect(dest);
   }
 
   revalidatePath("/admin/projects");
@@ -62,10 +73,15 @@ export async function upsertNote(formData: FormData) {
     published: formData.get("published") === "true",
   };
 
-  if (id) {
-    await supabase.from("notes").update(payload).eq("id", id);
-  } else {
-    await supabase.from("notes").insert(payload);
+  const { error } = id
+    ? await supabase.from("notes").update(payload).eq("id", id)
+    : await supabase.from("notes").insert(payload);
+
+  if (error) {
+    const dest = id
+      ? `/admin/notes/${id}/edit?error=${encodeURIComponent(error.message)}`
+      : `/admin/notes/new?error=${encodeURIComponent(error.message)}`;
+    redirect(dest);
   }
 
   revalidatePath("/admin/notes");

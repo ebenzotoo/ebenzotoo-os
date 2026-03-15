@@ -5,10 +5,13 @@ import NoteForm from "../../../_components/NoteForm";
 
 export default async function EditNotePage({
   params,
+  searchParams,
 }: {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ error?: string }>;
 }) {
   const { id } = await params;
+  const { error } = await searchParams;
   const supabase = await createSupabaseServerClient();
   const { data: note } = await supabase
     .from("notes")
@@ -26,6 +29,11 @@ export default async function EditNotePage({
         </p>
         <h1 className="text-2xl font-bold text-white/90">Edit Note</h1>
       </div>
+      {error && (
+        <div className="mb-6 max-w-2xl bg-red-500/10 border border-red-500/30 rounded-xl px-4 py-3 text-sm text-red-400">
+          <strong>Save failed:</strong> {decodeURIComponent(error)}
+        </div>
+      )}
       <NoteForm action={upsertNote} note={note} />
     </div>
   );

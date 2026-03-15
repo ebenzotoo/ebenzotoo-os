@@ -5,10 +5,15 @@ import DeleteButton from "../_components/DeleteButton";
 
 export default async function AdminProjectsPage() {
   const supabase = await createSupabaseServerClient();
-  const { data: projects } = await supabase
+  const { data: projects, error } = await supabase
     .from("projects")
     .select("id, slug, title, description, created_at, published")
     .order("created_at", { ascending: false });
+
+  // If the published column doesn't exist yet, fall back to selecting without it
+  const safeProjects = error
+    ? (await supabase.from("projects").select("id, slug, title, description, created_at").order("created_at", { ascending: false })).data
+    : projects;
 
   return (
     <div>
@@ -28,7 +33,7 @@ export default async function AdminProjectsPage() {
       </div>
 
       <div className="bg-[#0A0F1C]/60 border border-white/10 rounded-xl backdrop-blur-xl overflow-hidden">
-        {!projects?.length ? (
+        {!safeProjects?.length ? (
           <p className="text-white/30 text-sm text-center py-12">
             No projects yet.
           </p>
@@ -52,7 +57,7 @@ export default async function AdminProjectsPage() {
               </tr>
             </thead>
             <tbody>
-              {projects.map((p) => (
+              {safeProjects!.map((p) => (
                 <tr
                   key={p.id}
                   className="border-b border-white/5 hover:bg-white/3 transition-colors"
@@ -62,9 +67,11 @@ export default async function AdminProjectsPage() {
                     {p.slug}
                   </td>
                   <td className="px-5 py-3 hidden md:table-cell">
-                    <span className={`text-xs px-2 py-0.5 rounded-full ${p.published ? "bg-emerald-500/15 text-emerald-400" : "bg-white/5 text-white/30"}`}>
-                      {p.published ? "Live" : "Draft"}
-                    </span>
+                    {"published" in p ? (
+                      <span className={`text-xs px-2 py-0.5 rounded-full ${p.published ? "bg-emerald-500/15 text-emerald-400" : "bg-white/5 text-white/30"}`}>
+                        {p.published ? "Live" : "Draft"}
+                      </span>
+                    ) : null}
                   </td>
                   <td className="px-5 py-3 text-white/30 hidden lg:table-cell text-xs">
                     {new Date(p.created_at).toLocaleDateString()}

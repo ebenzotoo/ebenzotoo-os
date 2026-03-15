@@ -34,6 +34,7 @@ export default async function Projects() {
   const { data: projects, error } = await getSupabase()
     .from("projects")
     .select("*")
+    .eq("published", true)
     .order("created_at", { ascending: false });
 
   if (error) console.error("Error fetching projects:", error);

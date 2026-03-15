@@ -16,6 +16,7 @@ export default async function Notes() {
   const { data: notes, error } = await getSupabase()
     .from("notes")
     .select("*")
+    .eq("published", true)
     .order("created_at", { ascending: false });
 
   if (error) console.error("Error fetching notes:", error);
