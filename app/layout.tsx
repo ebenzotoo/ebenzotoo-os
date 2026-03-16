@@ -12,7 +12,7 @@ const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space
 const firaCode = Fira_Code({ subsets: ["latin"], variable: "--font-fira" });
 
 export const metadata: Metadata = {
-  title: "Ebenezer Zotoo | OS Workspace",
+  title: "Ebenezer Zotoo | Designer & Developer",
   description: "Systems Architect & Full-Stack Developer",
 };
 

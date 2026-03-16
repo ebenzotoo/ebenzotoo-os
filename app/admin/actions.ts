@@ -110,6 +110,41 @@ export async function deleteMessage(id: string) {
   revalidatePath("/admin/messages");
 }
 
+// ── Notifications ─────────────────────────────────────────────────────────────
+
+export async function upsertNotification(formData: FormData) {
+  const supabase = await createSupabaseServerClient();
+  const id = formData.get("id") as string | null;
+
+  const payload = {
+    title:      formData.get("title")      as string,
+    body:       formData.get("body")       as string,
+    type:       formData.get("type")       as string,
+    time_label: formData.get("time_label") as string,
+    sort_order: Number(formData.get("sort_order") || 0),
+  };
+
+  const { error } = id
+    ? await supabase.from("notifications").update(payload).eq("id", id)
+    : await supabase.from("notifications").insert(payload);
+
+  if (error) {
+    const dest = id
+      ? `/admin/notifications/${id}/edit?error=${encodeURIComponent(error.message)}`
+      : `/admin/notifications/new?error=${encodeURIComponent(error.message)}`;
+    redirect(dest);
+  }
+
+  revalidatePath("/admin/notifications");
+  redirect("/admin/notifications");
+}
+
+export async function deleteNotification(id: string) {
+  const supabase = await createSupabaseServerClient();
+  await supabase.from("notifications").delete().eq("id", id);
+  revalidatePath("/admin/notifications");
+}
+
 // ── System Config ─────────────────────────────────────────────────────────────
 
 export async function updateConfig(formData: FormData) {

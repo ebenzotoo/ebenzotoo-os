@@ -8,6 +8,7 @@ const navItems = [
   { label: "Projects", href: "/admin/projects", icon: "◈" },
   { label: "Notes", href: "/admin/notes", icon: "◎" },
   { label: "Messages", href: "/admin/messages", icon: "◻" },
+  { label: "Notifications", href: "/admin/notifications", icon: "◉" },
   { label: "Config", href: "/admin/config", icon: "⚙" },
 ];
 
