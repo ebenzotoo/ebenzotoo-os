@@ -70,7 +70,7 @@ export default async function AdminNotificationsPage() {
                     >
                       Edit
                     </Link>
-                    <DeleteButton id={n.id} action={deleteNotification} label="Delete" />
+                    <DeleteButton action={deleteNotification.bind(null, n.id)} />
                   </div>
                 </td>
               </tr>
