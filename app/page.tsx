@@ -65,9 +65,9 @@ export default function Home() {
             {/* Stats block */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
               {[
-                { value: "10+",    label: "Years Experience"     },
-                { value: "50+",    label: "Projects Shipped"     },
-                { value: "4,000+", label: "Platform Users Built" },
+                { value: "8+",      label: "Years Experience"     },
+                { value: "30+",    label: "Projects Shipped"     },
+                { value: "1,000+", label: "Platform Users Built" },
                 { value: "3",      label: "Countries"            },
               ].map((stat) => (
                 <div key={stat.label} className="bg-white/[0.03] border border-white/5 hover:border-[#D4AF37]/30 hover:shadow-[0_4px_20px_rgba(212,175,55,0.06)] rounded-lg px-4 py-3 text-center transition-all duration-300">
@@ -217,9 +217,9 @@ export default function Home() {
           <section className="py-12 px-6 border-b border-slate-100">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-2xl mx-auto text-center">
               {[
-                { value: "10+",    label: "Years Experience" },
-                { value: "50+",    label: "Projects Shipped" },
-                { value: "4,000+", label: "Platform Users"   },
+                { value: "8+",      label: "Years Experience" },
+                { value: "30+",    label: "Projects Shipped" },
+                { value: "1,000+", label: "Platform Users"   },
                 { value: "3",      label: "Countries"        },
               ].map((stat) => (
                 <div key={stat.label}>
