@@ -108,9 +108,9 @@ export default async function Projects() {
           <div className="py-14 px-6">
             <div className="max-w-3xl mx-auto mb-10">
               <p className="text-xs tracking-[0.15em] text-slate-400 mb-3">// my_work</p>
-              <h1 className="text-2xl sm:text-3xl font-bold font-heading text-slate-900 mb-2">Projects</h1>
-              <p className="text-slate-500 text-sm">
-                {projects?.length ?? 0} projects shipped across web, mobile, and design.
+              <h1 className="text-2xl sm:text-3xl font-bold font-heading text-slate-900 mb-2">Selected Work</h1>
+              <p className="text-slate-500 text-sm leading-relaxed">
+                Each project represents a real-world problem solved through design, technology, and strategic thinking. These are not just designs — they are systems built to improve usability, efficiency, and impact.
               </p>
             </div>
 

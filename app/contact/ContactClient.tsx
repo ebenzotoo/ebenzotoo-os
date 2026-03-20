@@ -80,9 +80,9 @@ export default function ContactClient({ config }: { config: Config }) {
               {/* Header */}
               <div className="mb-10">
                 <p className="text-xs tracking-[0.15em] text-slate-400 mb-3">// contact</p>
-                <h1 className="text-2xl sm:text-3xl font-bold font-heading text-slate-900 mb-2">Get In Touch</h1>
+                <h1 className="text-2xl sm:text-3xl font-bold font-heading text-slate-900 mb-2">Let&apos;s build something impactful.</h1>
                 <p className="text-slate-500 text-sm">
-                  {config.available ? config.availability_status : "Currently unavailable — check back soon."} Response within 24 hours.
+                  {config.available ? config.availability_status : "Currently unavailable — check back soon."} If you&apos;re working on a digital product, platform, or system and need a solution that is functional, scalable, and user-focused — I can help. Response within 24 hours.
                 </p>
               </div>
 
@@ -222,7 +222,10 @@ export default function ContactClient({ config }: { config: Config }) {
             CONTACT
           </div>
 
-          <h2 className="text-xs font-bold tracking-[0.2em] text-os-text-muted mb-8 font-sans">CONNECTION_PROTOCOLS</h2>
+          <h2 className="text-xs font-bold tracking-[0.2em] text-os-text-muted mb-2 font-sans">CONNECTION_PROTOCOLS</h2>
+          <p className="text-os-text-muted text-sm font-sans mb-8 max-w-lg leading-relaxed">
+            If you&apos;re working on a digital product, platform, or system and need a solution that is functional, scalable, and user-focused — I can help.
+          </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 

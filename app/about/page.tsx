@@ -5,10 +5,10 @@ import NotificationBell from "@/components/NotificationBell";
 import CloudStatus from "@/components/CloudStatus";
 
 const jobs = [
-  { role: "Senior Web and Graphics Designer", company: "Industrial Coatings Africa",    year: "2025 – Present" },
-  { role: "Technical Lead",                   company: "National Service Authority",     year: "2021 – 2025"   },
-  { role: "Head, Brands and Design",          company: "Swedec Ghana",                  year: "2015 – 2021"   },
-  { role: "Director, Information Technology", company: "B.A United FC",                 year: "2015 – 2018"   },
+  { role: "Senior Web & Graphics Designer",   company: "Industrial Coatings Africa",    year: "2025 – Present", desc: "Designed and implemented digital solutions to enhance brand visibility and user engagement."                                                      },
+  { role: "Technical Lead",                   company: "National Service Authority",     year: "2021 – 2025",   desc: "Led the design and development of digital platforms that improved service delivery and operational efficiency."                               },
+  { role: "Head, Brands & Design",            company: "Swedec Ghana",                  year: "2015 – 2021",   desc: "Led branding, digital strategy, and design execution across multiple initiatives."                                                           },
+  { role: "Director, Information Technology", company: "B.A United FC",                 year: "2015 – 2018",   desc: "Managed IT systems and digital infrastructure supporting organizational operations."                                                         },
 ];
 
 export default function About() {
@@ -33,16 +33,18 @@ export default function About() {
                 <span>~/ebenzotoo/bio.txt</span>
               </div>
               <p className="text-os-text-main leading-relaxed font-sans text-[15px]">
-                &ldquo;Bridging Logic &amp; Creativity: Building Seamless, User-Centric Digital Experiences.&rdquo;
+                I am a Digital Product Designer and Systems Builder focused on creating solutions that work — not just look good.
                 <br /><br />
-                I am a versatile technology professional and entrepreneur based in Accra, Ghana, with over a decade of experience. As a Founder, UI/UX Designer, and IT Specialist, I successfully bridge technical innovation with user-centered design. Certified by Google and IBM, my diverse expertise spans Python programming, Data Science, and strategic Digital Marketing.
+                Over the past 8+ years, I&apos;ve worked on projects across government, healthcare, education, and technology, helping organizations build digital platforms that improve operations, increase accessibility, and deliver measurable impact. My approach combines design, development, and strategic thinking. I don&apos;t just create interfaces — I design systems that solve real problems.
+                <br /><br />
+                I&apos;ve led and contributed to projects involving digital learning platforms, internal management systems, e-commerce solutions, mobile applications, and organizational digital transformation. If you&apos;re building something meaningful and need a partner who understands both the technical and user experience side — I&apos;m open to working with you.
               </p>
             </div>
 
             <div className="mb-12">
               <h2 className="text-xs font-mono tracking-[0.2em] text-os-text-muted mb-6">// core_expertise</h2>
               <div className="flex flex-wrap gap-3">
-                {["UI/UX Design", "Product Design", "Web & Platform Development", "Systems Thinking", "Digital Strategy"].map((skill) => (
+                {["UI/UX & Product Design", "Web & Platform Development", "Digital Systems Architecture", "User Experience Optimization", "Product Strategy & Execution"].map((skill) => (
                   <span key={skill} className="px-4 py-2 bg-white/[0.03] border border-white/10 hover:border-[#D4AF37]/30 rounded-lg text-sm text-os-text-muted font-mono transition-colors">
                     {skill}
                   </span>
@@ -58,8 +60,8 @@ export default function About() {
                 <div key={index} className="relative">
                   <div className="absolute -left-[31px] top-1.5 w-3 h-3 bg-os-bg border border-os-accent-blue rounded-full" />
                   <h3 className="text-white font-medium text-sm">{job.role}</h3>
-                  <p className="text-os-accent-blue text-xs font-mono mt-1">{job.company}</p>
-                  <p className="text-os-text-muted text-xs mt-2">{job.year}</p>
+                  <p className="text-os-accent-blue text-xs font-mono mt-1">{job.company} · {job.year}</p>
+                  <p className="text-os-text-muted text-xs mt-2 leading-relaxed">{job.desc}</p>
                 </div>
               ))}
             </div>
@@ -73,10 +75,16 @@ export default function About() {
             <div className="max-w-2xl mx-auto">
               <p className="text-xs tracking-[0.15em] text-slate-400 mb-4">// about</p>
               <p className="text-slate-600 leading-relaxed text-[15px]">
-                I am a versatile technology professional and entrepreneur based in Accra, Ghana, with over a decade
-                of experience. As a Founder, UI/UX Designer, and IT Specialist, I bridge technical innovation with
-                user-centered design. Certified by Google and IBM, my expertise spans Python programming, Data
-                Science, and strategic Digital Marketing.
+                I am a Digital Product Designer and Systems Builder focused on creating solutions that work — not just look good.
+              </p>
+              <p className="text-slate-600 leading-relaxed text-[15px] mt-4">
+                Over the past 8+ years, I&apos;ve worked on projects across government, healthcare, education, and technology, helping organizations build digital platforms that improve operations, increase accessibility, and deliver measurable impact.
+              </p>
+              <p className="text-slate-600 leading-relaxed text-[15px] mt-4">
+                My approach combines design, development, and strategic thinking. I don&apos;t just create interfaces — I design systems that solve real problems. I believe every product should serve a clear purpose, be easy to use, and scale effectively as it grows.
+              </p>
+              <p className="text-slate-600 leading-relaxed text-[15px] mt-4">
+                If you&apos;re building something meaningful and need a partner who understands both the technical and user experience side — I&apos;m open to working with you.
               </p>
             </div>
           </section>
@@ -85,7 +93,7 @@ export default function About() {
             <div className="max-w-2xl mx-auto">
               <p className="text-xs tracking-[0.15em] text-slate-400 mb-8">// core_expertise</p>
               <div className="flex flex-wrap gap-3">
-                {["UI/UX Design", "Product Design", "Web & Platform Development", "Systems Thinking", "Digital Strategy"].map((skill) => (
+                {["UI/UX & Product Design", "Web & Platform Development", "Digital Systems Architecture", "User Experience Optimization", "Product Strategy & Execution"].map((skill) => (
                   <span key={skill} className="px-4 py-2 bg-slate-100 border border-slate-200 rounded-lg text-sm text-slate-700">
                     {skill}
                   </span>
@@ -106,8 +114,8 @@ export default function About() {
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-slate-800">{job.role}</p>
-                      <p className="text-sm text-slate-500 mt-0.5">{job.company}</p>
-                      <p className="text-xs text-slate-400 mt-1">{job.year}</p>
+                      <p className="text-sm text-slate-500 mt-0.5">{job.company} · {job.year}</p>
+                      <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">{job.desc}</p>
                     </div>
                   </div>
                 ))}

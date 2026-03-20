@@ -15,10 +15,10 @@ const clients = [
 ];
 
 const jobs = [
-  { role: "Senior Web and Graphics Designer", company: "Industrial Coatings Africa",    year: "2025 – Present" },
-  { role: "Technical Lead",                   company: "National Service Authority",     year: "2021 – 2025"   },
-  { role: "Head, Brands and Design",          company: "Swedec Ghana",                  year: "2015 – 2021"   },
-  { role: "Director, Information Technology", company: "B.A United FC",                 year: "2015 – 2018"   },
+  { role: "Senior Web & Graphics Designer",   company: "Industrial Coatings Africa",    year: "2025 – Present", desc: "Designed and implemented digital solutions to enhance brand visibility and user engagement."                                                      },
+  { role: "Technical Lead",                   company: "National Service Authority",     year: "2021 – 2025",   desc: "Led the design and development of digital platforms that improved service delivery and operational efficiency."                               },
+  { role: "Head, Brands & Design",            company: "Swedec Ghana",                  year: "2015 – 2021",   desc: "Led branding, digital strategy, and design execution across multiple initiatives."                                                           },
+  { role: "Director, Information Technology", company: "B.A United FC",                 year: "2015 – 2018",   desc: "Managed IT systems and digital infrastructure supporting organizational operations."                                                         },
 ];
 
 export default function Home() {
@@ -55,9 +55,9 @@ export default function Home() {
               <div>
                 <h2 className="text-xs font-mono tracking-[0.2em] text-os-text-muted">// about_user</h2>
                 <p className="text-white font-semibold text-base mt-1 font-heading">Ebenezer Zotoo</p>
-                <p className="text-os-accent-blue text-xs font-mono">Full-Stack Developer · Systems Architect · UI/UX Designer</p>
+                <p className="text-os-accent-blue text-xs font-mono">Digital Product Designer & Systems Builder</p>
                 <p className="text-os-text-muted text-xs mt-2 font-sans italic leading-snug max-w-xs">
-                  Bridging Logic &amp; Creativity — Building Seamless, User-Centric Digital Experiences.
+                  📍 Accra, Ghana &nbsp;·&nbsp; 🌍 Open to remote opportunities
                 </p>
               </div>
             </div>
@@ -84,9 +84,9 @@ export default function Home() {
                 <span>~/ebenzotoo/bio.txt</span>
               </div>
               <p className="text-os-text-main leading-relaxed font-sans text-[15px]">
-                &ldquo;Bridging Logic &amp; Creativity: Building Seamless, User-Centric Digital Experiences.&rdquo;
+                Most digital products don&apos;t fail because of bad ideas — they fail because they are difficult to use, poorly structured, or not built to scale.
                 <br /><br />
-                I am a versatile technology professional and entrepreneur based in Accra, Ghana, with over a decade of experience. As a Founder, UI/UX Designer, and IT Specialist, I successfully bridge technical innovation with user-centered design. Certified by Google and IBM, my diverse expertise spans Python programming, Data Science, and strategic Digital Marketing.
+                I help organizations turn complex ideas into intuitive, functional, and scalable digital systems that actually deliver results. With over 8 years of experience, I&apos;ve worked across government, healthcare, education, and tech — designing and building platforms that improve accessibility, efficiency, and real-world impact.
               </p>
             </div>
 
@@ -94,7 +94,7 @@ export default function Home() {
             <div className="mb-12">
               <h2 className="text-xs font-mono tracking-[0.2em] text-os-text-muted mb-6">// core_expertise</h2>
               <div className="flex flex-wrap gap-3">
-                {["UI/UX Design", "Product Design", "Web & Platform Development", "Systems Thinking", "Digital Strategy"].map((skill) => (
+                {["UI/UX & Product Design", "Web & Platform Development", "Digital Systems Architecture", "User Experience Optimization", "Product Strategy & Execution"].map((skill) => (
                   <span key={skill} className="px-4 py-2 bg-white/[0.03] border border-white/10 hover:border-[#D4AF37]/30 rounded-lg text-sm text-os-text-muted font-mono transition-colors">
                     {skill}
                   </span>
@@ -133,8 +133,8 @@ export default function Home() {
                 <div key={index} className="relative">
                   <div className="absolute -left-[31px] top-1.5 w-3 h-3 bg-[#0A0F1C] border border-[#D4AF37]/60 rounded-full" />
                   <h3 className="text-white font-medium text-sm">{job.role}</h3>
-                  <p className="text-os-accent-blue text-xs font-mono mt-1">{job.company}</p>
-                  <p className="text-os-text-muted text-xs mt-2">{job.year}</p>
+                  <p className="text-os-accent-blue text-xs font-mono mt-1">{job.company} · {job.year}</p>
+                  <p className="text-os-text-muted text-xs mt-2 leading-relaxed">{job.desc}</p>
                 </div>
               ))}
             </div>
@@ -152,12 +152,13 @@ export default function Home() {
             <h1 className="text-3xl sm:text-4xl font-heading font-bold text-slate-900 mb-2 tracking-tight">
               Ebenezer Zotoo
             </h1>
-            <p className="text-slate-500 text-base mb-4">
-              Full-Stack Developer &middot; Systems Architect &middot; UI/UX Designer
+            <p className="text-slate-500 text-base mb-3">
+              Digital Product Designer &amp; Systems Builder
             </p>
-            <p className="text-slate-600 text-sm max-w-sm mx-auto mb-8 leading-relaxed">
-              Bridging Logic &amp; Creativity — Building seamless, user-centric digital experiences from Accra, Ghana.
+            <p className="text-slate-600 text-sm max-w-md mx-auto mb-2 leading-relaxed">
+              I design and build scalable digital platforms that improve user experience, streamline operations, and drive growth for startups, organizations, and institutions.
             </p>
+            <p className="text-slate-400 text-xs mb-8">📍 Accra, Ghana &nbsp;·&nbsp; 🌍 Open to remote opportunities</p>
             <div className="flex items-center justify-center gap-3 flex-wrap">
               <Link
                 href="/projects"
@@ -196,10 +197,10 @@ export default function Home() {
             <div className="max-w-2xl mx-auto">
               <p className="text-xs tracking-[0.15em] text-slate-400 mb-4">// about</p>
               <p className="text-slate-600 leading-relaxed text-[15px]">
-                I am a versatile technology professional and entrepreneur based in Accra, Ghana, with over a decade
-                of experience. As a Founder, UI/UX Designer, and IT Specialist, I bridge technical innovation with
-                user-centered design. Certified by Google and IBM, my expertise spans Python programming, Data
-                Science, and strategic Digital Marketing.
+                Most digital products don&apos;t fail because of bad ideas — they fail because they are difficult to use, poorly structured, or not built to scale.
+              </p>
+              <p className="text-slate-600 leading-relaxed text-[15px] mt-4">
+                I help organizations turn complex ideas into intuitive, functional, and scalable digital systems that actually deliver results. With over 8 years of experience, I&apos;ve worked across government, healthcare, education, and tech — designing and building platforms that improve accessibility, efficiency, and real-world impact.
               </p>
             </div>
           </section>
@@ -209,7 +210,7 @@ export default function Home() {
             <div className="max-w-2xl mx-auto">
               <p className="text-xs tracking-[0.15em] text-slate-400 mb-8">// core_expertise</p>
               <div className="flex flex-wrap gap-3">
-                {["UI/UX Design", "Product Design", "Web & Platform Development", "Systems Thinking", "Digital Strategy"].map((skill) => (
+                {["UI/UX & Product Design", "Web & Platform Development", "Digital Systems Architecture", "User Experience Optimization", "Product Strategy & Execution"].map((skill) => (
                   <span key={skill} className="px-4 py-2 bg-slate-100 border border-slate-200 rounded-lg text-sm text-slate-700">
                     {skill}
                   </span>
@@ -253,8 +254,8 @@ export default function Home() {
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-slate-800">{job.role}</p>
-                      <p className="text-sm text-slate-500 mt-0.5">{job.company}</p>
-                      <p className="text-xs text-slate-400 mt-1">{job.year}</p>
+                      <p className="text-sm text-slate-500 mt-0.5">{job.company} · {job.year}</p>
+                      <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">{job.desc}</p>
                     </div>
                   </div>
                 ))}
