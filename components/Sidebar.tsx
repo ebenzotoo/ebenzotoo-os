@@ -67,7 +67,7 @@ export default function Sidebar() {
         {/* Glowing Freelance Badge */}
         <div className="mt-2 flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 w-fit">
           <div className="w-1.5 h-1.5 rounded-full bg-os-accent-green animate-pulse" />
-          <span className="text-[10px] tracking-wide text-os-accent-green">available for freelance work</span>
+          <span className="text-[10px] tracking-wide text-os-accent-green">Open to collaborating on digital product and platform development projects</span>
         </div>
       </div>
     </div>

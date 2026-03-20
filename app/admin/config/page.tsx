@@ -48,7 +48,7 @@ export default async function AdminConfigPage() {
               type="text"
               name="availability_status"
               defaultValue={config?.availability_status}
-              placeholder="Available for freelance work"
+              placeholder="Open to collaborating on digital product and platform development projects"
               className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white/90 placeholder:text-white/20 focus:outline-none focus:border-[#D4AF37]/40 transition-colors"
             />
             <p className="text-xs text-white/25 mt-1">

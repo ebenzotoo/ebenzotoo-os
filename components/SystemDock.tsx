@@ -33,7 +33,7 @@ export default function SystemDock() {
         {/* Left: Availability */}
         <div className="flex items-center gap-2">
           <div className="w-1.5 h-1.5 rounded-full bg-os-accent-green animate-pulse" />
-          <span className="text-os-accent-green tracking-wide">available for freelance work</span>
+          <span className="text-os-accent-green tracking-wide">Open to collaborating on digital product and platform development projects</span>
         </div>
 
         {/* Center: Social Links */}

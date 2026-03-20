@@ -2,7 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import ContactClient from "./ContactClient";
 
 const DEFAULT_CONFIG = {
-  availability_status: "Available for freelance work",
+  availability_status: "Open to collaborating on digital product and platform development projects",
   available: true,
   email: "contact@ebenzotoo.com",
   phone: "+233 20 001 2873",
