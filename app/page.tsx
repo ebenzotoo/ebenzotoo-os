@@ -1,4 +1,4 @@
-import { Terminal, Code2, Paintbrush, Briefcase } from "lucide-react";
+import { Terminal, Briefcase } from "lucide-react";
 import PageTransition from "../components/PageTransition";
 import LiveClock from "@/components/LiveClock";
 import NotificationBell from "@/components/NotificationBell";
@@ -90,53 +90,14 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Skills Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-              <div className="space-y-5">
-                <div className="flex items-center gap-2 text-white mb-6">
-                  <Code2 className="w-5 h-5 text-os-accent-green" />
-                  <h3 className="font-semibold tracking-wide">Development Core</h3>
-                </div>
-                {[
-                  { name: "Web Design & Dev", val: "100%" },
-                  { name: "WordPress", val: "100%" },
-                  { name: "Python Programming", val: "99%" },
-                  { name: "Mobile App Dev", val: "99%" },
-                  { name: "Project Management", val: "98%" },
-                ].map(skill => (
-                  <div key={skill.name} className="space-y-2">
-                    <div className="flex justify-between text-xs text-os-text-muted font-mono">
-                      <span>{skill.name}</span>
-                      <span className="text-os-accent-green">{skill.val}</span>
-                    </div>
-                    <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
-                      <div className="h-full bg-os-accent-green" style={{ width: skill.val }} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="space-y-5">
-                <div className="flex items-center gap-2 text-white mb-6">
-                  <Paintbrush className="w-5 h-5 text-os-accent-blue" />
-                  <h3 className="font-semibold tracking-wide">Design Core</h3>
-                </div>
-                {[
-                  { name: "Figma", val: "100%" },
-                  { name: "Adobe Photoshop", val: "100%" },
-                  { name: "Adobe Illustrator", val: "99%" },
-                  { name: "Adobe XD", val: "98%" },
-                  { name: "Digital Marketing", val: "98%" },
-                ].map(skill => (
-                  <div key={skill.name} className="space-y-2">
-                    <div className="flex justify-between text-xs text-os-text-muted font-mono">
-                      <span>{skill.name}</span>
-                      <span className="text-os-accent-blue">{skill.val}</span>
-                    </div>
-                    <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
-                      <div className="h-full bg-os-accent-blue" style={{ width: skill.val }} />
-                    </div>
-                  </div>
+            {/* Core Expertise */}
+            <div className="mb-12">
+              <h2 className="text-xs font-mono tracking-[0.2em] text-os-text-muted mb-6">// core_expertise</h2>
+              <div className="flex flex-wrap gap-3">
+                {["UI/UX Design", "Product Design", "Web & Platform Development", "Systems Thinking", "Digital Strategy"].map((skill) => (
+                  <span key={skill} className="px-4 py-2 bg-white/[0.03] border border-white/10 hover:border-[#D4AF37]/30 rounded-lg text-sm text-os-text-muted font-mono transition-colors">
+                    {skill}
+                  </span>
                 ))}
               </div>
             </div>
@@ -243,33 +204,16 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Skills */}
+          {/* Core Expertise */}
           <section className="py-14 px-6 border-b border-slate-100">
             <div className="max-w-2xl mx-auto">
-              <p className="text-xs tracking-[0.15em] text-slate-400 mb-8">// skills &amp; expertise</p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
-                <div>
-                  <h3 className="text-sm font-semibold text-slate-800 mb-4">Development</h3>
-                  <ul className="space-y-3">
-                    {["Web Design & Development", "WordPress", "Python Programming", "Mobile App Development", "Project Management"].map((s) => (
-                      <li key={s} className="flex items-center gap-2.5 text-sm text-slate-600">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
-                        {s}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="text-sm font-semibold text-slate-800 mb-4">Design</h3>
-                  <ul className="space-y-3">
-                    {["Figma", "Adobe Photoshop", "Adobe Illustrator", "Adobe XD", "Digital Marketing"].map((s) => (
-                      <li key={s} className="flex items-center gap-2.5 text-sm text-slate-600">
-                        <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
-                        {s}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              <p className="text-xs tracking-[0.15em] text-slate-400 mb-8">// core_expertise</p>
+              <div className="flex flex-wrap gap-3">
+                {["UI/UX Design", "Product Design", "Web & Platform Development", "Systems Thinking", "Digital Strategy"].map((skill) => (
+                  <span key={skill} className="px-4 py-2 bg-slate-100 border border-slate-200 rounded-lg text-sm text-slate-700">
+                    {skill}
+                  </span>
+                ))}
               </div>
             </div>
           </section>
