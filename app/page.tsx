@@ -1,4 +1,4 @@
-import { Terminal, Briefcase } from "lucide-react";
+import { Terminal } from "lucide-react";
 import PageTransition from "../components/PageTransition";
 import LiveClock from "@/components/LiveClock";
 import NotificationBell from "@/components/NotificationBell";
@@ -28,7 +28,7 @@ export default function Home() {
 
         {/* ========== OS VERSION ========== */}
         <div className="os-only">
-          <div className="border-b border-white/5 flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex font-mono sticky top-0 bg-[#0A0F1C]/90 backdrop-blur-md z-20">
+          <div className="border-b border-os-border flex justify-end items-center px-8 py-5 text-os-text-muted text-xs gap-5 hidden md:flex sticky top-0 bg-os-bg/90 backdrop-blur-md z-20">
             <NotificationBell />
             <CloudStatus />
             <span>SYSTEM_INFO <LiveClock /></span>
@@ -36,7 +36,7 @@ export default function Home() {
 
           <div className="p-6 md:p-10 flex-1 w-full relative">
             {/* Ghost watermark */}
-            <div className="absolute top-6 right-0 text-[100px] font-heading font-black text-white/[0.03] leading-none select-none pointer-events-none tracking-tighter">
+            <div className="absolute top-6 right-0 text-[100px] font-sans font-extrabold text-white/[0.02] leading-none select-none pointer-events-none tracking-tighter">
               ABOUT
             </div>
 
@@ -53,37 +53,37 @@ export default function Home() {
                 <div className="absolute -inset-1 rounded-xl bg-[#D4AF37]/0 group-hover:bg-[#D4AF37]/8 blur-md transition-all duration-500 -z-10" />
               </div>
               <div>
-                <h2 className="text-xs font-mono tracking-[0.2em] text-os-text-muted">// about_user</h2>
-                <p className="text-white font-semibold text-base mt-1 font-heading">Ebenezer Zotoo</p>
-                <p className="text-os-accent-blue text-xs font-mono">Digital Product Designer & Systems Builder</p>
-                <p className="text-os-text-muted text-xs mt-2 font-sans italic leading-snug max-w-xs">
+                <p className="text-[11px] tracking-[0.15em] text-os-text-muted font-medium mb-1">// about_user</p>
+                <p className="text-[18px] font-semibold text-os-text-main mt-1">Ebenezer Zotoo</p>
+                <p className="text-os-primary text-[13px] font-medium mt-0.5">Digital Product Designer & Systems Builder</p>
+                <p className="text-os-text-muted text-[12px] mt-2 leading-snug max-w-xs">
                   📍 Accra, Ghana &nbsp;·&nbsp; 🌍 Open to remote opportunities
                 </p>
               </div>
             </div>
 
             {/* Stats block */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 mb-8">
               {[
                 { value: "8+",      label: "Years Experience"     },
-                { value: "30+",    label: "Projects Shipped"     },
-                { value: "1,000+", label: "Platform Users Built" },
-                { value: "3",      label: "Countries"            },
-              ].map((stat) => (
-                <div key={stat.label} className="bg-white/[0.03] border border-white/5 hover:border-[#D4AF37]/30 hover:shadow-[0_4px_20px_rgba(212,175,55,0.06)] rounded-lg px-4 py-3 text-center transition-all duration-300">
-                  <p className="text-white font-heading font-bold text-2xl">{stat.value}</p>
-                  <p className="text-os-text-muted text-[10px] font-mono tracking-wide mt-1">{stat.label}</p>
+                { value: "30+",     label: "Projects Shipped"     },
+                { value: "1,000+",  label: "Platform Users Built" },
+                { value: "3",       label: "Countries"            },
+              ].map((stat, i, arr) => (
+                <div key={stat.label} className={`flex flex-col items-center py-5 ${i < arr.length - 1 ? "border-r border-os-border" : ""}`}>
+                  <p className="text-[32px] font-bold text-os-text-main leading-none">{stat.value}</p>
+                  <p className="text-[11px] font-medium text-os-text-muted tracking-wide mt-2 uppercase">{stat.label}</p>
                 </div>
               ))}
             </div>
 
             {/* Terminal Bio */}
-            <div className="bg-[#111827]/80 border border-white/10 rounded-lg p-6 mb-10 font-mono text-sm">
-              <div className="flex items-center gap-2 mb-4 text-os-accent-blue pb-4 border-b border-white/5">
-                <Terminal className="w-4 h-4" />
-                <span>~/ebenzotoo/bio.txt</span>
+            <div className="bg-os-surface border border-os-border rounded-xl p-6 mb-10">
+              <div className="flex items-center gap-2 mb-4 pb-4 border-b border-os-border">
+                <Terminal className="w-4 h-4 text-os-primary" />
+                <span className="text-[12px] font-mono text-os-text-muted">~/ebenzotoo/bio.txt</span>
               </div>
-              <p className="text-os-text-main leading-relaxed font-sans text-[15px]">
+              <p className="text-os-text-main leading-relaxed text-[15px]">
                 Most digital products don&apos;t fail because of bad ideas — they fail because they are difficult to use, poorly structured, or not built to scale.
                 <br /><br />
                 I help organizations turn complex ideas into intuitive, functional, and scalable digital systems that actually deliver results. With over 8 years of experience, I&apos;ve worked across government, healthcare, education, and tech — designing and building platforms that improve accessibility, efficiency, and real-world impact.
@@ -92,10 +92,12 @@ export default function Home() {
 
             {/* Core Expertise */}
             <div className="mb-12">
-              <h2 className="text-xs font-mono tracking-[0.2em] text-os-text-muted mb-6">// core_expertise</h2>
-              <div className="flex flex-wrap gap-3">
+              <h2 className="text-[11px] font-medium tracking-[0.15em] text-os-text-muted mb-5 uppercase">
+                <span className="text-os-primary">//</span> Core Expertise
+              </h2>
+              <div className="flex flex-wrap gap-2.5">
                 {["UI/UX & Product Design", "Web & Platform Development", "Digital Systems Architecture", "User Experience Optimization", "Product Strategy & Execution"].map((skill) => (
-                  <span key={skill} className="px-4 py-2 bg-white/[0.03] border border-white/10 hover:border-[#D4AF37]/30 rounded-lg text-sm text-os-text-muted font-mono transition-colors">
+                  <span key={skill} className="px-4 py-2 bg-os-surface border border-os-border hover:border-os-primary/40 hover:text-os-text-main rounded-lg text-[13px] text-os-text-muted font-medium transition-colors duration-150">
                     {skill}
                   </span>
                 ))}
@@ -104,19 +106,19 @@ export default function Home() {
 
             {/* Trusted By */}
             <div className="mb-12">
-              <h2 className="text-xs font-mono tracking-[0.2em] text-os-text-muted mb-6 flex items-center gap-2">
-                // trusted_by
+              <h2 className="text-[11px] font-medium tracking-[0.15em] text-os-text-muted mb-5 uppercase">
+                <span className="text-os-primary">//</span> Trusted By
               </h2>
               <div className="grid grid-cols-3 gap-3">
                 {clients.map((client) => (
-                  <div key={client.name} className="bg-white/[0.02] border border-white/5 hover:border-[#D4AF37]/20 rounded-xl p-4 flex flex-col items-center justify-center gap-2 transition-all duration-300 group">
+                  <div key={client.name} className="bg-os-surface border border-os-border hover:border-os-border-hover rounded-xl p-4 flex flex-col items-center justify-center gap-2 transition-all duration-200 group">
                     <img
                       src={client.logo}
                       alt={client.name}
                       title={client.name}
-                      className="max-h-8 max-w-full object-contain opacity-50 group-hover:opacity-100 grayscale group-hover:grayscale-0 transition-all duration-300"
+                      className="max-h-8 max-w-full object-contain opacity-70 group-hover:opacity-100 grayscale group-hover:grayscale-0 transition-all duration-300"
                     />
-                    <span className="text-[10px] font-mono text-os-text-muted text-center leading-tight opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="text-[10px] text-os-text-muted text-center leading-tight opacity-70 group-hover:opacity-100 transition-opacity duration-200">
                       {client.name}
                     </span>
                   </div>
@@ -125,18 +127,21 @@ export default function Home() {
             </div>
 
             {/* Experience Timeline */}
-            <h2 className="text-xs font-mono tracking-[0.2em] text-os-text-muted mb-8 mt-16 flex items-center gap-2">
-              <Briefcase className="w-4 h-4" /> // experience_log
-            </h2>
-            <div className="space-y-8 border-l border-white/10 ml-2 pl-6 relative">
-              {jobs.map((job, index) => (
-                <div key={index} className="relative">
-                  <div className="absolute -left-[31px] top-1.5 w-3 h-3 bg-[#0A0F1C] border border-[#D4AF37]/60 rounded-full" />
-                  <h3 className="text-white font-medium text-sm">{job.role}</h3>
-                  <p className="text-os-accent-blue text-xs font-mono mt-1">{job.company} · {job.year}</p>
-                  <p className="text-os-text-muted text-xs mt-2 leading-relaxed">{job.desc}</p>
-                </div>
-              ))}
+            <div className="mb-12">
+              <h2 className="text-[11px] font-medium tracking-[0.15em] text-os-text-muted mb-6 uppercase">
+                <span className="text-os-primary">//</span> Experience
+              </h2>
+              <div className="flex flex-col gap-6 border-l-2 border-os-border pl-6">
+                {jobs.map((job) => (
+                  <div key={job.role} className="relative">
+                    <span className="absolute -left-[29px] top-1 w-3.5 h-3.5 rounded-full border-2 border-os-primary bg-os-bg" />
+                    <p className="text-[14px] font-semibold text-os-text-main">{job.role}</p>
+                    <p className="text-[12px] text-os-secondary font-medium mt-0.5">{job.company}</p>
+                    <p className="text-[11px] text-os-text-muted mt-0.5">{job.year}</p>
+                    <p className="text-[13px] text-os-text-muted mt-2 leading-relaxed">{job.desc}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
