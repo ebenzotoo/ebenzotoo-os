@@ -210,7 +210,7 @@ export default function ContactClient({ config }: { config: Config }) {
   return (
     <main className="flex-1 flex flex-col overflow-y-auto pb-16 md:pb-0">
       <PageTransition>
-        <div className="border-b border-white/5 flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex font-mono sticky top-0 bg-[#0A0F1C]/90 backdrop-blur-md z-20">
+        <div className="border-b border-os-border flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex font-mono sticky top-0 bg-os-bg/90 backdrop-blur-md z-20">
           <NotificationBell />
           <CloudStatus />
           <span>~/SECURE_COMMS <LiveClock /></span>
@@ -231,48 +231,48 @@ export default function ContactClient({ config }: { config: Config }) {
 
             {/* Left Column: Contact JSON Info */}
             <div className="flex flex-col gap-6">
-              <div className="bg-[#111827]/80 border border-white/10 rounded-lg p-6 font-mono text-sm w-full">
-                <div className="flex items-center gap-2 mb-4 text-os-accent-blue pb-4 border-b border-white/5">
+              <div className="bg-os-surface border border-os-border rounded-xl p-6 font-mono text-sm w-full">
+                <div className="flex items-center gap-2 mb-4 text-os-primary pb-4 border-b border-os-border">
                   <Terminal className="w-4 h-4" />
-                  <span>~/ebenzotoo/contact.json</span>
+                  <span className="text-[12px] text-os-text-muted">~/ebenzotoo/contact.json</span>
                 </div>
                 <div className="text-os-text-main space-y-3">
-                  <p><span className="text-os-accent-blue">const</span> <span className="text-white">developer</span> = {'{'}</p>
+                  <p><span className="text-os-primary">const</span> <span className="text-os-text-main">developer</span> = {'{'}</p>
                   <div className="pl-6 space-y-3">
                     <p className="flex items-center gap-3">
                       <span className="text-os-text-muted">status:</span>
-                      <span className={`flex items-center gap-2 ${config.available ? "text-os-accent-green" : "text-yellow-400"}`}>
-                        <span className={`w-1.5 h-1.5 rounded-full ${config.available ? "bg-os-accent-green animate-pulse" : "bg-yellow-400"}`} />
+                      <span className={`flex items-center gap-2 ${config.available ? "text-os-primary" : "text-yellow-400"}`}>
+                        <span className={`w-1.5 h-1.5 rounded-full ${config.available ? "bg-os-primary animate-pulse" : "bg-yellow-400"}`} />
                         &quot;{config.availability_status}&quot;,
                       </span>
                     </p>
-                    <p className="flex items-center gap-3 hover:text-white transition-colors cursor-pointer group">
+                    <p className="flex items-center gap-3 hover:text-os-text-main transition-colors cursor-pointer group">
                       <span className="text-os-text-muted flex items-center gap-2"><Mail className="w-3.5 h-3.5"/> email:</span>
-                      <span className="text-[#ce9178] group-hover:text-white">&quot;{config.email}&quot;,</span>
+                      <span className="text-os-gold group-hover:text-os-text-main">&quot;{config.email}&quot;,</span>
                     </p>
-                    <p className="flex items-center gap-3 hover:text-white transition-colors cursor-pointer group">
+                    <p className="flex items-center gap-3 hover:text-os-text-main transition-colors cursor-pointer group">
                       <span className="text-os-text-muted flex items-center gap-2"><Phone className="w-3.5 h-3.5"/> phone:</span>
-                      <span className="text-[#ce9178] group-hover:text-white">&quot;{config.phone}&quot;,</span>
+                      <span className="text-os-gold group-hover:text-os-text-main">&quot;{config.phone}&quot;,</span>
                     </p>
                     <p className="flex items-start gap-3">
                       <span className="text-os-text-muted flex items-center gap-2 mt-0.5"><MapPin className="w-3.5 h-3.5"/> location:</span>
-                      <span className="text-[#ce9178]">&quot;{config.location}&quot;</span>
+                      <span className="text-os-gold">&quot;{config.location}&quot;</span>
                     </p>
                   </div>
                   <p>{'};'}</p>
                 </div>
               </div>
 
-              <div className="text-xs text-os-text-muted font-mono bg-os-accent-green/5 border border-os-accent-green/10 p-4 rounded-lg">
-                <span className="text-os-accent-green">{'>'}</span> SYSTEM_MESSAGE: Connect with me via email and call. Response time is typically within 24 hours.
+              <div className="text-xs text-os-text-muted font-mono bg-os-primary/5 border border-os-primary/10 p-4 rounded-lg">
+                <span className="text-os-primary">{'>'}</span> SYSTEM_MESSAGE: Connect with me via email and call. Response time is typically within 24 hours.
               </div>
 
-              <div className="bg-[#111827]/60 border border-white/5 rounded-lg p-4 flex items-center justify-between">
+              <div className="bg-os-surface border border-os-border rounded-lg p-4 flex items-center justify-between">
                 <span className="text-[10px] font-mono tracking-widest text-os-text-muted">// social_links</span>
                 <div className="flex items-center gap-4">
                   {socials.map(({ icon: Icon, href, label }) => (
                     <a key={label} href={href} target="_blank" rel="noopener noreferrer" title={label}
-                      className="text-os-text-muted hover:text-[#D4AF37] transition-colors duration-200">
+                      className="text-os-text-muted hover:text-os-primary transition-colors duration-200">
                       <Icon className="w-4 h-4" />
                     </a>
                   ))}
@@ -281,10 +281,10 @@ export default function ContactClient({ config }: { config: Config }) {
             </div>
 
             {/* Right Column: Form */}
-            <div className="bg-[#111827]/40 border border-white/5 rounded-lg p-6 lg:p-8 flex flex-col relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-b from-os-accent-blue/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+            <div className="bg-os-surface border border-os-border rounded-lg p-6 lg:p-8 flex flex-col relative overflow-hidden group hover:border-os-primary/20 transition-colors">
+              <div className="absolute inset-0 bg-gradient-to-b from-os-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-              <h3 className="text-lg font-semibold text-white mb-6 font-sans flex items-center gap-2">
+              <h3 className="text-lg font-semibold text-os-text-main mb-6 font-sans flex items-center gap-2">
                 <Send className="w-5 h-5 text-os-text-muted" />
                 Initialize_Transmission
               </h3>
@@ -298,7 +298,7 @@ export default function ContactClient({ config }: { config: Config }) {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Enter your name"
-                    className="bg-[#0A0F1C] border border-white/10 rounded-md px-4 py-3 text-sm text-white focus:outline-none focus:border-os-accent-blue transition-colors font-sans placeholder:text-white/20"
+                    className="w-full bg-os-surface border border-os-border rounded-lg px-4 py-3 text-[14px] text-os-text-main placeholder:text-os-text-muted/40 focus:outline-none focus:border-os-primary/50 focus:ring-1 focus:ring-os-primary/20 transition-colors font-sans"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -309,7 +309,7 @@ export default function ContactClient({ config }: { config: Config }) {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
-                    className="bg-[#0A0F1C] border border-white/10 rounded-md px-4 py-3 text-sm text-white focus:outline-none focus:border-os-accent-blue transition-colors font-sans placeholder:text-white/20"
+                    className="w-full bg-os-surface border border-os-border rounded-lg px-4 py-3 text-[14px] text-os-text-main placeholder:text-os-text-muted/40 focus:outline-none focus:border-os-primary/50 focus:ring-1 focus:ring-os-primary/20 transition-colors font-sans"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -320,20 +320,20 @@ export default function ContactClient({ config }: { config: Config }) {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="How can we collaborate?"
-                    className="bg-[#0A0F1C] border border-white/10 rounded-md px-4 py-3 text-sm text-white focus:outline-none focus:border-os-accent-blue transition-colors font-sans resize-none placeholder:text-white/20"
+                    className="w-full bg-os-surface border border-os-border rounded-lg px-4 py-3 text-[14px] text-os-text-main placeholder:text-os-text-muted/40 focus:outline-none focus:border-os-primary/50 focus:ring-1 focus:ring-os-primary/20 transition-colors font-sans resize-none"
                   />
                 </div>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="mt-2 w-full bg-white/5 hover:bg-[#D4AF37]/15 disabled:opacity-50 disabled:hover:bg-white/5 border border-white/10 hover:border-[#D4AF37]/50 text-white font-mono text-sm py-3 rounded-md transition-all flex items-center justify-center gap-2 group/btn"
+                  className="mt-2 w-full bg-os-primary hover:bg-os-primary/90 disabled:opacity-50 text-[#080E1A] font-semibold text-[14px] py-3 rounded-lg transition-colors flex items-center justify-center gap-2"
                 >
                   {isSubmitting ? "EXECUTING..." : "EXECUTE_SEND"}
-                  {!isSubmitting && <Send className="w-4 h-4 text-os-text-muted group-hover/btn:text-[#D4AF37] transition-colors" />}
+                  {!isSubmitting && <Send className="w-4 h-4" />}
                 </button>
 
                 {status === "success" && (
-                  <div className="mt-2 p-3 bg-os-accent-green/10 border border-os-accent-green/20 rounded-md flex items-center gap-2 text-os-accent-green text-xs font-mono">
+                  <div className="mt-2 p-3 bg-os-primary/10 border border-os-primary/20 rounded-md flex items-center gap-2 text-os-primary text-xs font-mono">
                     <CheckCircle2 className="w-4 h-4" /> TRANSMISSION SUCCESSFUL
                   </div>
                 )}
