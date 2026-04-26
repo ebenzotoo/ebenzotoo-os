@@ -20,9 +20,9 @@ function parseInline(text: string) {
   let key = 0;
   while ((m = re.exec(text)) !== null) {
     if (m.index > last) parts.push(text.slice(last, m.index));
-    if (m[2]) parts.push(<strong key={key++} className="text-white font-semibold">{m[2]}</strong>);
+    if (m[2]) parts.push(<strong key={key++} className="text-os-text-main font-semibold">{m[2]}</strong>);
     else if (m[3]) parts.push(<em key={key++} className="italic">{m[3]}</em>);
-    else if (m[4]) parts.push(<code key={key++} className="px-1.5 py-0.5 bg-white/10 rounded text-[#F9A41E] font-mono text-[0.85em]">{m[4]}</code>);
+    else if (m[4]) parts.push(<code key={key++} className="px-1.5 py-0.5 bg-os-surface rounded text-os-primary font-mono text-[0.85em]">{m[4]}</code>);
     last = m.index + m[0].length;
   }
   if (last < text.length) parts.push(text.slice(last));
@@ -44,7 +44,7 @@ function renderContent(raw: string) {
     // H1
     if (/^# /.test(line)) {
       nodes.push(
-        <h1 key={key++} className="text-3xl font-bold text-white mt-10 mb-4 leading-snug font-heading">
+        <h1 key={key++} className="text-[24px] font-bold text-os-text-main mb-4 mt-8 leading-snug font-heading">
           {parseInline(line.replace(/^# /, ""))}
         </h1>
       );
@@ -54,7 +54,7 @@ function renderContent(raw: string) {
     // H2
     if (/^## /.test(line)) {
       nodes.push(
-        <h2 key={key++} className="text-2xl font-bold text-white mt-10 mb-4 leading-snug font-heading">
+        <h2 key={key++} className="text-[20px] font-semibold text-os-text-main mb-3 mt-7 leading-snug font-heading">
           {parseInline(line.replace(/^## /, ""))}
         </h2>
       );
@@ -64,7 +64,7 @@ function renderContent(raw: string) {
     // H3
     if (/^### /.test(line)) {
       nodes.push(
-        <h3 key={key++} className="text-lg font-semibold text-white mt-8 mb-3 font-heading">
+        <h3 key={key++} className="text-[17px] font-semibold text-os-text-main mb-2 mt-6 font-heading">
           {parseInline(line.replace(/^### /, ""))}
         </h3>
       );
@@ -79,8 +79,8 @@ function renderContent(raw: string) {
         i++;
       }
       nodes.push(
-        <blockquote key={key++} className="relative my-8 pl-6 border-l-2 border-[#D4AF37]/60">
-          <span className="absolute -top-2 left-4 text-4xl text-[#D4AF37]/30 font-serif leading-none select-none">&ldquo;</span>
+        <blockquote key={key++} className="relative my-8 pl-6 border-l-2 border-os-primary">
+          <span className="absolute -top-2 left-4 text-4xl text-os-primary/30 font-serif leading-none select-none">&ldquo;</span>
           <p className="text-os-text-main italic text-base leading-relaxed pt-2 font-sans">
             {parseInline(quoteLines.join(" "))}
           </p>
@@ -91,7 +91,7 @@ function renderContent(raw: string) {
 
     // Horizontal rule
     if (/^---+$/.test(line.trim())) {
-      nodes.push(<hr key={key++} className="my-8 border-white/10" />);
+      nodes.push(<hr key={key++} className="my-8 border-os-border" />);
       i++; continue;
     }
 
@@ -106,7 +106,7 @@ function renderContent(raw: string) {
         <ul key={key++} className="my-5 space-y-2 pl-1">
           {items.map((item, idx) => (
             <li key={idx} className="flex items-start gap-3 text-os-text-main text-base leading-relaxed font-sans">
-              <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#D4AF37]/60 shrink-0" />
+              <span className="mt-2 w-1.5 h-1.5 rounded-full bg-os-gold/60 shrink-0" />
               <span>{parseInline(item)}</span>
             </li>
           ))}
@@ -126,7 +126,7 @@ function renderContent(raw: string) {
         <ol key={key++} className="my-5 space-y-2 pl-1">
           {items.map((item, idx) => (
             <li key={idx} className="flex items-start gap-3 text-os-text-main text-base leading-relaxed font-sans">
-              <span className="shrink-0 text-xs font-mono text-[#F9A41E] mt-1 w-5">{idx + 1}.</span>
+              <span className="shrink-0 text-xs font-mono text-os-primary mt-1 w-5">{idx + 1}.</span>
               <span>{parseInline(item)}</span>
             </li>
           ))}
@@ -151,7 +151,7 @@ function renderContent(raw: string) {
     }
     if (paraLines.length) {
       nodes.push(
-        <p key={key++} className="text-os-text-main text-base leading-relaxed mb-5 font-sans">
+        <p key={key++} className="text-[16px] text-os-text-muted leading-[1.75] mb-4 font-sans">
           {parseInline(paraLines.join(" "))}
         </p>
       );
@@ -186,8 +186,8 @@ export default async function NoteDetail({ params }: { params: Promise<{ slug: s
           <PageTransition>
 
             {/* Top bar */}
-            <div className="border-b border-white/5 flex justify-between items-center px-8 py-6 text-os-text-muted text-sm sticky top-0 bg-[#0A0F1C]/90 backdrop-blur-md z-20 font-mono">
-              <div className="flex items-center gap-2 text-[#F9A41E]">
+            <div className="border-b border-os-border flex justify-between items-center px-8 py-6 text-os-text-muted text-sm sticky top-0 bg-os-bg/90 backdrop-blur-md z-20 font-mono">
+              <div className="flex items-center gap-2 text-os-primary">
                 <Terminal className="w-4 h-4" />
                 <span>~/notes/{note.slug}.md</span>
               </div>
@@ -201,14 +201,13 @@ export default async function NoteDetail({ params }: { params: Promise<{ slug: s
             <div className="p-6 md:px-12 md:py-10 w-full max-w-3xl mx-auto">
 
               {/* Back link */}
-              <Link href="/notes" className="inline-flex items-center gap-2 text-xs font-mono text-os-text-muted hover:text-white transition-colors mb-8 group">
-                <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
-                cd .. /notes
+              <Link href="/notes" className="flex items-center gap-1.5 text-[12px] text-os-text-muted hover:text-os-primary transition-colors mb-6">
+                <ArrowLeft className="w-3.5 h-3.5" /> Back to Notes
               </Link>
 
               {/* Cover image */}
               {coverImage && (
-                <div className="rounded-2xl overflow-hidden mb-8 border border-white/10 shadow-2xl shadow-black/60">
+                <div className="rounded-2xl overflow-hidden mb-8 border border-os-border shadow-2xl shadow-black/60">
                   <img
                     src={coverImage}
                     alt={note.title}
@@ -218,7 +217,7 @@ export default async function NoteDetail({ params }: { params: Promise<{ slug: s
               )}
 
               {/* Meta */}
-              <div className="flex flex-wrap items-center gap-4 mb-4 text-xs font-mono text-[#F9A41E]">
+              <div className="flex flex-wrap items-center gap-4 mb-4 text-xs font-mono text-os-primary">
                 <span className="flex items-center gap-1.5">
                   <Calendar className="w-3.5 h-3.5" />
                   {new Date(note.created_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
@@ -230,28 +229,28 @@ export default async function NoteDetail({ params }: { params: Promise<{ slug: s
                   </span>
                 )}
                 {note.tag && (
-                  <span className="px-2 py-0.5 rounded bg-[#F9A41E]/10 border border-[#F9A41E]/20 text-[#F9A41E]">
+                  <span className="px-2 py-0.5 rounded bg-os-primary/10 border border-os-primary/20 text-os-primary">
                     {note.tag}
                   </span>
                 )}
               </div>
 
               {/* Title */}
-              <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight font-heading">
+              <h1 className="text-3xl md:text-4xl font-bold text-os-text-main mb-4 leading-tight font-heading">
                 {note.title}
               </h1>
 
               {/* Excerpt / subtitle */}
               {note.excerpt && (
-                <p className="text-os-text-muted text-base leading-relaxed mb-8 font-sans border-b border-white/5 pb-8">
+                <p className="text-os-text-muted text-base leading-relaxed mb-8 font-sans border-b border-os-border pb-8">
                   {note.excerpt}
                 </p>
               )}
 
-              {!note.excerpt && <div className="border-b border-white/5 mb-8" />}
+              {!note.excerpt && <div className="border-b border-os-border mb-8" />}
 
               {/* Article body */}
-              <article>
+              <article className="max-w-[680px] mx-auto">
                 {renderContent(note.content ?? "")}
               </article>
 
