@@ -45,7 +45,7 @@ export default async function Projects() {
 
         {/* ========== OS VERSION ========== */}
         <div className="os-only">
-          <div className="border-b border-white/5 flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex font-mono sticky top-0 bg-[#0A0F1C]/90 backdrop-blur-md z-20">
+          <div className="border-b border-os-border flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex font-mono sticky top-0 bg-os-bg/90 backdrop-blur-md z-20">
             <NotificationBell />
             <CloudStatus />
             <LiveClock />
@@ -59,13 +59,15 @@ export default async function Projects() {
 
             {/* Section Header */}
             <div className="flex items-center justify-between mb-8">
-              <h2 className="text-xs font-bold tracking-[0.2em] text-os-text-muted font-sans">PROJECTS</h2>
+              <h2 className="text-[11px] font-medium tracking-[0.15em] text-os-text-muted uppercase">
+                <span className="text-os-primary">//</span> Projects
+              </h2>
               <div className="flex items-center gap-3">
-                <span className="text-xs font-mono text-os-text-muted px-3 py-1.5 border border-white/10 rounded-md">
+                <span className="text-xs font-mono text-os-text-muted px-3 py-1.5 border border-os-border rounded-md">
                   {projects?.length ?? 0} total
                 </span>
-                <span className="flex items-center gap-1.5 text-xs font-mono text-os-accent-green px-3 py-1.5 border border-os-accent-green/20 rounded-md bg-os-accent-green/5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-os-accent-green animate-pulse" />
+                <span className="flex items-center gap-1.5 text-xs font-mono text-os-primary px-3 py-1.5 border border-os-primary/20 rounded-md bg-os-primary/5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-os-primary animate-pulse" />
                   All active
                 </span>
               </div>
@@ -75,16 +77,16 @@ export default async function Projects() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               {projects?.map((project) => (
                 <Link href={`/projects/${project.slug}`} key={project.id} className="block group">
-                  <div className="bg-[#0D1117] border border-white/10 rounded-2xl overflow-hidden hover:border-[#D4AF37]/35 transition-all duration-300 group-hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] group-hover:-translate-y-1">
+                  <div className="bg-os-surface border border-os-border rounded-2xl overflow-hidden hover:border-os-primary/35 transition-all duration-300 group-hover:shadow-[0_8px_32px_rgba(11,206,175,0.07)] group-hover:-translate-y-1">
                     <div className="p-5 pb-4">
-                      <h3 className="text-[15px] font-semibold text-white mb-2 group-hover:text-[#D4AF37] transition-colors">
+                      <h3 className="text-[15px] font-semibold text-white mb-2 group-hover:text-os-primary transition-colors">
                         {project.title}
                       </h3>
                       <p className="text-sm text-os-text-muted line-clamp-2 leading-relaxed">
                         {project.description}
                       </p>
                     </div>
-                    <div className="mx-4 mb-4 rounded-xl overflow-hidden h-44 border border-white/5 relative">
+                    <div className="mx-4 mb-4 rounded-xl overflow-hidden h-44 border border-os-border relative">
                       <img
                         src={project.image_url ?? projectImageMap[project.slug] ?? "/project1.png"}
                         alt={project.title}
