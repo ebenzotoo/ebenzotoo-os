@@ -2,6 +2,7 @@
 
 @theme {
   --font-sans: var(--font-outfit), 'Outfit', sans-serif;
+  --font-heading: var(--font-outfit), 'Outfit', sans-serif;
   --font-mono: var(--font-fira), 'Fira Code', monospace;
 
   --color-os-bg:             #080E1A;
