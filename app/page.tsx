@@ -43,7 +43,7 @@ export default function Home() {
             {/* Avatar + identity header */}
             <div className="flex items-center gap-5 mb-8">
               <div className="shrink-0 group cursor-pointer relative">
-                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border border-white/10 group-hover:border-[#D4AF37]/50 transition-all duration-500 shadow-lg shadow-black/50">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border border-os-border group-hover:border-[#D4AF37]/50 transition-all duration-500 shadow-lg shadow-black/50">
                   <img
                     src="/avatar.png"
                     alt="Ebenezer Zotoo"
