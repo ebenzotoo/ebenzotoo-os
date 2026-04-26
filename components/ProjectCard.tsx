@@ -1,67 +1,64 @@
 "use client";
 
-import { Folder, Smartphone, Globe, Palette, Terminal, Database, LayoutTemplate, Code2, AppWindow } from "lucide-react";
+import { Code2, Globe, Smartphone, Database, LayoutTemplate, Palette, Terminal, AppWindow } from "lucide-react";
 import { JSX } from "react/jsx-dev-runtime";
 
 interface ProjectCardProps {
   title: string;
   description: string;
   updatedAt: string;
-  techStack?: string[]; // We added the tech stack array here
+  techStack?: string[];
+  imageUrl?: string;
 }
 
-// This dictionary maps your database strings to specific icons
 const techIconMap: Record<string, JSX.Element> = {
-  "Flutter": <Smartphone className="w-3.5 h-3.5" />,
-  "Mobile App Dev": <AppWindow className="w-3.5 h-3.5" />,
-  "Web Development": <Globe className="w-3.5 h-3.5" />,
-  "UI/UX Design": <Palette className="w-3.5 h-3.5" />,
-  "Python": <Terminal className="w-3.5 h-3.5" />,
-  "Database Management": <Database className="w-3.5 h-3.5" />,
-  "WordPress": <LayoutTemplate className="w-3.5 h-3.5" />,
+  "Flutter":             <Smartphone className="w-3 h-3" />,
+  "Mobile App Dev":      <AppWindow className="w-3 h-3" />,
+  "Web Development":     <Globe className="w-3 h-3" />,
+  "UI/UX Design":        <Palette className="w-3 h-3" />,
+  "Python":              <Terminal className="w-3 h-3" />,
+  "Database Management": <Database className="w-3 h-3" />,
+  "WordPress":           <LayoutTemplate className="w-3 h-3" />,
 };
 
-export default function ProjectCard({ title, description, updatedAt, techStack = [] }: ProjectCardProps) {
+export default function ProjectCard({ title, description, updatedAt, techStack = [], imageUrl }: ProjectCardProps) {
   return (
-    <div className="group relative flex items-center justify-between p-5 rounded-xl bg-[#111827]/60 border border-white/5 hover:border-os-accent-blue/50 hover:bg-[#111827]/80 transition-all duration-300 cursor-pointer overflow-hidden">
-      
-      <div className="absolute inset-0 bg-gradient-to-r from-os-accent-blue/0 via-os-accent-blue/5 to-os-accent-blue/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+    <div className="group flex flex-col rounded-xl bg-os-surface border border-os-border hover:border-os-primary/35 hover:shadow-[0_8px_32px_rgba(11,206,175,0.07)] hover:-translate-y-0.5 transition-all duration-300 overflow-hidden cursor-pointer">
 
-      {/* Left Side: Folder Icon + Text */}
-      <div className="flex items-start gap-4 z-10 w-2/3">
-        <div className="mt-1">
-          <Folder className="w-5 h-5 text-os-accent-blue" fill="currentColor" fillOpacity={0.2} />
+      {/* Cover image */}
+      {imageUrl && (
+        <div className="relative h-40 w-full overflow-hidden">
+          <img src={imageUrl} alt={title} className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-os-surface via-transparent to-transparent" />
         </div>
-        <div className="flex flex-col gap-1">
-          <h3 className="text-sm font-semibold text-white group-hover:text-os-accent-blue transition-colors truncate">
-            {title}
-          </h3>
-          <p className="text-xs text-os-text-muted line-clamp-1">
-            {description}
-          </p>
+      )}
+
+      {/* Body */}
+      <div className="flex flex-col gap-3 p-6 flex-1">
+        <h3 className="text-[15px] font-semibold text-os-text-main group-hover:text-os-primary transition-colors duration-150 leading-snug">
+          {title}
+        </h3>
+        <p className="text-[13px] text-os-text-muted leading-relaxed line-clamp-2">
+          {description}
+        </p>
+
+        {/* Tech tags */}
+        {techStack.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 mt-1">
+            {techStack.map((tech) => (
+              <span key={tech} className="flex items-center gap-1 px-2 py-1 rounded-lg bg-os-primary/8 text-os-primary text-[10px] font-medium">
+                {techIconMap[tech] ?? <Code2 className="w-3 h-3" />}
+                {tech}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* Footer */}
+        <div className="mt-auto pt-3 border-t border-os-border flex items-center justify-between">
+          <span className="text-[11px] text-os-text-muted font-medium">{updatedAt}</span>
         </div>
       </div>
-
-      {/* Right Side: Metadata + Dynamic Stack Icons */}
-      <div className="flex items-center gap-6 z-10">
-        <span className="text-[11px] text-os-text-muted hidden sm:block whitespace-nowrap">
-          {updatedAt}
-        </span>
-        
-        {/* We map through the database array and render the matching icons */}
-        <div className="flex items-center gap-2.5 text-os-text-muted">
-          {techStack.map((tech, index) => (
-            <div 
-              key={index} 
-              title={tech} // Shows the name when you hover over the icon!
-              className="hover:text-white transition-colors"
-            >
-              {techIconMap[tech] || <Code2 className="w-3.5 h-3.5" />} 
-            </div>
-          ))}
-        </div>
-      </div>
-      
     </div>
   );
 }
