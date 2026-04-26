@@ -18,7 +18,7 @@ export default function About() {
 
         {/* ========== OS VERSION ========== */}
         <div className="os-only">
-          <div className="border-b border-white/5 flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex font-mono sticky top-0 bg-[#0A0F1C]/90 backdrop-blur-md z-20">
+          <div className="border-b border-os-border flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex font-mono sticky top-0 bg-os-bg/90 backdrop-blur-md z-20">
             <NotificationBell />
             <CloudStatus />
             <span>SYSTEM_INFO <LiveClock /></span>
@@ -27,8 +27,8 @@ export default function About() {
           <div className="p-6 md:p-10 flex-1 max-w-4xl">
             <h2 className="text-xs font-bold tracking-[0.2em] text-os-text-muted mb-8 font-sans">ABOUT_USER</h2>
 
-            <div className="bg-[#111827]/80 border border-white/10 rounded-lg p-6 mb-10 font-mono text-sm">
-              <div className="flex items-center gap-2 mb-4 text-os-accent-blue pb-4 border-b border-white/5">
+            <div className="bg-os-surface border border-os-border rounded-lg p-6 mb-10 font-mono text-sm">
+              <div className="flex items-center gap-2 mb-4 text-os-secondary pb-4 border-b border-os-border">
                 <Terminal className="w-4 h-4" />
                 <span>~/ebenzotoo/bio.txt</span>
               </div>
@@ -42,10 +42,10 @@ export default function About() {
             </div>
 
             <div className="mb-12">
-              <h2 className="text-xs font-mono tracking-[0.2em] text-os-text-muted mb-6">// core_expertise</h2>
+              <h2 className="text-xs font-mono tracking-[0.2em] text-os-text-muted mb-6"><span className="text-os-primary">//</span> core_expertise</h2>
               <div className="flex flex-wrap gap-3">
                 {["UI/UX & Product Design", "Web & Platform Development", "Digital Systems Architecture", "User Experience Optimization", "Product Strategy & Execution"].map((skill) => (
-                  <span key={skill} className="px-4 py-2 bg-white/[0.03] border border-white/10 hover:border-[#D4AF37]/30 rounded-lg text-sm text-os-text-muted font-mono transition-colors">
+                  <span key={skill} className="px-4 py-2 bg-os-surface border border-os-border hover:border-os-primary/35 rounded-lg text-sm text-os-text-muted font-mono transition-colors">
                     {skill}
                   </span>
                 ))}
@@ -55,12 +55,12 @@ export default function About() {
             <h2 className="text-xs font-bold tracking-[0.2em] text-os-text-muted mb-8 font-sans mt-16 flex items-center gap-2">
               <Briefcase className="w-4 h-4" /> SYSTEM_LOGS: EXPERIENCE
             </h2>
-            <div className="space-y-8 border-l border-white/10 ml-2 pl-6 relative">
+            <div className="space-y-8 border-l border-os-border ml-2 pl-6 relative">
               {jobs.map((job, index) => (
                 <div key={index} className="relative">
-                  <div className="absolute -left-[31px] top-1.5 w-3 h-3 bg-os-bg border border-os-accent-blue rounded-full" />
-                  <h3 className="text-white font-medium text-sm">{job.role}</h3>
-                  <p className="text-os-accent-blue text-xs font-mono mt-1">{job.company} · {job.year}</p>
+                  <div className="absolute -left-[31px] top-1.5 w-3 h-3 border-2 border-os-primary bg-os-bg rounded-full" />
+                  <h3 className="text-os-text-main font-medium text-sm">{job.role}</h3>
+                  <p className="text-os-secondary text-xs font-mono mt-1">{job.company} · {job.year}</p>
                   <p className="text-os-text-muted text-xs mt-2 leading-relaxed">{job.desc}</p>
                 </div>
               ))}
