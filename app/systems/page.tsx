@@ -9,13 +9,13 @@ export default function Systems() {
   const nodes = [
     {
       title: "Cross-Platform Ecosystems",
-      icon: <Smartphone className="w-5 h-5 text-os-accent-blue" />,
+      icon: <Smartphone className="w-5 h-5 text-os-secondary" />,
       description: "Building responsive mobile and web applications utilizing Flutter for dynamic frontends paired seamlessly with Supabase for robust backend management.",
       status: "ACTIVE"
     },
     {
       title: "Data & Logic Infrastructure",
-      icon: <Database className="w-5 h-5 text-os-accent-green" />,
+      icon: <Database className="w-5 h-5 text-os-primary" />,
       description: "Python-driven data processing and backend architecture. Leveraging IBM-certified Data Science methodologies to structure scalable PostgreSQL databases and API endpoints.",
       status: "OPTIMIZED"
     },
@@ -36,55 +36,55 @@ export default function Systems() {
   return (
         <main className="flex-1 flex flex-col overflow-y-auto pb-16 md:pb-0">
             <PageTransition>
-          <div className="border-b border-white/5 flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex font-mono sticky top-0 bg-[#0A0F1C]/90 backdrop-blur-md z-20">
+          <div className="border-b border-os-border flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex text-xs sticky top-0 bg-os-bg/90 backdrop-blur-md z-20">
             <NotificationBell />
             <CloudStatus />
             <span>~/ARCHITECTURE_NODES <LiveClock /></span>
           </div>
-          
+
           <div className="p-6 md:p-10 flex-1 w-full relative">
 
             {/* Ghost watermark */}
-            <div className="absolute top-4 right-0 text-[90px] font-heading font-black text-white/[0.025] leading-none select-none pointer-events-none tracking-tighter">
+            <div className="absolute top-4 right-0 text-[90px] font-sans font-extrabold text-white/[0.02] leading-none select-none pointer-events-none tracking-tighter">
               SYSTEMS
             </div>
 
             <div className="flex items-center justify-between mb-8">
               <h2 className="text-xs font-bold tracking-[0.2em] text-os-text-muted font-sans">SYSTEM_ARCHITECTURE</h2>
-              <div className="flex items-center gap-2 text-xs font-mono text-os-accent-green">
-                <span className="w-2 h-2 rounded-full bg-os-accent-green animate-pulse" />
+              <div className="flex items-center gap-2 text-xs font-mono text-os-primary">
+                <span className="w-2 h-2 rounded-full bg-os-primary animate-pulse" />
                 ALL SYSTEMS NOMINAL
               </div>
             </div>
-            
+
             {/* Network Nodes Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative">
-              
+
               {/* Decorative connecting lines for desktop */}
-              <div className="hidden md:block absolute top-1/2 left-0 w-full h-[1px] bg-white/5 -z-10" />
-              <div className="hidden md:block absolute top-0 left-1/2 w-[1px] h-full bg-white/5 -z-10" />
+              <div className="hidden md:block absolute top-1/2 left-0 w-full h-[1px] bg-os-border -z-10" />
+              <div className="hidden md:block absolute top-0 left-1/2 w-[1px] h-full bg-os-border -z-10" />
 
               {nodes.map((node, i) => (
-                <div key={i} className="bg-[#111827]/60 border border-white/5 hover:border-[#D4AF37]/30 p-6 rounded-xl transition-all duration-300 group flex flex-col h-full backdrop-blur-sm relative overflow-hidden hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] hover:-translate-y-1">
-                  
+                <div key={i} className="bg-os-surface border border-os-border hover:border-os-primary/35 p-6 rounded-xl transition-all duration-300 group flex flex-col h-full backdrop-blur-sm relative overflow-hidden group-hover:shadow-[0_8px_32px_rgba(11,206,175,0.07)] hover:-translate-y-1">
+
                   {/* Subtle hover gradient */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/0 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                   <div className="flex items-center justify-between mb-5 z-10">
-                    <div className="p-2.5 bg-[#0A0F1C] border border-white/5 rounded-lg group-hover:scale-110 transition-transform">
+                    <div className="p-2.5 bg-os-surface border border-os-border rounded-lg group-hover:scale-110 transition-transform">
                       {node.icon}
                     </div>
-                    <span className="text-[10px] font-mono tracking-widest text-os-text-muted px-2 py-1 rounded bg-black/20 border border-white/5">
-                      STATUS: <span className={node.status === 'ACTIVE' ? 'text-os-accent-blue' : 'text-os-accent-green'}>{node.status}</span>
+                    <span className="text-[10px] font-mono tracking-widest text-os-text-muted px-2 py-1 rounded bg-black/20 border border-os-border">
+                      STATUS: <span className={node.status === 'ACTIVE' ? 'text-os-secondary' : 'text-os-primary'}>{node.status}</span>
                     </span>
                   </div>
-                  
-                  <h3 className="text-white font-medium text-lg mb-3 z-10">{node.title}</h3>
+
+                  <h3 className="text-os-text-main font-medium text-lg mb-3 z-10">{node.title}</h3>
                   <p className="text-sm text-os-text-muted leading-relaxed font-sans z-10 flex-1">
                     {node.description}
                   </p>
 
-                  <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs font-mono text-os-text-muted group-hover:text-white transition-colors z-10 cursor-pointer w-fit">
+                  <div className="mt-6 pt-4 border-t border-os-border flex items-center gap-2 text-xs font-mono text-os-text-muted hover:text-os-text-main transition-colors z-10 cursor-pointer w-fit">
                     <Server className="w-3.5 h-3.5" />
                     INSPECT_NODE
                   </div>
@@ -106,11 +106,11 @@ export default function Systems() {
                   { icon: SearchCode,    title: "SEO Optimisation",        desc: "Technical and content-level SEO strategies that improve ranking, discoverability, and organic traffic." },
                   { icon: MousePointer2, title: "UX Consulting",           desc: "User research, prototyping, and design systems that put the end-user at the centre of every decision." },
                 ].map((service) => (
-                  <div key={service.title} className="group bg-[#111827]/40 border border-white/5 hover:border-[#D4AF37]/30 rounded-xl p-5 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] hover:-translate-y-0.5">
-                    <div className="p-2 bg-[#0A0F1C] border border-white/5 rounded-lg w-fit mb-4 group-hover:border-[#D4AF37]/20 transition-colors">
-                      <service.icon className="w-4 h-4 text-[#D4AF37]" />
+                  <div key={service.title} className="group bg-os-surface border border-os-border hover:border-os-primary/35 rounded-xl p-5 transition-all duration-300 group-hover:shadow-[0_8px_32px_rgba(11,206,175,0.07)] hover:-translate-y-0.5">
+                    <div className="p-2 bg-os-surface border border-os-border rounded-lg w-fit mb-4 hover:border-os-primary/35 transition-colors">
+                      <service.icon className="w-4 h-4 text-os-gold" />
                     </div>
-                    <h3 className="text-white font-heading font-semibold text-sm mb-2">{service.title}</h3>
+                    <h3 className="text-os-text-main font-heading font-semibold text-sm mb-2">{service.title}</h3>
                     <p className="text-xs text-os-text-muted leading-relaxed font-sans">{service.desc}</p>
                   </div>
                 ))}
@@ -129,12 +129,12 @@ export default function Systems() {
                   { step: "03", title: "Development", desc: "Building iteratively with clean, documented code. Regular check-ins, no surprises." },
                   { step: "04", title: "Delivery", desc: "Deployment, handoff, and post-launch monitoring. The project doesn't end at launch." },
                 ].map((phase) => (
-                  <div key={phase.step} className="bg-[#111827]/40 border border-white/5 rounded-xl p-5 relative overflow-hidden group hover:border-white/15 transition-all duration-300">
-                    <div className="absolute top-3 right-4 text-[40px] font-heading font-black text-white/[0.04] leading-none select-none">
+                  <div key={phase.step} className="bg-os-surface border border-os-border rounded-xl p-5 relative overflow-hidden group hover:border-os-border transition-all duration-300">
+                    <div className="absolute top-3 right-4 text-[40px] font-sans font-extrabold text-white/[0.04] leading-none select-none">
                       {phase.step}
                     </div>
-                    <p className="text-[10px] font-mono text-os-accent-blue tracking-widest mb-3">{phase.step}</p>
-                    <h3 className="text-white font-heading font-semibold text-base mb-2">{phase.title}</h3>
+                    <p className="text-[10px] font-mono text-os-secondary tracking-widest mb-3">{phase.step}</p>
+                    <h3 className="text-os-text-main font-heading font-semibold text-base mb-2">{phase.title}</h3>
                     <p className="text-xs text-os-text-muted leading-relaxed font-sans">{phase.desc}</p>
                   </div>
                 ))}
@@ -142,13 +142,13 @@ export default function Systems() {
             </div>
 
             {/* Terminal Output snippet */}
-            <div className="mt-10 bg-black/40 border border-white/5 rounded-lg p-4 font-mono text-xs text-os-text-muted">
-               <span className="text-os-accent-blue">ebenzotoo@core</span>:<span className="text-os-accent-green">~</span>$ systemctl status deployment
+            <div className="mt-10 bg-black/40 border border-os-border rounded-lg p-4 font-mono text-xs text-os-text-muted">
+               <span className="text-os-secondary">ebenzotoo@core</span>:<span className="text-os-primary">~</span>$ systemctl status deployment
                <br />
-               <span className="text-white mt-1 block">● deployment.service - Full Stack Application Orchestration</span>
+               <span className="text-os-text-main mt-1 block">● deployment.service - Full Stack Application Orchestration</span>
                Loaded: loaded (/etc/systemd/system/deployment.service; enabled; vendor preset: enabled)
                <br />
-               Active: <span className="text-os-accent-green">active (running)</span> since Wed 2026-03-11 21:22:51 GMT; 1h 5m ago
+               Active: <span className="text-os-primary">active (running)</span> since Wed 2026-03-11 21:22:51 GMT; 1h 5m ago
             </div>
 
           </div>
