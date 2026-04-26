@@ -8,10 +8,10 @@ type NotifType = "project" | "note" | "role" | "db" | "zap" | "check";
 
 const TYPE_CONFIG: Record<NotifType, { icon: React.ComponentType<{ className?: string }>, color: string }> = {
   project: { icon: Folder,       color: "text-[#D4AF37]" },
-  note:    { icon: FileText,     color: "text-os-accent-blue" },
+  note:    { icon: FileText,     color: "text-os-secondary" },
   role:    { icon: CheckCircle2, color: "text-[#F9A41E]" },
   db:      { icon: Database,     color: "text-[#F9A41E]" },
-  zap:     { icon: Zap,          color: "text-os-accent-blue" },
+  zap:     { icon: Zap,          color: "text-os-secondary" },
   check:   { icon: CheckCircle2, color: "text-[#F9A41E]" },
 };
 
@@ -55,13 +55,13 @@ export default function NotificationBell() {
       >
         <Bell className="w-4 h-4" />
         {notifications.length > 0 && (
-          <span className="absolute top-0 right-0 w-1.5 h-1.5 rounded-full bg-[#F9A41E] ring-1 ring-[#0A0F1C]" />
+          <span className="absolute top-0 right-0 w-1.5 h-1.5 rounded-full bg-[#F9A41E] ring-1 ring-os-bg" />
         )}
       </button>
 
       {open && (
-        <div className="absolute right-0 top-8 w-72 bg-[#0D1117] border border-white/10 rounded-xl shadow-2xl shadow-black/60 z-50 overflow-hidden">
-          <div className="flex items-center justify-between px-4 py-3 border-b border-white/5">
+        <div className="absolute right-0 top-8 w-72 bg-os-bg border border-os-border rounded-xl shadow-2xl shadow-black/60 z-50 overflow-hidden">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-os-border">
             <span className="text-[10px] font-mono tracking-widest text-os-text-muted">
               SYSTEM_NOTIFICATIONS
             </span>
@@ -85,7 +85,7 @@ export default function NotificationBell() {
                 return (
                   <div
                     key={n.id}
-                    className="flex items-start gap-3 px-4 py-3 hover:bg-white/[0.03] transition-colors"
+                    className="flex items-start gap-3 px-4 py-3 hover:bg-os-surface transition-colors"
                   >
                     <Icon className={`w-3.5 h-3.5 mt-0.5 shrink-0 ${cfg.color}`} />
                     <div className="flex-1 min-w-0">
@@ -99,7 +99,7 @@ export default function NotificationBell() {
             )}
           </div>
 
-          <div className="px-4 py-3 border-t border-white/5">
+          <div className="px-4 py-3 border-t border-os-border">
             <p className="text-[10px] font-mono text-os-text-muted text-center tracking-wider">
               ALL_SYSTEMS_NOMINAL
             </p>

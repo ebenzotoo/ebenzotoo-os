@@ -32,16 +32,16 @@ export default function MobileDock() {
           >
             {/* Active Indicator (Dot above icon) */}
             {isActive && (
-              <span className="absolute top-0.5 w-1 h-1 bg-os-accent-green rounded-full" />
+              <span className="absolute top-0.5 w-1 h-1 bg-os-primary rounded-full" />
             )}
 
             <Icon
               className={`w-5 h-5 transition-all duration-200 ${
-                isActive ? "text-os-accent-green" : "text-os-text-muted"
+                isActive ? "text-os-primary" : "text-os-text-muted"
               }`}
             />
             <span className={`text-[9px] tracking-wide transition-colors ${
-              isActive ? "text-os-accent-green" : "text-os-text-muted"
+              isActive ? "text-os-primary" : "text-os-text-muted"
             }`}>{item.name}</span>
           </Link>
         );

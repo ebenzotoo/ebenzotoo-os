@@ -11,9 +11,9 @@ export default function DesktopHint() {
   if (dismissed || theme === "clean") return null;
 
   return (
-    <div className="md:hidden flex items-center justify-between gap-3 px-4 py-2.5 bg-[#0D1117] border-b border-[#D4AF37]/20 text-xs font-mono z-50">
+    <div className="md:hidden flex items-center justify-between gap-3 px-4 py-2.5 bg-os-bg border-b border-os-primary/20 text-xs font-mono z-50">
       <div className="flex items-center gap-2 text-os-text-muted">
-        <Monitor className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" />
+        <Monitor className="w-3.5 h-3.5 text-os-primary shrink-0" />
         <span>Best experienced on desktop</span>
       </div>
       <button

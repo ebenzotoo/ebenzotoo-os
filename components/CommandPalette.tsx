@@ -66,10 +66,10 @@ export default function CommandPalette() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -20 }}
             transition={{ duration: 0.15, ease: "easeOut" }}
-            className="fixed top-[15%] left-1/2 -translate-x-1/2 w-full max-w-2xl bg-[#0A0F1C] border border-white/15 rounded-xl shadow-2xl overflow-hidden z-50 flex flex-col"
+            className="fixed top-[15%] left-1/2 -translate-x-1/2 w-full max-w-2xl bg-os-bg border border-os-border rounded-xl shadow-2xl overflow-hidden z-50 flex flex-col"
           >
             {/* Search Input */}
-            <div className="flex items-center gap-3 px-4 py-4 border-b border-white/10 bg-[#111827]/50">
+            <div className="flex items-center gap-3 px-4 py-4 border-b border-os-border bg-os-surface/50">
               <Search className="w-5 h-5 text-os-text-muted" />
               <input
                 autoFocus
@@ -95,17 +95,17 @@ export default function CommandPalette() {
                     <button
                       key={route.path}
                       onClick={() => handleSelect(route.path)}
-                      className="flex items-center justify-between w-full px-4 py-3 text-left text-white rounded-lg hover:bg-os-accent-blue/20 hover:text-os-accent-blue transition-colors group"
+                      className="flex items-center justify-between w-full px-4 py-3 text-left text-os-text-main rounded-lg hover:bg-os-secondary/20 hover:text-os-secondary transition-colors group"
                     >
                       <div className="flex items-center gap-3">
-                        <div className="text-os-text-muted group-hover:text-os-accent-blue transition-colors">
+                        <div className="text-os-text-muted group-hover:text-os-secondary transition-colors">
                           {route.icon}
                         </div>
                         <span className="font-sans font-medium tracking-wide">
                           {route.name}
                         </span>
                       </div>
-                      <span className="text-[10px] font-mono text-os-text-muted px-2 py-1 bg-white/5 rounded border border-white/5 group-hover:border-os-accent-blue/30 group-hover:text-os-accent-blue transition-colors">
+                      <span className="text-[10px] font-mono text-os-text-muted px-2 py-1 bg-os-surface rounded border border-os-border group-hover:border-os-secondary/30 group-hover:text-os-secondary transition-colors">
                         {route.type}
                       </span>
                     </button>
