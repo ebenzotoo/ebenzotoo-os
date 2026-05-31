@@ -1,15 +1,9 @@
 import PageTransition from "../../components/PageTransition";
 import Link from "next/link";
 import { getSupabase } from "../../lib/supabase";
-import { Clock, Calendar } from "lucide-react";
 import LiveClock from "@/components/LiveClock";
 import NotificationBell from "@/components/NotificationBell";
 import CloudStatus from "@/components/CloudStatus";
-
-const noteImageMap: Record<string, string> = {
-  "losing-ability-to-explain-tech":   "/notes/explain-tech.jpg",
-  "liberating-power-of-self-honesty": "/notes/power.jpg",
-};
 
 export default async function Notes() {
   // Fetch live articles from Supabase
@@ -38,53 +32,45 @@ export default async function Notes() {
               </div>
 
               <h2 className="text-[11px] font-medium tracking-[0.15em] text-os-text-muted mb-8 uppercase">
-                <span className="text-os-primary">//</span> Notes
+                <span className="text-os-primary">// </span>Notes
               </h2>
 
               <div className="flex flex-col gap-5">
-                {notes?.map((article) => {
-                  const cover = article.cover_image ?? article.image_url ?? noteImageMap[article.slug] ?? null;
+                {(notes ?? []).map((note: Record<string, unknown>) => {
+                  const slug = note.slug as string;
+                  const tag = (note.tag as string) ?? "Other";
+                  const tagColor = tag === "Tech"    ? "text-os-primary border-os-primary/25 bg-os-primary/10"
+                                 : tag === "Mindset" ? "text-os-secondary border-os-secondary/25 bg-os-secondary/10"
+                                 : "text-os-gold border-os-gold/25 bg-os-gold/10";
+
                   return (
-                    <Link href={`/notes/${article.slug}`} key={article.id} className="block group">
-                      <div className="flex flex-col sm:flex-row rounded-xl bg-os-surface border border-os-border hover:border-os-primary/35 hover:shadow-[0_8px_32px_rgba(11,206,175,0.07)] hover:-translate-y-0.5 transition-all duration-300 overflow-hidden">
-
-                        {/* Cover image strip */}
-                        {cover && (
-                          <div className="sm:w-[120px] sm:shrink-0 h-40 sm:h-auto overflow-hidden">
-                            <img src={cover} alt={article.title} className="w-full h-full object-cover" />
-                          </div>
-                        )}
-
-                        {/* Text */}
-                        <div className="flex flex-col gap-2.5 p-5 flex-1">
-                          <div className="flex flex-wrap items-center gap-2.5">
-                            {article.tag && (
-                              <span className={`text-[10px] font-semibold tracking-[0.1em] uppercase px-2 py-1 rounded-lg ${
-                                article.tag.toLowerCase().includes("tech") ? "bg-os-primary/8 text-os-primary border border-os-primary/15" :
-                                article.tag.toLowerCase().includes("mind") ? "bg-os-secondary/8 text-os-secondary border border-os-secondary/15" :
-                                "bg-os-gold/8 text-os-gold border border-os-gold/15"
-                              }`}>
-                                {article.tag}
-                              </span>
-                            )}
-                            <div className="flex items-center gap-3 text-[12px] text-os-text-muted">
-                              <div className="flex items-center gap-1.5">
-                                <Calendar className="w-3.5 h-3.5" />
-                                {new Date(article.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                              </div>
-                              {article.read_time && (
-                                <div className="flex items-center gap-1.5">
-                                  <Clock className="w-3.5 h-3.5" />
-                                  {article.read_time}
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                          <h3 className="text-[16px] font-semibold text-os-text-main group-hover:text-os-primary transition-colors leading-snug">
-                            {article.title}
-                          </h3>
-                          {article.excerpt && (
-                            <p className="text-[13px] text-os-text-muted leading-relaxed line-clamp-2">{article.excerpt}</p>
+                    <Link key={slug} href={`/notes/${slug}`}
+                      className="glass-card group flex rounded-[14px] overflow-hidden no-underline">
+                      {/* Cover strip */}
+                      <div className={`w-[90px] shrink-0 bg-gradient-to-br
+                        ${tag === "Tech"    ? "from-os-primary/15 to-transparent"
+                        : tag === "Mindset" ? "from-os-secondary/15 to-transparent"
+                        : "from-os-gold/15 to-transparent"}`}
+                      />
+                      {/* Content */}
+                      <div className="flex flex-col gap-2 p-4 flex-1 min-w-0">
+                        <div className="flex items-center gap-2">
+                          <span className={`px-2 py-0.5 rounded text-[8px] font-bold uppercase tracking-[0.08em] border ${tagColor}`}>
+                            {tag}
+                          </span>
+                        </div>
+                        <h3 className="text-[15px] font-semibold text-os-text-main leading-snug line-clamp-2">
+                          {note.title as string}
+                        </h3>
+                        <p className="text-[13px] text-os-text-muted leading-relaxed line-clamp-2">
+                          {note.excerpt as string}
+                        </p>
+                        <div className="flex items-center gap-4 mt-1">
+                          <span className="text-[11px] text-os-text-muted">
+                            {new Date(note.created_at as string).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
+                          </span>
+                          {!!note.read_time && (
+                            <span className="text-[11px] text-os-text-muted">{note.read_time as string}</span>
                           )}
                         </div>
                       </div>

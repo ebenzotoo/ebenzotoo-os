@@ -250,7 +250,7 @@ export default async function NoteDetail({ params }: { params: Promise<{ slug: s
               {!note.excerpt && <div className="border-b border-os-border mb-8" />}
 
               {/* Article body */}
-              <article className="max-w-[680px] mx-auto">
+              <article className="max-w-[680px] mx-auto text-[16px] leading-[1.75] text-os-text-muted font-sans">
                 {renderContent(note.content ?? "")}
               </article>
 
