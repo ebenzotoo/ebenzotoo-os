@@ -43,6 +43,12 @@ next-env.d.ts
 # OpenNext
 .open-next
 
+# git worktrees
+.worktrees/
+
+# brainstorming visual companion
+.superpowers/
+
 # wrangler files
 .wrangler
 .dev.vars*
