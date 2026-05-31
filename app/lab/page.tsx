@@ -36,7 +36,7 @@ export default function Lab() {
   return (
         <main className="flex-1 flex flex-col overflow-y-auto pb-16 md:pb-0">
             <PageTransition>
-          <div className="border-b border-os-border flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex text-xs sticky top-0 bg-os-bg/90 backdrop-blur-md z-20">
+          <div className="border-b border-white/[0.08] flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex text-xs sticky top-0 bg-os-bg/90 backdrop-blur-md z-20">
             <NotificationBell />
             <CloudStatus />
             <span>~/LAB_ENVIRONMENT <LiveClock /></span>
@@ -55,16 +55,16 @@ export default function Lab() {
 
             <div className="flex flex-col gap-10">
               {experiments.map((exp) => (
-                <div key={exp.id} className="bg-os-surface border border-os-border rounded-xl overflow-hidden flex flex-col shadow-lg">
+                <div key={exp.id} className="glass-card rounded-[14px] overflow-hidden flex flex-col shadow-lg">
 
                   {/* Header Bar */}
-                  <div className="bg-os-surface px-5 py-3 border-b border-os-border flex items-center justify-between">
+                  <div className="bg-white/[0.04] px-5 py-3 border-b border-white/[0.08] flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       {exp.icon}
                       <span className="text-os-text-main font-medium text-sm tracking-wide">{exp.title}</span>
                     </div>
                     <div className="flex items-center gap-4">
-                      <span className="text-[10px] font-mono tracking-widest text-os-text-muted px-2 py-1 rounded bg-os-surface border border-os-border hidden sm:block">
+                      <span className="text-[10px] font-mono tracking-widest text-os-text-muted px-2 py-1 rounded bg-white/[0.05] border border-white/[0.08] hidden sm:block">
                         {exp.type}
                       </span>
                       <button className="flex items-center gap-1.5 text-xs font-mono text-os-primary hover:text-os-text-main transition-colors bg-os-primary/10 hover:bg-os-primary/20 px-3 py-1.5 rounded border border-os-primary/20">
@@ -74,11 +74,11 @@ export default function Lab() {
                   </div>
 
                   {/* Split Workspace */}
-                  <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-os-border">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-white/[0.08]">
 
                     {/* Left: Code Editor View */}
                     <div className="p-5 font-mono text-xs overflow-x-auto bg-[#050810]/50">
-                      <div className="text-os-text-muted mb-3 select-none flex gap-4 border-b border-os-border pb-2">
+                      <div className="text-os-text-muted mb-3 select-none flex gap-4 border-b border-white/[0.08] pb-2">
                         <span className="text-os-secondary border-b border-os-secondary pb-2 -mb-[9px]">source_code</span>
                       </div>
                       <pre className="text-os-text-main leading-relaxed">
@@ -87,7 +87,7 @@ export default function Lab() {
                     </div>
 
                     {/* Right: Render / Output View */}
-                    <div className="p-5 flex flex-col justify-center items-center text-center bg-os-surface relative min-h-[150px]">
+                    <div className="p-5 flex flex-col justify-center items-center text-center bg-white/[0.02] relative min-h-[150px]">
                       <div className="absolute top-3 left-3 text-[10px] font-mono text-os-text-muted tracking-widest">
                         OUTPUT_CONSOLE
                       </div>

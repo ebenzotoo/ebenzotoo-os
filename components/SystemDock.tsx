@@ -25,7 +25,7 @@ export default function SystemDock() {
   const pathname = usePathname();
 
   return (
-    <div className="w-full max-w-[1440px] mx-auto hidden md:flex flex-col items-center border-t border-os-border bg-os-bg/90 backdrop-blur-md z-20 px-8 py-4 shrink-0">
+    <div className="w-full max-w-[1440px] mx-auto hidden md:flex flex-col items-center border-t border-white/[0.06] bg-[rgba(10,10,15,0.92)] backdrop-blur-md z-20 px-8 py-4 shrink-0">
 
       {/* Row 1: Status bar */}
       <div className="w-full flex items-center justify-between text-[11px] mb-5">
@@ -45,11 +45,11 @@ export default function SystemDock() {
 
         <div className="flex items-center gap-3">
           <Link href="/contact"
-            className="px-4 py-2 border border-os-border hover:border-os-border-hover text-os-text-muted hover:text-os-text-main rounded-lg text-[11px] font-medium transition-colors duration-150">
+            className="px-4 py-2 border border-white/[0.08] hover:border-os-primary/40 text-os-text-muted hover:text-os-text-main rounded-lg text-[11px] font-medium transition-colors duration-150">
             Start a Project
           </Link>
           <Link href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer"
-            className="px-4 py-2 bg-os-primary hover:bg-os-primary/90 text-[#080E1A] rounded-lg text-[11px] font-semibold transition-colors duration-150">
+            className="px-4 py-2 bg-os-primary hover:bg-os-primary/90 text-black rounded-lg text-[11px] font-semibold transition-colors duration-150">
             Book a Consult ↗
           </Link>
         </div>

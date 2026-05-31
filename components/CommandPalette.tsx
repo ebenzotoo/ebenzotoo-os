@@ -66,10 +66,10 @@ export default function CommandPalette() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -20 }}
             transition={{ duration: 0.15, ease: "easeOut" }}
-            className="fixed top-[15%] left-1/2 -translate-x-1/2 w-full max-w-2xl bg-os-bg border border-os-border rounded-xl shadow-2xl overflow-hidden z-50 flex flex-col"
+            className="fixed top-[15%] left-1/2 -translate-x-1/2 w-full max-w-2xl bg-[rgba(14,14,20,0.95)] backdrop-blur-xl border border-os-primary/20 rounded-xl shadow-2xl overflow-hidden z-50 flex flex-col"
           >
             {/* Search Input */}
-            <div className="flex items-center gap-3 px-4 py-4 border-b border-os-border bg-os-surface/50">
+            <div className="flex items-center gap-3 px-4 py-4 border-b border-white/[0.08] bg-white/[0.04]">
               <Search className="w-5 h-5 text-os-text-muted" />
               <input
                 autoFocus
@@ -77,7 +77,7 @@ export default function CommandPalette() {
                 placeholder="Search systems or execute command..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="flex-1 bg-transparent text-white placeholder:text-os-text-muted/50 focus:outline-none font-sans text-lg"
+                className="flex-1 bg-transparent text-white placeholder:text-os-text-muted/50 focus:outline-none font-sans text-lg caret-os-primary"
               />
               <div className="flex items-center gap-1 text-[10px] font-mono text-os-text-muted bg-white/5 px-2 py-1 rounded">
                 ESC TO CANCEL
@@ -95,17 +95,17 @@ export default function CommandPalette() {
                     <button
                       key={route.path}
                       onClick={() => handleSelect(route.path)}
-                      className="flex items-center justify-between w-full px-4 py-3 text-left text-os-text-main rounded-lg hover:bg-os-secondary/20 hover:text-os-secondary transition-colors group"
+                      className="flex items-center justify-between w-full px-4 py-3 text-left text-os-text-main rounded-lg hover:bg-os-primary/10 hover:text-os-primary transition-colors group border-l-2 border-transparent hover:border-os-primary/40"
                     >
                       <div className="flex items-center gap-3">
-                        <div className="text-os-text-muted group-hover:text-os-secondary transition-colors">
+                        <div className="text-os-text-muted group-hover:text-os-primary transition-colors">
                           {route.icon}
                         </div>
                         <span className="font-sans font-medium tracking-wide">
                           {route.name}
                         </span>
                       </div>
-                      <span className="text-[10px] font-mono text-os-text-muted px-2 py-1 bg-os-surface rounded border border-os-border group-hover:border-os-secondary/30 group-hover:text-os-secondary transition-colors">
+                      <span className="text-[10px] font-mono text-os-text-muted px-2 py-1 bg-white/[0.05] rounded border border-white/[0.08] group-hover:border-os-primary/30 group-hover:text-os-primary transition-colors">
                         {route.type}
                       </span>
                     </button>

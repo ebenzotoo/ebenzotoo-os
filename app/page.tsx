@@ -1,4 +1,4 @@
-import { Terminal } from "lucide-react";
+import { Terminal, ArrowUpRight } from "lucide-react";
 import PageTransition from "../components/PageTransition";
 import LiveClock from "@/components/LiveClock";
 import NotificationBell from "@/components/NotificationBell";
@@ -40,41 +40,78 @@ export default function Home() {
               ABOUT
             </div>
 
-            {/* Avatar + identity header */}
-            <div className="flex items-center gap-5 mb-8">
-              <div className="shrink-0 group cursor-pointer relative">
-                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border border-os-border group-hover:border-[#D4AF37]/50 transition-all duration-500 shadow-lg shadow-black/50">
+            {/* ── HERO BANNER ─────────────────────────────────────── */}
+            <div className="relative rounded-2xl overflow-hidden border border-white/[0.06] bg-gradient-to-br from-[#1a0800] to-os-bg mb-8">
+              {/* Ambient glow */}
+              <div className="absolute top-[-60px] right-[80px] w-[280px] h-[280px] bg-os-primary/10 rounded-full blur-[60px] pointer-events-none" />
+
+              <div className="relative z-10 flex items-stretch min-h-[280px]">
+                {/* Text side */}
+                <div className="flex-1 p-8 flex flex-col justify-between">
+                  <div>
+                    <p className="text-[10px] tracking-[0.2em] text-os-primary font-semibold uppercase mb-4">
+                      Full-Stack Developer · Systems Architect · UI/UX Designer
+                    </p>
+                    <h1 className="text-[36px] md:text-[44px] font-black text-os-text-main leading-[1.05] mb-6">
+                      Building<br />Digital<br />
+                      <span className="text-os-primary">Products.</span>
+                    </h1>
+                    <div className="flex flex-wrap gap-3">
+                      <Link href="/contact"
+                        className="px-5 py-2.5 bg-os-primary hover:bg-os-primary/90 text-black text-[13px] font-bold rounded-lg transition-colors duration-150">
+                        Start a Project
+                      </Link>
+                      <Link href="/projects"
+                        className="px-5 py-2.5 bg-os-primary/10 border border-os-primary/30 hover:border-os-primary/60 text-os-primary text-[13px] font-semibold rounded-lg transition-colors duration-150 flex items-center gap-1.5">
+                        View Work <ArrowUpRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Photo side */}
+                <div className="hidden md:block relative w-[260px] shrink-0">
+                  <div className="absolute inset-0 bg-gradient-to-br from-os-primary/10 to-transparent" />
+                  <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#1a0800] to-transparent z-10" />
                   <img
                     src="/avatar.png"
                     alt="Ebenezer Zotoo"
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                    className="w-full h-full object-cover object-top"
                   />
                 </div>
-                <div className="absolute -inset-1 rounded-xl bg-[#D4AF37]/0 group-hover:bg-[#D4AF37]/8 blur-md transition-all duration-500 -z-10" />
               </div>
-              <div>
-                <p className="text-[11px] tracking-[0.15em] text-os-text-muted font-medium mb-1">// about_user</p>
-                <p className="text-[18px] font-semibold text-os-text-main mt-1">Ebenezer Zotoo</p>
-                <p className="text-os-primary text-[13px] font-medium mt-0.5">Digital Product Designer & Systems Builder</p>
-                <p className="text-os-text-muted text-[12px] mt-2 leading-snug max-w-xs">
-                  📍 Accra, Ghana &nbsp;·&nbsp; 🌍 Open to remote opportunities
-                </p>
+
+              {/* Stats bar */}
+              <div className="relative z-10 grid grid-cols-4 border-t border-white/[0.06] bg-black/40 backdrop-blur-sm">
+                {[
+                  { value: "8+",     label: "Years Exp."  },
+                  { value: "30+",    label: "Projects"    },
+                  { value: "15+",    label: "Clients"     },
+                  { value: "1,000+", label: "Users Built" },
+                ].map((stat, i, arr) => (
+                  <div key={stat.label} className={`flex flex-col items-center py-4 ${i < arr.length - 1 ? "border-r border-white/[0.06]" : ""}`}>
+                    <p className="text-[20px] font-black text-os-primary leading-none">{stat.value}</p>
+                    <p className="text-[10px] font-medium text-os-text-muted tracking-wider mt-1 uppercase">{stat.label}</p>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Stats block */}
-            <div className="grid grid-cols-2 md:grid-cols-4 mb-8">
-              {[
-                { value: "8+",      label: "Years Experience"     },
-                { value: "30+",     label: "Projects Shipped"     },
-                { value: "1,000+",  label: "Platform Users Built" },
-                { value: "3",       label: "Countries"            },
-              ].map((stat, i, arr) => (
-                <div key={stat.label} className={`flex flex-col items-center py-5 ${i < arr.length - 1 ? "border-r border-os-border" : ""}`}>
-                  <p className="text-[32px] font-bold text-os-text-main leading-none">{stat.value}</p>
-                  <p className="text-[11px] font-medium text-os-text-muted tracking-wide mt-2 uppercase">{stat.label}</p>
-                </div>
-              ))}
+            {/* ── MARQUEE STRIP ──────────────────────────────────────── */}
+            <div className="overflow-hidden mb-8 border-y border-white/[0.04] py-3">
+              <div className="marquee-track gap-0">
+                {[
+                  "Next.js", "TypeScript", "Supabase", "Tailwind CSS", "React", "Node.js",
+                  "Flutter", "PostgreSQL", "UI/UX Design", "Systems Architecture", "Web Development", "Mobile Apps",
+                  "Next.js", "TypeScript", "Supabase", "Tailwind CSS", "React", "Node.js",
+                  "Flutter", "PostgreSQL", "UI/UX Design", "Systems Architecture", "Web Development", "Mobile Apps",
+                ].map((item, i) => (
+                  <span key={i} className="flex items-center gap-4 shrink-0 px-4 text-[11px] text-os-text-muted font-medium tracking-[0.08em] uppercase">
+                    <span className="text-os-primary/50">·</span>
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
 
             {/* Terminal Bio */}

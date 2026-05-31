@@ -36,7 +36,7 @@ export default function Systems() {
   return (
         <main className="flex-1 flex flex-col overflow-y-auto pb-16 md:pb-0">
             <PageTransition>
-          <div className="border-b border-os-border flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex text-xs sticky top-0 bg-os-bg/90 backdrop-blur-md z-20">
+          <div className="border-b border-white/[0.08] flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex text-xs sticky top-0 bg-os-bg/90 backdrop-blur-md z-20">
             <NotificationBell />
             <CloudStatus />
             <span>~/ARCHITECTURE_NODES <LiveClock /></span>
@@ -61,20 +61,20 @@ export default function Systems() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative">
 
               {/* Decorative connecting lines for desktop */}
-              <div className="hidden md:block absolute top-1/2 left-0 w-full h-[1px] bg-os-border -z-10" />
-              <div className="hidden md:block absolute top-0 left-1/2 w-[1px] h-full bg-os-border -z-10" />
+              <div className="hidden md:block absolute top-1/2 left-0 w-full h-[1px] bg-white/[0.08] -z-10" />
+              <div className="hidden md:block absolute top-0 left-1/2 w-[1px] h-full bg-white/[0.08] -z-10" />
 
               {nodes.map((node, i) => (
-                <div key={i} className="bg-os-surface border border-os-border hover:border-os-primary/35 p-6 rounded-xl transition-all duration-300 group flex flex-col h-full backdrop-blur-sm relative overflow-hidden group-hover:shadow-[0_8px_32px_rgba(11,206,175,0.07)] hover:-translate-y-1">
+                <div key={i} className="glass-card p-6 rounded-[14px] transition-all duration-300 group flex flex-col h-full relative overflow-hidden hover:-translate-y-1">
 
                   {/* Subtle hover gradient */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/0 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                   <div className="flex items-center justify-between mb-5 z-10">
-                    <div className="p-2.5 bg-os-surface border border-os-border rounded-lg group-hover:scale-110 transition-transform">
+                    <div className="p-2.5 bg-white/[0.05] border border-white/[0.08] rounded-lg group-hover:scale-110 transition-transform">
                       {node.icon}
                     </div>
-                    <span className="text-[10px] font-mono tracking-widest text-os-text-muted px-2 py-1 rounded bg-black/20 border border-os-border">
+                    <span className="text-[10px] font-mono tracking-widest text-os-text-muted px-2 py-1 rounded bg-black/20 border border-white/[0.08]">
                       STATUS: <span className={node.status === 'ACTIVE' ? 'text-os-secondary' : 'text-os-primary'}>{node.status}</span>
                     </span>
                   </div>
@@ -84,7 +84,7 @@ export default function Systems() {
                     {node.description}
                   </p>
 
-                  <div className="mt-6 pt-4 border-t border-os-border flex items-center gap-2 text-xs font-mono text-os-text-muted hover:text-os-text-main transition-colors z-10 cursor-pointer w-fit">
+                  <div className="mt-6 pt-4 border-t border-white/[0.08] flex items-center gap-2 text-xs font-mono text-os-text-muted hover:text-os-text-main transition-colors z-10 cursor-pointer w-fit">
                     <Server className="w-3.5 h-3.5" />
                     INSPECT_NODE
                   </div>
@@ -106,8 +106,8 @@ export default function Systems() {
                   { icon: SearchCode,    title: "SEO Optimisation",        desc: "Technical and content-level SEO strategies that improve ranking, discoverability, and organic traffic." },
                   { icon: MousePointer2, title: "UX Consulting",           desc: "User research, prototyping, and design systems that put the end-user at the centre of every decision." },
                 ].map((service) => (
-                  <div key={service.title} className="group bg-os-surface border border-os-border hover:border-os-primary/35 rounded-xl p-5 transition-all duration-300 group-hover:shadow-[0_8px_32px_rgba(11,206,175,0.07)] hover:-translate-y-0.5">
-                    <div className="p-2 bg-os-surface border border-os-border rounded-lg w-fit mb-4 hover:border-os-primary/35 transition-colors">
+                  <div key={service.title} className="group glass-card rounded-[14px] p-5 transition-all duration-300 hover:-translate-y-0.5">
+                    <div className="p-2 bg-white/[0.05] border border-white/[0.08] rounded-lg w-fit mb-4 hover:border-os-primary/40 transition-colors">
                       <service.icon className="w-4 h-4 text-os-gold" />
                     </div>
                     <h3 className="text-os-text-main font-heading font-semibold text-sm mb-2">{service.title}</h3>
@@ -129,7 +129,7 @@ export default function Systems() {
                   { step: "03", title: "Development", desc: "Building iteratively with clean, documented code. Regular check-ins, no surprises." },
                   { step: "04", title: "Delivery", desc: "Deployment, handoff, and post-launch monitoring. The project doesn't end at launch." },
                 ].map((phase) => (
-                  <div key={phase.step} className="bg-os-surface border border-os-border rounded-xl p-5 relative overflow-hidden group hover:border-os-border transition-all duration-300">
+                  <div key={phase.step} className="glass-card rounded-[14px] p-5 relative overflow-hidden group transition-all duration-300">
                     <div className="absolute top-3 right-4 text-[40px] font-sans font-extrabold text-white/[0.04] leading-none select-none">
                       {phase.step}
                     </div>
@@ -142,7 +142,7 @@ export default function Systems() {
             </div>
 
             {/* Terminal Output snippet */}
-            <div className="mt-10 bg-black/40 border border-os-border rounded-lg p-4 font-mono text-xs text-os-text-muted">
+            <div className="mt-10 bg-black/40 border border-white/[0.08] rounded-lg p-4 font-mono text-xs text-os-text-muted">
                <span className="text-os-secondary">ebenzotoo@core</span>:<span className="text-os-primary">~</span>$ systemctl status deployment
                <br />
                <span className="text-os-text-main mt-1 block">● deployment.service - Full Stack Application Orchestration</span>

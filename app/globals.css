@@ -5,34 +5,35 @@
   --font-heading: var(--font-outfit), 'Outfit', sans-serif;
   --font-mono: var(--font-fira), 'Fira Code', monospace;
 
-  --color-os-bg:             #080E1A;
-  --color-os-surface:        #0F1626;
-  --color-os-surface-2:      #151E30;
-  --color-os-border:         #1A2540;
-  --color-os-border-hover:   #253354;
+  --color-os-bg:             #0A0A0F;
+  --color-os-surface:        #141418;
+  --color-os-surface-2:      #1E1E28;
+  --color-os-border:         rgba(255,255,255,0.08);
+  --color-os-border-hover:   rgba(249,115,22,0.4);
   --color-os-text-main:      #E8EDF5;
   --color-os-text-muted:     #6B7A99;
-  --color-os-primary:        #0BCEAF;
+  --color-os-primary:        #F97316;
+  --color-os-primary-light:  #FB923C;
   --color-os-secondary:      #3A86FF;
   --color-os-gold:           #D4AF37;
 
-  /* Legacy aliases — keep so existing references don't break */
+  /* Legacy aliases — keep so clean mode and admin don't break */
   --color-os-accent-blue:       #3A86FF;
-  --color-os-accent-green:      #0BCEAF;
+  --color-os-accent-green:      #F97316;
   --color-os-accent-gold:       #D4AF37;
   --color-os-accent-gold-muted: rgba(212,175,55,0.10);
-  --color-os-panel:             #0F1626;
+  --color-os-panel:             #141418;
 
   /* Legacy vscode tokens */
-  --color-vscode-bg:           #080E1A;
-  --color-vscode-sidebar:      #0F1626;
-  --color-vscode-activity:     #151E30;
-  --color-vscode-panel:        #0F1626;
-  --color-vscode-border:       #1A2540;
+  --color-vscode-bg:           #0A0A0F;
+  --color-vscode-sidebar:      #141418;
+  --color-vscode-activity:     #1E1E28;
+  --color-vscode-panel:        #141418;
+  --color-vscode-border:       rgba(255,255,255,0.08);
   --color-vscode-text-main:    #E8EDF5;
   --color-vscode-text-muted:   #6B7A99;
   --color-vscode-accent-blue:  #3A86FF;
-  --color-vscode-accent-green: #0BCEAF;
+  --color-vscode-accent-green: #F97316;
 }
 
 body {
@@ -51,11 +52,38 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(11,206,175,0.15);
+  background-color: rgba(249,115,22,0.15);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(11,206,175,0.30);
+  background-color: rgba(249,115,22,0.30);
+}
+
+/* Glassmorphism card standard */
+.glass-card {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+.glass-card:hover {
+  border-color: rgba(249,115,22,0.4);
+  box-shadow: 0 8px 32px rgba(249,115,22,0.12);
+  transform: translateY(-2px);
+}
+
+/* CSS marquee animation */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  animation: marquee 30s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
 }
 
 * {
