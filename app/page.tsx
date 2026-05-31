@@ -46,7 +46,7 @@ export default function Home() {
               <div className="absolute top-[-60px] right-[80px] w-[280px] h-[280px] bg-os-primary/10 rounded-full blur-[60px] pointer-events-none" />
 
               {/* Mobile avatar — top-right corner, desktop hidden */}
-              <div className="absolute top-4 right-4 md:hidden z-20">
+              <div className="absolute top-10 right-4 md:hidden z-20">
                 <div className="w-[72px] h-[72px] rounded-full overflow-hidden border-2 border-os-primary/30 ring-2 ring-os-primary/10 shadow-lg shadow-os-primary/10">
                   <img src="/avatar.png" alt="Ebenezer Zotoo" className="w-full h-full object-cover object-top" />
                 </div>
