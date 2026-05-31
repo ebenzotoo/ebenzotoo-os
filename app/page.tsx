@@ -45,9 +45,16 @@ export default function Home() {
               {/* Ambient glow */}
               <div className="absolute top-[-60px] right-[80px] w-[280px] h-[280px] bg-os-primary/10 rounded-full blur-[60px] pointer-events-none" />
 
+              {/* Mobile avatar — top-right corner, desktop hidden */}
+              <div className="absolute top-4 right-4 md:hidden z-20">
+                <div className="w-[72px] h-[72px] rounded-full overflow-hidden border-2 border-os-primary/30 ring-2 ring-os-primary/10 shadow-lg shadow-os-primary/10">
+                  <img src="/avatar.png" alt="Ebenezer Zotoo" className="w-full h-full object-cover object-top" />
+                </div>
+              </div>
+
               <div className="relative z-10 flex items-stretch min-h-[280px]">
                 {/* Text side */}
-                <div className="flex-1 p-8 flex flex-col justify-between">
+                <div className="flex-1 p-6 md:p-8 flex flex-col justify-between">
                   <div>
                     <p className="text-[10px] tracking-[0.2em] text-os-primary font-semibold uppercase mb-4">
                       Full-Stack Developer · Systems Architect · UI/UX Designer

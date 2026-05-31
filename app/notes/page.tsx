@@ -43,15 +43,26 @@ export default async function Notes() {
                                  : tag === "Mindset" ? "text-os-secondary border-os-secondary/25 bg-os-secondary/10"
                                  : "text-os-gold border-os-gold/25 bg-os-gold/10";
 
+                  const coverImage = (note.cover_image ?? note.image_url) as string | null;
+
                   return (
                     <Link key={slug} href={`/notes/${slug}`}
                       className="glass-card group flex rounded-[14px] overflow-hidden no-underline">
                       {/* Cover strip */}
-                      <div className={`w-[90px] shrink-0 bg-gradient-to-br
+                      <div className={`w-[90px] shrink-0 relative overflow-hidden bg-gradient-to-br
                         ${tag === "Tech"    ? "from-os-primary/15 to-transparent"
                         : tag === "Mindset" ? "from-os-secondary/15 to-transparent"
-                        : "from-os-gold/15 to-transparent"}`}
-                      />
+                        : "from-os-gold/15 to-transparent"}`}>
+                        {coverImage && (
+                          <>
+                            <img src={coverImage} alt="" className="absolute inset-0 w-full h-full object-cover" />
+                            <div className={`absolute inset-0 bg-gradient-to-r
+                              ${tag === "Tech"    ? "from-transparent to-os-primary/20"
+                              : tag === "Mindset" ? "from-transparent to-os-secondary/20"
+                              : "from-transparent to-os-gold/20"}`} />
+                          </>
+                        )}
+                      </div>
                       {/* Content */}
                       <div className="flex flex-col gap-2 p-4 flex-1 min-w-0">
                         <div className="flex items-center gap-2">
