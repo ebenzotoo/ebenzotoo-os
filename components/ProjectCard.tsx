@@ -1,7 +1,7 @@
 "use client";
 
 import { Code2, Globe, Smartphone, Database, LayoutTemplate, Palette, Terminal, AppWindow, ExternalLink, Github } from "lucide-react";
-import { JSX } from "react/jsx-dev-runtime";
+import { JSX } from "react";
 
 interface ProjectCardProps {
   title: string;
