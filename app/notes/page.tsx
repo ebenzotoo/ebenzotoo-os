@@ -5,6 +5,11 @@ import LiveClock from "@/components/LiveClock";
 import NotificationBell from "@/components/NotificationBell";
 import CloudStatus from "@/components/CloudStatus";
 
+const noteImageMap: Record<string, string> = {
+  "losing-ability-to-explain-tech":   "/notes/explain-tech.jpg",
+  "liberating-power-of-self-honesty": "/notes/power.jpg",
+};
+
 export default async function Notes() {
   // Fetch live articles from Supabase
   const { data: notes, error } = await getSupabase()
@@ -43,7 +48,7 @@ export default async function Notes() {
                                  : tag === "Mindset" ? "text-os-secondary border-os-secondary/25 bg-os-secondary/10"
                                  : "text-os-gold border-os-gold/25 bg-os-gold/10";
 
-                  const coverImage = (note.cover_image ?? note.image_url) as string | null;
+                  const coverImage = (note.cover_image ?? note.image_url ?? noteImageMap[slug] ?? null) as string | null;
 
                   return (
                     <Link key={slug} href={`/notes/${slug}`}
