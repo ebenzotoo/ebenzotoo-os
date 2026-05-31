@@ -210,7 +210,7 @@ export default function ContactClient({ config }: { config: Config }) {
   return (
     <main className="flex-1 flex flex-col overflow-y-auto pb-16 md:pb-0">
       <PageTransition>
-        <div className="border-b border-os-border flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex font-mono sticky top-0 bg-os-bg/90 backdrop-blur-md z-20">
+        <div className="border-b border-white/[0.08] flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex font-mono sticky top-0 bg-os-bg/90 backdrop-blur-md z-20">
           <NotificationBell />
           <CloudStatus />
           <span>~/SECURE_COMMS <LiveClock /></span>
@@ -231,8 +231,8 @@ export default function ContactClient({ config }: { config: Config }) {
 
             {/* Left Column: Contact JSON Info */}
             <div className="flex flex-col gap-6">
-              <div className="bg-os-surface border border-os-border rounded-xl p-6 font-mono text-sm w-full">
-                <div className="flex items-center gap-2 mb-4 text-os-primary pb-4 border-b border-os-border">
+              <div className="bg-os-surface border border-white/[0.08] rounded-xl p-6 font-mono text-sm w-full">
+                <div className="flex items-center gap-2 mb-4 text-os-primary pb-4 border-b border-white/[0.08]">
                   <Terminal className="w-4 h-4" />
                   <span className="text-[12px] text-os-text-muted">~/ebenzotoo/contact.json</span>
                 </div>
@@ -267,7 +267,7 @@ export default function ContactClient({ config }: { config: Config }) {
                 <span className="text-os-primary">{'>'}</span> SYSTEM_MESSAGE: Connect with me via email and call. Response time is typically within 24 hours.
               </div>
 
-              <div className="bg-os-surface border border-os-border rounded-lg p-4 flex items-center justify-between">
+              <div className="bg-os-surface border border-white/[0.08] rounded-lg p-4 flex items-center justify-between">
                 <span className="text-[10px] font-mono tracking-widest text-os-text-muted">// social_links</span>
                 <div className="flex items-center gap-4">
                   {socials.map(({ icon: Icon, href, label }) => (
@@ -281,7 +281,7 @@ export default function ContactClient({ config }: { config: Config }) {
             </div>
 
             {/* Right Column: Form */}
-            <div className="bg-os-surface border border-os-border rounded-lg p-6 lg:p-8 flex flex-col relative overflow-hidden group hover:border-os-primary/20 transition-colors">
+            <div className="bg-os-surface border border-white/[0.08] rounded-lg p-6 lg:p-8 flex flex-col relative overflow-hidden group hover:border-os-primary/20 transition-colors">
               <div className="absolute inset-0 bg-gradient-to-b from-os-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
               <h3 className="text-lg font-semibold text-os-text-main mb-6 font-sans flex items-center gap-2">
@@ -298,7 +298,7 @@ export default function ContactClient({ config }: { config: Config }) {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Enter your name"
-                    className="w-full bg-os-surface border border-os-border rounded-lg px-4 py-3 text-[14px] text-os-text-main placeholder:text-os-text-muted/40 focus:outline-none focus:border-os-primary/50 focus:ring-1 focus:ring-os-primary/20 transition-colors font-sans"
+                    className="w-full bg-os-surface border border-white/[0.08] rounded-lg px-4 py-3 text-[14px] text-os-text-main placeholder:text-os-text-muted/40 focus:outline-none focus:border-os-primary focus:ring-1 focus:ring-os-primary/20 transition-colors font-sans"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -309,7 +309,7 @@ export default function ContactClient({ config }: { config: Config }) {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
-                    className="w-full bg-os-surface border border-os-border rounded-lg px-4 py-3 text-[14px] text-os-text-main placeholder:text-os-text-muted/40 focus:outline-none focus:border-os-primary/50 focus:ring-1 focus:ring-os-primary/20 transition-colors font-sans"
+                    className="w-full bg-os-surface border border-white/[0.08] rounded-lg px-4 py-3 text-[14px] text-os-text-main placeholder:text-os-text-muted/40 focus:outline-none focus:border-os-primary focus:ring-1 focus:ring-os-primary/20 transition-colors font-sans"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -320,13 +320,13 @@ export default function ContactClient({ config }: { config: Config }) {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="How can we collaborate?"
-                    className="w-full bg-os-surface border border-os-border rounded-lg px-4 py-3 text-[14px] text-os-text-main placeholder:text-os-text-muted/40 focus:outline-none focus:border-os-primary/50 focus:ring-1 focus:ring-os-primary/20 transition-colors font-sans resize-none"
+                    className="w-full bg-os-surface border border-white/[0.08] rounded-lg px-4 py-3 text-[14px] text-os-text-main placeholder:text-os-text-muted/40 focus:outline-none focus:border-os-primary focus:ring-1 focus:ring-os-primary/20 transition-colors font-sans resize-none"
                   />
                 </div>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="mt-2 w-full bg-os-primary hover:bg-os-primary/90 disabled:opacity-50 text-[#080E1A] font-semibold text-[14px] py-3 rounded-lg transition-colors flex items-center justify-center gap-2"
+                  className="mt-2 w-full bg-os-primary hover:bg-os-primary/90 disabled:opacity-50 text-black font-semibold text-[14px] py-3 rounded-lg transition-colors flex items-center justify-center gap-2"
                 >
                   {isSubmitting ? "EXECUTING..." : "EXECUTE_SEND"}
                   {!isSubmitting && <Send className="w-4 h-4" />}
