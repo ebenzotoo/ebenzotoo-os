@@ -19,7 +19,7 @@ export default function MobileDock() {
 
   return (
     // fixed to the bottom, hidden on medium (md) screens and larger, glassy blur effect
-    <div className="fixed bottom-0 left-0 w-full h-16 bg-os-panel/90 backdrop-blur-lg border-t border-os-border md:hidden z-50 px-2 pb-safe flex justify-between items-center">
+    <div className="fixed bottom-0 left-0 w-full h-16 bg-[rgba(10,10,15,0.95)] backdrop-blur-lg border-t border-white/[0.06] md:hidden z-50 px-2 pb-safe flex justify-between items-center">
       {navItems.map((item) => {
         const isActive = pathname === item.path;
         const Icon = item.icon;
