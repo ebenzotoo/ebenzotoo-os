@@ -63,10 +63,10 @@ export default async function Projects() {
                 <span className="text-os-primary">//</span> Projects
               </h2>
               <div className="flex items-center gap-3">
-                <span className="text-xs font-mono text-os-text-muted px-3 py-1.5 border border-os-border rounded-md">
+                <span className="text-xs font-mono text-os-text-muted px-3 py-1.5 bg-os-surface-2 border border-white/[0.08] rounded-md">
                   {projects?.length ?? 0} total
                 </span>
-                <span className="flex items-center gap-1.5 text-xs font-mono text-os-primary px-3 py-1.5 border border-os-primary/20 rounded-md bg-os-primary/5">
+                <span className="flex items-center gap-1.5 text-xs font-mono text-os-primary px-3 py-1.5 border border-os-primary/30 rounded-md bg-os-primary/15">
                   <span className="w-1.5 h-1.5 rounded-full bg-os-primary animate-pulse" />
                   All active
                 </span>
@@ -77,7 +77,7 @@ export default async function Projects() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               {projects?.map((project) => (
                 <Link href={`/projects/${project.slug}`} key={project.id} className="block group">
-                  <div className="bg-os-surface border border-os-border rounded-2xl overflow-hidden hover:border-os-primary/35 transition-all duration-300 group-hover:shadow-[0_8px_32px_rgba(11,206,175,0.07)] group-hover:-translate-y-1">
+                  <div className="bg-os-surface border border-white/[0.08] rounded-2xl overflow-hidden hover:border-os-primary/40 transition-all duration-300 group-hover:shadow-[0_8px_32px_rgba(249,115,22,0.07)] group-hover:-translate-y-1">
                     <div className="p-5 pb-4">
                       <h3 className="text-[15px] font-semibold text-white mb-2 group-hover:text-os-primary transition-colors">
                         {project.title}
@@ -86,7 +86,7 @@ export default async function Projects() {
                         {project.description}
                       </p>
                     </div>
-                    <div className="mx-4 mb-4 rounded-xl overflow-hidden h-44 border border-os-border relative">
+                    <div className="mx-4 mb-4 rounded-xl overflow-hidden h-44 border border-white/[0.08] relative">
                       <img
                         src={project.image_url ?? projectImageMap[project.slug] ?? "/project1.png"}
                         alt={project.title}
