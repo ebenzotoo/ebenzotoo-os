@@ -29,8 +29,8 @@ export default function SheetMobileNav() {
             className="relative flex flex-col items-center justify-center gap-0.5 w-12 h-12"
           >
             {active && <span className="absolute top-0.5 w-1 h-1 bg-bp-primary rounded-full" />}
-            <Icon className={`w-5 h-5 ${active ? "text-bp-primary" : "text-bp-text-muted"}`} />
-            <span className={`text-[9px] font-mono tracking-wide ${active ? "text-bp-primary" : "text-bp-text-muted"}`}>
+            <Icon className={`w-6 h-6 ${active ? "text-bp-primary" : "text-bp-text-muted"}`} />
+            <span className={`text-[11px] font-mono tracking-wide ${active ? "text-bp-primary" : "text-bp-text-muted"}`}>
               {s.name}
             </span>
           </Link>

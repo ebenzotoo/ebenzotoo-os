@@ -29,7 +29,7 @@ export default function Callout({ label, detail, children }: CalloutProps) {
             animate={{ opacity: 1, x: 0 }}
             exit={reduceMotion ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: reduceMotion ? 0 : 0.15 }}
-            className="absolute left-full top-0 ml-3 whitespace-nowrap text-[9px] font-mono text-bp-secondary leading-tight hidden md:block"
+            className="absolute left-full top-0 ml-3 whitespace-nowrap text-[11px] font-mono text-bp-secondary leading-tight hidden md:block"
           >
             <span className="absolute -left-3 top-1.5 w-3 h-px bg-bp-secondary/60" />
             {label}

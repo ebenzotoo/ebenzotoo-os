@@ -58,24 +58,24 @@ export default function Systems() {
           <section>
             <div className="flex items-center justify-between mb-6">
               <h2 className="fig-label mb-0">FIG.03A — ARCHITECTURE NODES</h2>
-              <div className="flex items-center gap-2 text-xs font-mono text-bp-primary">
+              <div className="flex items-center gap-2 text-sm font-mono text-bp-primary">
                 <span className="w-2 h-2 rounded-full bg-bp-primary animate-pulse" />
                 ALL SYSTEMS NOMINAL
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {nodes.map((node) => (
-                <div key={node.title} className="sheet-card p-6 flex flex-col h-full">
+                <div key={node.title} className="sheet-card p-7 flex flex-col h-full">
                   <div className="flex items-center justify-between mb-5">
-                    <div className="p-2.5 bg-white/[0.04] border border-bp-border rounded-lg">{node.icon}</div>
-                    <span className="text-[10px] font-mono tracking-widest text-bp-text-muted px-2 py-1 rounded bg-black/20 border border-bp-border">
+                    <div className="p-3 bg-white/[0.04] border border-bp-border rounded-lg">{node.icon}</div>
+                    <span className="text-[12px] font-mono tracking-widest text-bp-text-muted px-2.5 py-1.5 rounded bg-black/20 border border-bp-border">
                       STATUS: <span className={node.status === "ACTIVE" ? "text-bp-secondary" : "text-bp-primary"}>{node.status}</span>
                     </span>
                   </div>
-                  <h3 className="text-bp-text-main font-medium text-lg mb-3">{node.title}</h3>
-                  <p className="text-sm text-bp-text-muted leading-relaxed flex-1">{node.description}</p>
-                  <div className="mt-6 pt-4 border-t border-bp-border flex items-center gap-2 text-xs font-mono text-bp-text-muted w-fit">
-                    <Server className="w-3.5 h-3.5" />
+                  <h3 className="text-bp-text-main font-medium text-xl mb-3">{node.title}</h3>
+                  <p className="text-base text-bp-text-muted leading-relaxed flex-1">{node.description}</p>
+                  <div className="mt-6 pt-4 border-t border-bp-border flex items-center gap-2 text-sm font-mono text-bp-text-muted w-fit">
+                    <Server className="w-4 h-4" />
                     INSPECT_NODE
                   </div>
                 </div>
@@ -86,14 +86,14 @@ export default function Systems() {
           {/* Services */}
           <section>
             <h2 className="fig-label">FIG.03B — SERVICES OFFERED</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {services.map((service) => (
-                <div key={service.title} className="sheet-card p-5">
-                  <div className="p-2 bg-white/[0.04] border border-bp-border rounded-lg w-fit mb-4">
-                    <service.icon className="w-4 h-4 text-bp-gold" />
+                <div key={service.title} className="sheet-card p-6">
+                  <div className="p-2.5 bg-white/[0.04] border border-bp-border rounded-lg w-fit mb-4">
+                    <service.icon className="w-5 h-5 text-bp-gold" />
                   </div>
-                  <h3 className="text-bp-text-main font-heading font-semibold text-sm mb-2">{service.title}</h3>
-                  <p className="text-xs text-bp-text-muted leading-relaxed">{service.desc}</p>
+                  <h3 className="text-bp-text-main font-heading font-semibold text-base mb-2">{service.title}</h3>
+                  <p className="text-sm text-bp-text-muted leading-relaxed">{service.desc}</p>
                 </div>
               ))}
             </div>
@@ -102,15 +102,15 @@ export default function Systems() {
           {/* Process */}
           <section>
             <h2 className="fig-label flex items-center gap-2"><GitBranch className="w-3.5 h-3.5" /> FIG.03C — PROCESS</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {process.map((phase) => (
-                <div key={phase.step} className="sheet-card p-5 relative overflow-hidden">
-                  <div className="absolute top-3 right-4 text-[40px] font-heading font-extrabold text-white/[0.04] leading-none select-none">
+                <div key={phase.step} className="sheet-card p-6 relative overflow-hidden">
+                  <div className="absolute top-3 right-4 text-[44px] font-heading font-extrabold text-white/[0.04] leading-none select-none">
                     {phase.step}
                   </div>
-                  <p className="text-[10px] font-mono text-bp-secondary tracking-widest mb-3">{phase.step}</p>
-                  <h3 className="text-bp-text-main font-heading font-semibold text-base mb-2">{phase.title}</h3>
-                  <p className="text-xs text-bp-text-muted leading-relaxed">{phase.desc}</p>
+                  <p className="text-[12px] font-mono text-bp-secondary tracking-widest mb-3">{phase.step}</p>
+                  <h3 className="text-bp-text-main font-heading font-semibold text-lg mb-2">{phase.title}</h3>
+                  <p className="text-sm text-bp-text-muted leading-relaxed">{phase.desc}</p>
                 </div>
               ))}
             </div>

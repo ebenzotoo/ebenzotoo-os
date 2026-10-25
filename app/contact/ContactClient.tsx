@@ -71,7 +71,7 @@ export default function ContactClient({ config }: { config: Config }) {
 
         <div className="p-6 md:p-10 flex-1 w-full">
           <h1 className="sr-only">Contact — Ebenezer Zotoo</h1>
-          <p className="text-bp-text-muted text-sm max-w-lg leading-relaxed mb-8">
+          <p className="text-bp-text-muted text-base max-w-lg leading-relaxed mb-8">
             If you&apos;re working on a digital product, platform, or system and need a solution that is functional, scalable, and user-focused — I can help.
           </p>
 
@@ -79,7 +79,7 @@ export default function ContactClient({ config }: { config: Config }) {
 
             {/* Info block */}
             <div className="flex flex-col gap-6">
-              <div className="sheet-card p-6 font-mono text-sm">
+              <div className="sheet-card p-7 font-mono text-base">
                 <div className="text-bp-text-main space-y-3">
                   <p><span className="text-bp-primary">const</span> developer = {"{"}</p>
                   <div className="pl-6 space-y-3">
@@ -91,15 +91,15 @@ export default function ContactClient({ config }: { config: Config }) {
                       </span>
                     </p>
                     <p className="flex items-center gap-3">
-                      <span className="text-bp-text-muted flex items-center gap-2"><Mail className="w-3.5 h-3.5" /> email:</span>
+                      <span className="text-bp-text-muted flex items-center gap-2"><Mail className="w-4 h-4" /> email:</span>
                       <span className="text-bp-gold">&quot;{config.email}&quot;,</span>
                     </p>
                     <p className="flex items-center gap-3">
-                      <span className="text-bp-text-muted flex items-center gap-2"><Phone className="w-3.5 h-3.5" /> phone:</span>
+                      <span className="text-bp-text-muted flex items-center gap-2"><Phone className="w-4 h-4" /> phone:</span>
                       <span className="text-bp-gold">&quot;{config.phone}&quot;,</span>
                     </p>
                     <p className="flex items-start gap-3">
-                      <span className="text-bp-text-muted flex items-center gap-2 mt-0.5"><MapPin className="w-3.5 h-3.5" /> location:</span>
+                      <span className="text-bp-text-muted flex items-center gap-2 mt-0.5"><MapPin className="w-4 h-4" /> location:</span>
                       <span className="text-bp-gold">&quot;{config.location}&quot;</span>
                     </p>
                   </div>
@@ -107,13 +107,13 @@ export default function ContactClient({ config }: { config: Config }) {
                 </div>
               </div>
 
-              <div className="sheet-card p-4 flex items-center justify-between">
-                <span className="text-[10px] font-mono tracking-widest text-bp-text-muted">// social_links</span>
+              <div className="sheet-card p-5 flex items-center justify-between">
+                <span className="text-[12px] font-mono tracking-widest text-bp-text-muted">// social_links</span>
                 <div className="flex items-center gap-4">
                   {socials.map(({ icon: Icon, href, label }) => (
                     <a key={label} href={href} target="_blank" rel="noopener noreferrer" title={label}
                       className="text-bp-text-muted hover:text-bp-primary transition-colors">
-                      <Icon className="w-4 h-4" />
+                      <Icon className="w-5 h-5" />
                     </a>
                   ))}
                 </div>
@@ -121,54 +121,54 @@ export default function ContactClient({ config }: { config: Config }) {
             </div>
 
             {/* Form */}
-            <div className="sheet-card p-6 lg:p-8">
-              <h3 className="text-lg font-semibold text-bp-text-main mb-6 font-heading flex items-center gap-2">
+            <div className="sheet-card p-7 lg:p-9">
+              <h3 className="text-xl font-semibold text-bp-text-main mb-6 font-heading flex items-center gap-2">
                 <Send className="w-5 h-5 text-bp-text-muted" /> Send a Message
               </h3>
 
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="contact-name" className="text-xs font-mono text-bp-text-muted tracking-wider">NAME</label>
+                  <label htmlFor="contact-name" className="text-sm font-mono text-bp-text-muted tracking-wider">NAME</label>
                   <input
                     id="contact-name"
                     type="text" required value={name} onChange={(e) => setName(e.target.value)}
                     placeholder="Enter your name"
-                    className="w-full bg-bp-surface border border-bp-border rounded-lg px-4 py-3 text-[14px] text-bp-text-main placeholder:text-bp-text-muted/40 focus:outline-none focus:border-bp-primary focus:ring-1 focus:ring-bp-primary/20 transition-colors"
+                    className="w-full bg-bp-surface border border-bp-border rounded-lg px-5 py-3.5 text-[16px] text-bp-text-main placeholder:text-bp-text-muted/40 focus:outline-none focus:border-bp-primary focus:ring-1 focus:ring-bp-primary/20 transition-colors"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="contact-email" className="text-xs font-mono text-bp-text-muted tracking-wider">EMAIL</label>
+                  <label htmlFor="contact-email" className="text-sm font-mono text-bp-text-muted tracking-wider">EMAIL</label>
                   <input
                     id="contact-email"
                     type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
-                    className="w-full bg-bp-surface border border-bp-border rounded-lg px-4 py-3 text-[14px] text-bp-text-main placeholder:text-bp-text-muted/40 focus:outline-none focus:border-bp-primary focus:ring-1 focus:ring-bp-primary/20 transition-colors"
+                    className="w-full bg-bp-surface border border-bp-border rounded-lg px-5 py-3.5 text-[16px] text-bp-text-main placeholder:text-bp-text-muted/40 focus:outline-none focus:border-bp-primary focus:ring-1 focus:ring-bp-primary/20 transition-colors"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="contact-message" className="text-xs font-mono text-bp-text-muted tracking-wider">MESSAGE</label>
+                  <label htmlFor="contact-message" className="text-sm font-mono text-bp-text-muted tracking-wider">MESSAGE</label>
                   <textarea
                     id="contact-message"
                     required rows={5} value={message} onChange={(e) => setMessage(e.target.value)}
                     placeholder="How can we collaborate?"
-                    className="w-full bg-bp-surface border border-bp-border rounded-lg px-4 py-3 text-[14px] text-bp-text-main placeholder:text-bp-text-muted/40 focus:outline-none focus:border-bp-primary focus:ring-1 focus:ring-bp-primary/20 transition-colors resize-none"
+                    className="w-full bg-bp-surface border border-bp-border rounded-lg px-5 py-3.5 text-[16px] text-bp-text-main placeholder:text-bp-text-muted/40 focus:outline-none focus:border-bp-primary focus:ring-1 focus:ring-bp-primary/20 transition-colors resize-none"
                   />
                 </div>
                 <button
                   type="submit" disabled={isSubmitting}
-                  className="mt-2 w-full bg-bp-primary hover:bg-bp-primary/90 disabled:opacity-50 text-black font-semibold font-mono text-[14px] py-3 rounded-lg transition-colors flex items-center justify-center gap-2"
+                  className="mt-2 w-full bg-bp-primary hover:bg-bp-primary/90 disabled:opacity-50 text-black font-semibold font-mono text-[16px] py-3.5 rounded-lg transition-colors flex items-center justify-center gap-2"
                 >
                   {isSubmitting ? "SENDING..." : "SEND_MESSAGE"}
                   {!isSubmitting && <Send className="w-4 h-4" />}
                 </button>
 
                 {status === "success" && (
-                  <div className="mt-2 p-3 bg-bp-primary/10 border border-bp-primary/20 rounded-md flex items-center gap-2 text-bp-primary text-xs font-mono">
+                  <div className="mt-2 p-3 bg-bp-primary/10 border border-bp-primary/20 rounded-md flex items-center gap-2 text-bp-primary text-sm font-mono">
                     <CheckCircle2 className="w-4 h-4" /> MESSAGE SENT
                   </div>
                 )}
                 {status === "error" && (
-                  <div className="mt-2 p-3 bg-red-500/10 border border-red-500/20 rounded-md flex items-center gap-2 text-red-400 text-xs font-mono">
+                  <div className="mt-2 p-3 bg-red-500/10 border border-red-500/20 rounded-md flex items-center gap-2 text-red-400 text-sm font-mono">
                     <AlertCircle className="w-4 h-4" /> SOMETHING WENT WRONG. PLEASE RETRY.
                   </div>
                 )}

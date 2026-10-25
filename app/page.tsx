@@ -38,35 +38,34 @@ export default function Home() {
           <section className="relative pt-4 pb-10 md:pt-8 md:pb-14">
             <DimensionLine className="mb-8" />
 
-            <Callout label="SPACE GROTESK" detail="700 / 44PX">
-              <h1 className="text-[36px] md:text-[52px] font-heading font-bold text-bp-text-main leading-[1.08] max-w-xl">
+            <Callout label="SPACE GROTESK" detail="700 / 48PX">
+              <h1 className="text-[40px] md:text-[58px] font-heading font-bold text-bp-text-main leading-[1.08] max-w-xl">
                 Building digital systems that work.
               </h1>
             </Callout>
 
-            <p className="text-bp-text-muted text-[15px] max-w-md mt-6 leading-relaxed">
+            <p className="text-bp-text-muted text-[17px] max-w-md mt-6 leading-relaxed">
               Full-Stack Developer, Systems Architect, and UI/UX Designer — 8+ years turning complex ideas into platforms that ship.
             </p>
 
             <div className="flex flex-wrap gap-3 mt-7">
-              <Link href="/contact" className="px-5 py-2.5 bg-bp-primary hover:bg-bp-primary/90 text-black text-[13px] font-bold font-mono rounded-lg transition-colors">
+              <Link href="/contact" className="px-6 py-3 bg-bp-primary hover:bg-bp-primary/90 text-black text-[15px] font-bold font-mono rounded-lg transition-colors">
                 START A PROJECT
               </Link>
-              <Link href="/projects" className="px-5 py-2.5 bg-bp-primary/10 border border-bp-primary/30 hover:border-bp-primary/60 text-bp-primary text-[13px] font-semibold font-mono rounded-lg transition-colors flex items-center gap-1.5">
-                VIEW WORK <ArrowUpRight className="w-3.5 h-3.5" />
+              <Link href="/projects" className="px-6 py-3 bg-bp-primary/10 border border-bp-primary/30 hover:border-bp-primary/60 text-bp-primary text-[15px] font-semibold font-mono rounded-lg transition-colors flex items-center gap-2">
+                VIEW WORK <ArrowUpRight className="w-4 h-4" />
               </Link>
             </div>
 
-            {/* Abstract node/connection diagram — stands in for a photo */}
-            <svg className="absolute right-0 top-2 hidden md:block opacity-90" width="180" height="140" aria-hidden="true">
-              <circle cx="30" cy="25" r="5" fill="#F97316" />
-              <circle cx="140" cy="18" r="5" fill="#6FA8D6" />
-              <circle cx="90" cy="95" r="5" fill="#F97316" />
-              <circle cx="160" cy="105" r="5" fill="#6FA8D6" />
-              <line x1="30" y1="25" x2="90" y2="95" stroke="rgba(249,115,22,0.35)" strokeWidth="1" />
-              <line x1="140" y1="18" x2="90" y2="95" stroke="rgba(111,168,214,0.35)" strokeWidth="1" />
-              <line x1="90" y1="95" x2="160" y2="105" stroke="rgba(249,115,22,0.35)" strokeWidth="1" />
-            </svg>
+            {/* Elevation-view photo — same treatment as the About sheet */}
+            <div className="absolute right-0 top-0 hidden md:block w-[160px] h-[200px] border border-bp-border">
+              <span className="corner-tl" />
+              <span className="corner-br" />
+              <img src="/avatar.png" alt="Ebenezer Zotoo" className="w-full h-full object-cover object-top" />
+              <span className="absolute bottom-2 left-0 right-0 text-center text-[10px] font-mono text-bp-primary tracking-[0.1em]">
+                ELEVATION — FRONT
+              </span>
+            </div>
           </section>
 
           {/* Stats */}
@@ -77,18 +76,18 @@ export default function Home() {
               { value: "15+",    label: "Clients"     },
               { value: "1,000+", label: "Users Built" },
             ].map((stat, i, arr) => (
-              <div key={stat.label} className={`flex flex-col items-center py-5 ${i < arr.length - 1 ? "border-r border-bp-border" : ""}`}>
-                <p className="text-[20px] font-heading font-bold text-bp-primary leading-none">{stat.value}</p>
-                <p className="text-[10px] font-mono text-bp-text-muted tracking-wider mt-1 uppercase">{stat.label}</p>
+              <div key={stat.label} className={`flex flex-col items-center py-6 ${i < arr.length - 1 ? "border-r border-bp-border" : ""}`}>
+                <p className="text-[24px] font-heading font-bold text-bp-primary leading-none">{stat.value}</p>
+                <p className="text-[12px] font-mono text-bp-text-muted tracking-wider mt-1.5 uppercase">{stat.label}</p>
               </div>
             ))}
           </section>
 
           {/* Marquee */}
-          <section className="overflow-hidden border-y border-bp-border py-3">
+          <section className="overflow-hidden border-y border-bp-border py-4">
             <div className="marquee-track gap-0">
               {[...techMarquee, ...techMarquee].map((item, i) => (
-                <span key={i} className="flex items-center gap-4 shrink-0 px-4 text-[11px] text-bp-text-muted font-mono tracking-[0.08em] uppercase">
+                <span key={i} className="flex items-center gap-4 shrink-0 px-4 text-[13px] text-bp-text-muted font-mono tracking-[0.08em] uppercase">
                   <span className="text-bp-primary/50">·</span>
                   {item}
                 </span>
@@ -99,16 +98,16 @@ export default function Home() {
           {/* Trusted By */}
           <section>
             <h2 className="fig-label">FIG.01A — TRUSTED BY</h2>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
               {clients.map((client) => (
-                <div key={client.name} className="sheet-card p-4 flex flex-col items-center justify-center gap-2">
+                <div key={client.name} className="sheet-card p-6 flex flex-col items-center justify-center gap-3">
                   <img
                     src={client.logo}
                     alt={client.name}
                     title={client.name}
-                    className="max-h-8 max-w-full object-contain opacity-70 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300"
+                    className="max-h-12 max-w-full object-contain opacity-70 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300"
                   />
-                  <span className="text-[10px] text-bp-text-muted text-center leading-tight opacity-70">{client.name}</span>
+                  <span className="text-[12px] text-bp-text-muted text-center leading-tight opacity-70">{client.name}</span>
                 </div>
               ))}
             </div>
@@ -117,14 +116,14 @@ export default function Home() {
           {/* Experience */}
           <section>
             <h2 className="fig-label">FIG.01B — EXPERIENCE</h2>
-            <div className="flex flex-col gap-6 border-l-2 border-bp-border pl-6">
+            <div className="flex flex-col gap-7 border-l-2 border-bp-border pl-7">
               {jobs.map((job) => (
                 <div key={job.role} className="relative">
-                  <span className="absolute -left-[29px] top-1 w-3.5 h-3.5 rounded-full border-2 border-bp-primary bg-bp-bg" />
-                  <p className="text-[14px] font-semibold text-bp-text-main">{job.role}</p>
-                  <p className="text-[12px] text-bp-secondary font-mono mt-0.5">{job.company}</p>
-                  <p className="text-[11px] text-bp-text-muted mt-0.5 font-mono">{job.year}</p>
-                  <p className="text-[13px] text-bp-text-muted mt-2 leading-relaxed">{job.desc}</p>
+                  <span className="absolute -left-[33px] top-1 w-4 h-4 rounded-full border-2 border-bp-primary bg-bp-bg" />
+                  <p className="text-[16px] font-semibold text-bp-text-main">{job.role}</p>
+                  <p className="text-[14px] text-bp-secondary font-mono mt-0.5">{job.company}</p>
+                  <p className="text-[13px] text-bp-text-muted mt-0.5 font-mono">{job.year}</p>
+                  <p className="text-[15px] text-bp-text-muted mt-2 leading-relaxed">{job.desc}</p>
                 </div>
               ))}
             </div>

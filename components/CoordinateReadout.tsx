@@ -24,7 +24,7 @@ export default function CoordinateReadout() {
   return (
     <div
       aria-hidden="true"
-      className="fixed bottom-4 right-4 z-[9998] hidden md:block pointer-events-none px-2 py-1 rounded bg-bp-bg/80 border border-bp-border font-mono text-[10px] text-bp-text-muted"
+      className="fixed bottom-4 right-4 z-[9998] hidden md:block pointer-events-none px-2.5 py-1.5 rounded bg-bp-bg/80 border border-bp-border font-mono text-[12px] text-bp-text-muted"
     >
       X:{pos.x} Y:{pos.y} ⌖
     </div>

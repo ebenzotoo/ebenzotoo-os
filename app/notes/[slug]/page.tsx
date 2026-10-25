@@ -34,15 +34,15 @@ function renderContent(raw: string) {
     if (!line.trim()) { i++; continue; }
 
     if (/^# /.test(line)) {
-      nodes.push(<h1 key={key++} className="text-[24px] font-bold text-bp-text-main mb-4 mt-8 leading-snug font-heading">{parseInline(line.replace(/^# /, ""))}</h1>);
+      nodes.push(<h1 key={key++} className="text-[28px] font-bold text-bp-text-main mb-4 mt-8 leading-snug font-heading">{parseInline(line.replace(/^# /, ""))}</h1>);
       i++; continue;
     }
     if (/^## /.test(line)) {
-      nodes.push(<h2 key={key++} className="text-[20px] font-semibold text-bp-text-main mb-3 mt-7 leading-snug font-heading">{parseInline(line.replace(/^## /, ""))}</h2>);
+      nodes.push(<h2 key={key++} className="text-[22px] font-semibold text-bp-text-main mb-3 mt-7 leading-snug font-heading">{parseInline(line.replace(/^## /, ""))}</h2>);
       i++; continue;
     }
     if (/^### /.test(line)) {
-      nodes.push(<h3 key={key++} className="text-[17px] font-semibold text-bp-text-main mb-2 mt-6 font-heading">{parseInline(line.replace(/^### /, ""))}</h3>);
+      nodes.push(<h3 key={key++} className="text-[19px] font-semibold text-bp-text-main mb-2 mt-6 font-heading">{parseInline(line.replace(/^### /, ""))}</h3>);
       i++; continue;
     }
     if (/^> /.test(line)) {
@@ -51,7 +51,7 @@ function renderContent(raw: string) {
       nodes.push(
         <blockquote key={key++} className="relative my-8 pl-6 border-l-2 border-bp-primary">
           <span className="absolute -top-2 left-4 text-4xl text-bp-primary/30 font-serif leading-none select-none">&ldquo;</span>
-          <p className="text-bp-text-main italic text-base leading-relaxed pt-2">{parseInline(quoteLines.join(" "))}</p>
+          <p className="text-bp-text-main italic text-lg leading-relaxed pt-2">{parseInline(quoteLines.join(" "))}</p>
         </blockquote>
       );
       continue;
@@ -66,7 +66,7 @@ function renderContent(raw: string) {
       nodes.push(
         <ul key={key++} className="my-5 space-y-2 pl-1">
           {items.map((item, idx) => (
-            <li key={idx} className="flex items-start gap-3 text-bp-text-main text-base leading-relaxed">
+            <li key={idx} className="flex items-start gap-3 text-bp-text-main text-lg leading-relaxed">
               <span className="mt-2 w-1.5 h-1.5 rounded-full bg-bp-gold/60 shrink-0" />
               <span>{parseInline(item)}</span>
             </li>
@@ -81,8 +81,8 @@ function renderContent(raw: string) {
       nodes.push(
         <ol key={key++} className="my-5 space-y-2 pl-1">
           {items.map((item, idx) => (
-            <li key={idx} className="flex items-start gap-3 text-bp-text-main text-base leading-relaxed">
-              <span className="shrink-0 text-xs font-mono text-bp-primary mt-1 w-5">{idx + 1}.</span>
+            <li key={idx} className="flex items-start gap-3 text-bp-text-main text-lg leading-relaxed">
+              <span className="shrink-0 text-sm font-mono text-bp-primary mt-1 w-5">{idx + 1}.</span>
               <span>{parseInline(item)}</span>
             </li>
           ))}
@@ -101,7 +101,7 @@ function renderContent(raw: string) {
       i++;
     }
     if (paraLines.length) {
-      nodes.push(<p key={key++} className="text-[16px] text-bp-text-muted leading-[1.75] mb-4">{parseInline(paraLines.join(" "))}</p>);
+      nodes.push(<p key={key++} className="text-[18px] text-bp-text-muted leading-[1.75] mb-4">{parseInline(paraLines.join(" "))}</p>);
     }
   }
 
@@ -132,8 +132,8 @@ export default async function NoteDetail({ params }: { params: Promise<{ slug: s
         <SheetHeader fig="FIG.04 — LAB" sheet="04/06" />
 
         <div className="p-6 md:px-12 md:py-10 w-full max-w-3xl mx-auto">
-          <Link href="/lab" className="flex items-center gap-1.5 text-[12px] text-bp-text-muted hover:text-bp-primary transition-colors mb-6">
-            <ArrowLeft className="w-3.5 h-3.5" /> Back to Lab
+          <Link href="/lab" className="flex items-center gap-1.5 text-[14px] text-bp-text-muted hover:text-bp-primary transition-colors mb-6">
+            <ArrowLeft className="w-4 h-4" /> Back to Lab
           </Link>
 
           {coverImage && (
@@ -142,14 +142,14 @@ export default async function NoteDetail({ params }: { params: Promise<{ slug: s
             </div>
           )}
 
-          <div className="flex flex-wrap items-center gap-4 mb-4 text-xs font-mono text-bp-primary">
+          <div className="flex flex-wrap items-center gap-4 mb-4 text-sm font-mono text-bp-primary">
             <span className="flex items-center gap-1.5">
-              <Calendar className="w-3.5 h-3.5" />
+              <Calendar className="w-4 h-4" />
               {new Date(note.created_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
             </span>
             {note.read_time && (
               <span className="flex items-center gap-1.5 text-bp-text-muted">
-                <Clock className="w-3.5 h-3.5" />
+                <Clock className="w-4 h-4" />
                 {note.read_time}
               </span>
             )}
@@ -158,14 +158,14 @@ export default async function NoteDetail({ params }: { params: Promise<{ slug: s
             )}
           </div>
 
-          <h1 className="text-3xl md:text-4xl font-bold text-bp-text-main mb-4 leading-tight font-heading">{note.title}</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-bp-text-main mb-4 leading-tight font-heading">{note.title}</h1>
 
           {note.excerpt && (
-            <p className="text-bp-text-muted text-base leading-relaxed mb-8 border-b border-bp-border pb-8">{note.excerpt}</p>
+            <p className="text-bp-text-muted text-lg leading-relaxed mb-8 border-b border-bp-border pb-8">{note.excerpt}</p>
           )}
           {!note.excerpt && <div className="border-b border-bp-border mb-8" />}
 
-          <article className="max-w-[680px] mx-auto text-[16px] leading-[1.75] text-bp-text-muted">
+          <article className="max-w-[720px] mx-auto text-[18px] leading-[1.75] text-bp-text-muted">
             {renderContent(note.content ?? "")}
           </article>
         </div>

@@ -44,7 +44,7 @@ export default async function Projects() {
         <div className="p-6 md:p-10">
           <h1 className="sr-only">Selected Work — Ebenezer Zotoo</h1>
           <DimensionLine className="mb-8" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {projects?.map((project, index) => (
               <DrawingCard
                 key={project.id}

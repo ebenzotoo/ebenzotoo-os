@@ -7,7 +7,7 @@ export default function DimensionLine({ className = "" }: { className?: string }
 
   return (
     <div className={`flex items-center gap-2 ${className}`} aria-hidden="true">
-      <span className="text-bp-primary text-[10px] font-mono">◂</span>
+      <span className="text-bp-primary text-[12px] font-mono">◂</span>
       <motion.div
         initial={reduceMotion ? { scaleX: 1 } : { scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
@@ -16,7 +16,7 @@ export default function DimensionLine({ className = "" }: { className?: string }
         style={{ transformOrigin: "left" }}
         className="flex-1 h-px bg-bp-primary/50"
       />
-      <span className="text-bp-primary text-[10px] font-mono">▸</span>
+      <span className="text-bp-primary text-[12px] font-mono">▸</span>
     </div>
   );
 }
