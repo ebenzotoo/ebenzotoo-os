@@ -32,8 +32,12 @@ export default function LabTabs({ experiments, notes }: LabTabsProps) {
 
   return (
     <div>
-      <div className="flex items-center gap-1 mb-8 border-b border-bp-border">
+      <div className="flex items-center gap-1 mb-8 border-b border-bp-border" role="tablist">
         <button
+          role="tab"
+          id="lab-tab-experiments"
+          aria-selected={tab === "experiments"}
+          aria-controls="lab-panel-experiments"
           onClick={() => setTab("experiments")}
           className={`px-4 py-2.5 text-[11px] font-mono uppercase tracking-[0.1em] border-b-2 transition-colors flex items-center gap-1.5 ${
             tab === "experiments" ? "border-bp-primary text-bp-primary" : "border-transparent text-bp-text-muted hover:text-bp-text-main"
@@ -42,6 +46,10 @@ export default function LabTabs({ experiments, notes }: LabTabsProps) {
           <FlaskConical className="w-3.5 h-3.5" /> Experiments
         </button>
         <button
+          role="tab"
+          id="lab-tab-notes"
+          aria-selected={tab === "notes"}
+          aria-controls="lab-panel-notes"
           onClick={() => setTab("notes")}
           className={`px-4 py-2.5 text-[11px] font-mono uppercase tracking-[0.1em] border-b-2 transition-colors flex items-center gap-1.5 ${
             tab === "notes" ? "border-bp-primary text-bp-primary" : "border-transparent text-bp-text-muted hover:text-bp-text-main"
@@ -52,7 +60,7 @@ export default function LabTabs({ experiments, notes }: LabTabsProps) {
       </div>
 
       {tab === "experiments" ? (
-        <div className="flex flex-col gap-10">
+        <div id="lab-panel-experiments" role="tabpanel" aria-labelledby="lab-tab-experiments" className="flex flex-col gap-10">
           {experiments.map((exp) => (
             <div key={exp.id} className="sheet-card overflow-hidden flex flex-col">
               <div className="bg-white/[0.03] px-5 py-3 border-b border-bp-border flex items-center justify-between">
@@ -81,7 +89,7 @@ export default function LabTabs({ experiments, notes }: LabTabsProps) {
           ))}
         </div>
       ) : (
-        <div className="flex flex-col gap-4">
+        <div id="lab-panel-notes" role="tabpanel" aria-labelledby="lab-tab-notes" className="flex flex-col gap-4">
           {notes.length === 0 && (
             <p className="text-sm text-bp-text-muted font-mono">NO_NOTES_PUBLISHED_YET</p>
           )}
