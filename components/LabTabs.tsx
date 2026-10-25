@@ -64,9 +64,9 @@ export default function LabTabs({ experiments, notes }: LabTabsProps) {
                   <span className="text-[10px] font-mono tracking-widest text-bp-text-muted px-2 py-1 rounded bg-white/[0.04] border border-bp-border hidden sm:block">
                     {exp.type}
                   </span>
-                  <button className="flex items-center gap-1.5 text-xs font-mono text-bp-primary hover:text-bp-text-main transition-colors bg-bp-primary/10 hover:bg-bp-primary/20 px-3 py-1.5 rounded border border-bp-primary/20">
+                  <span className="flex items-center gap-1.5 text-xs font-mono text-bp-primary bg-bp-primary/10 px-3 py-1.5 rounded border border-bp-primary/20">
                     <Play className="w-3 h-3" fill="currentColor" /> RUN
-                  </button>
+                  </span>
                 </div>
               </div>
               <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-bp-border">
@@ -87,9 +87,9 @@ export default function LabTabs({ experiments, notes }: LabTabsProps) {
           )}
           {notes.map((note) => (
             <Link key={note.slug} href={`/notes/${note.slug}`} className="sheet-card flex flex-col gap-2 p-5 no-underline">
-              <span className="text-[9px] font-mono uppercase tracking-[0.1em] text-bp-secondary">{note.tag}</span>
+              <span className="text-[9px] font-mono uppercase tracking-[0.1em] text-bp-secondary">{note.tag ?? "Note"}</span>
               <h3 className="text-[15px] font-semibold text-bp-text-main leading-snug">{note.title}</h3>
-              <p className="text-[13px] text-bp-text-muted leading-relaxed line-clamp-2">{note.excerpt}</p>
+              {note.excerpt && <p className="text-[13px] text-bp-text-muted leading-relaxed line-clamp-2">{note.excerpt}</p>}
               <div className="flex items-center gap-4 mt-1 text-[11px] text-bp-text-muted font-mono">
                 <span>{new Date(note.created_at).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</span>
                 {note.read_time && <span>{note.read_time}</span>}
