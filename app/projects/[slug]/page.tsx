@@ -1,9 +1,7 @@
 import { notFound } from "next/navigation";
-import PageTransition from "../../../components/PageTransition";
-import LiveClock from "@/components/LiveClock";
-import NotificationBell from "@/components/NotificationBell";
-import CloudStatus from "@/components/CloudStatus";
-import { getSupabase } from "../../../lib/supabase";
+import PageTransition from "@/components/PageTransition";
+import SheetHeader from "@/components/SheetHeader";
+import { getSupabase } from "@/lib/supabase";
 import { ArrowLeft, Calendar, ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
 
@@ -45,121 +43,93 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
   const previewImage = project.image_url ?? projectImageMap[slug] ?? "/project1.png";
 
   return (
-        <main className="flex-1 flex flex-col overflow-y-auto pb-16 md:pb-0">
-          <PageTransition>
+    <main className="flex-1 flex flex-col pb-20 md:pb-0">
+      <PageTransition>
+        <SheetHeader fig="FIG.05 — SELECTED WORK" sheet="05/06" />
 
-            {/* Top Bar */}
-            <div className="border-b border-os-border flex justify-end items-center px-8 py-5 text-os-text-muted text-sm gap-5 hidden md:flex font-mono sticky top-0 bg-os-bg/90 backdrop-blur-md z-20">
-              <NotificationBell />
-              <CloudStatus />
-              <span>~/PROJECTS/{slug.toUpperCase()} <LiveClock /></span>
+        <div className="p-6 md:p-10 max-w-4xl w-full">
+          <Link href="/projects" className="flex items-center gap-1.5 text-[12px] text-bp-text-muted hover:text-bp-primary transition-colors mb-6">
+            <ArrowLeft className="w-3.5 h-3.5" /> Back to Work
+          </Link>
+
+          {previewImage && (
+            <div className="relative w-full h-56 md:h-72 rounded-xl overflow-hidden mb-8 border border-bp-border">
+              <img src={previewImage} alt={project.title} className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-bp-bg/80 via-transparent to-transparent" />
             </div>
+          )}
 
-            <div className="p-6 md:p-10 max-w-4xl w-full">
+          <h1 className="text-[24px] font-bold text-bp-text-main mb-3 font-heading">{project.title}</h1>
+          <div className="flex items-center gap-2 text-xs font-mono text-bp-text-muted mb-6">
+            <Calendar className="w-3.5 h-3.5" />
+            {new Date(project.created_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+            <span className="ml-2 px-2 py-0.5 rounded bg-bp-surface border border-bp-border text-bp-text-main">STATUS: SHIPPED</span>
+          </div>
 
-              {/* Back link */}
-              <Link href="/projects" className="flex items-center gap-1.5 text-[12px] text-os-text-muted hover:text-os-primary transition-colors mb-6">
-                <ArrowLeft className="w-3.5 h-3.5" /> Back to Projects
-              </Link>
+          {project.content && (
+            <p className="text-[15px] text-bp-text-muted leading-relaxed mb-6">{project.content}</p>
+          )}
 
-              {/* Hero image */}
-              {previewImage && (
-                <div className="relative w-full h-56 md:h-72 rounded-xl overflow-hidden mb-8 border border-white/[0.08]">
-                  <img src={previewImage} alt={project.title} className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-os-bg/80 via-transparent to-transparent" />
-                </div>
-              )}
-
-              {/* Title + date */}
-              <h1 className="text-[24px] font-bold text-os-text-main mb-3">{project.title}</h1>
-              <div className="flex items-center gap-2 text-xs font-mono text-os-text-muted mb-6">
-                <Calendar className="w-3.5 h-3.5" />
-                {new Date(project.created_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
-                <span className="ml-2 px-2 py-0.5 rounded bg-os-surface border border-white/[0.08] text-os-text-main">STATUS: DEPLOYED</span>
-              </div>
-
-              {project.content && (
-                <p className="text-[15px] text-os-text-muted leading-relaxed mb-6">{project.content}</p>
-              )}
-
-              {/* Tech stack tags */}
-              {project.tech_stack?.length > 0 && (
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {project.tech_stack.map((tech: string) => (
-                    <span key={tech} className="px-3 py-1.5 rounded-lg bg-os-primary/8 text-os-primary text-[11px] font-medium border border-os-primary/15">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              )}
-
-              {/* App Window Preview */}
-              <div className="rounded-xl overflow-hidden border border-white/[0.08] shadow-2xl shadow-black/60 mb-10">
-                {/* Mac-style title bar */}
-                <div className="flex items-center gap-2 px-4 py-3 bg-os-surface border-b border-white/[0.08]">
-                  <span className="w-3 h-3 rounded-full bg-[#FF5F57]" />
-                  <span className="w-3 h-3 rounded-full bg-[#FEBC2E]" />
-                  <span className="w-3 h-3 rounded-full bg-[#28C840]" />
-                  <span className="ml-3 text-[11px] font-mono text-os-text-muted tracking-wide flex-1 text-center truncate">
-                    {project.live_url ?? project.title}
-                  </span>
-                </div>
-                {/* Screenshot */}
-                <div className="bg-os-bg max-h-[460px] overflow-hidden">
-                  <img
-                    src={previewImage}
-                    alt={`${project.title} preview`}
-                    className="w-full object-cover object-top"
-                  />
-                </div>
-              </div>
-
-              {/* Gallery screenshots */}
-              {project.images?.length > 0 && (
-                <div className="mb-10">
-                  <h3 className="text-[11px] font-medium tracking-[0.15em] text-os-text-muted mb-4 uppercase">
-                    <span className="text-os-primary">//</span> Gallery
-                  </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {project.images.map((img: string, i: number) => (
-                      <div key={i} className="rounded-xl overflow-hidden border border-white/[0.08] aspect-video">
-                        <img src={img} alt={`${project.title} screenshot ${i + 1}`} className="w-full h-full object-cover" />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* README content */}
-              {project.description && (
-                <div className="bg-os-surface border border-white/[0.08] rounded-xl p-6 md:p-8">
-                  <h3 className="text-[11px] font-medium tracking-[0.15em] text-os-text-muted mb-6 uppercase">
-                    <span className="text-os-primary">//</span> README.md
-                  </h3>
-                  <div className="text-os-text-main leading-relaxed font-sans whitespace-pre-wrap text-sm">
-                    {project.description}
-                  </div>
-                </div>
-              )}
-
-              {/* CTA Links */}
-              <div className="flex items-center gap-4 mt-8">
-                {project.live_url && (
-                  <a href={project.live_url} target="_blank" rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-5 py-2.5 bg-os-primary hover:bg-os-primary/90 text-black text-[13px] font-bold rounded-lg transition-colors duration-150">
-                    <ExternalLink className="w-4 h-4" /> Live Site
-                  </a>
-                )}
-                {project.github_url && (
-                  <a href={project.github_url} target="_blank" rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-5 py-2.5 bg-white/[0.04] border border-white/[0.08] hover:border-os-primary/40 text-os-text-muted hover:text-os-primary text-[13px] font-medium rounded-lg transition-colors duration-150">
-                    <Github className="w-4 h-4" /> GitHub
-                  </a>
-                )}
-              </div>
-
+          {project.tech_stack?.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-8">
+              {project.tech_stack.map((tech: string) => (
+                <span key={tech} className="px-3 py-1.5 rounded-lg bg-bp-primary/8 text-bp-primary text-[11px] font-mono border border-bp-primary/15">
+                  {tech}
+                </span>
+              ))}
             </div>
-          </PageTransition>
+          )}
+
+          <div className="rounded-xl overflow-hidden border border-bp-border mb-10">
+            <div className="flex items-center gap-2 px-4 py-3 bg-bp-surface border-b border-bp-border">
+              <span className="w-3 h-3 rounded-full bg-[#FF5F57]" />
+              <span className="w-3 h-3 rounded-full bg-[#FEBC2E]" />
+              <span className="w-3 h-3 rounded-full bg-[#28C840]" />
+              <span className="ml-3 text-[11px] font-mono text-bp-text-muted tracking-wide flex-1 text-center truncate">
+                {project.live_url ?? project.title}
+              </span>
+            </div>
+            <div className="bg-bp-bg max-h-[460px] overflow-hidden">
+              <img src={previewImage} alt={`${project.title} preview`} className="w-full object-cover object-top" />
+            </div>
+          </div>
+
+          {project.images?.length > 0 && (
+            <div className="mb-10">
+              <h2 className="fig-label">GALLERY</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {project.images.map((img: string, i: number) => (
+                  <div key={i} className="rounded-xl overflow-hidden border border-bp-border aspect-video">
+                    <img src={img} alt={`${project.title} screenshot ${i + 1}`} className="w-full h-full object-cover" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {project.description && (
+            <div className="sheet-card p-6 md:p-8">
+              <h2 className="fig-label">README.MD</h2>
+              <div className="text-bp-text-main leading-relaxed whitespace-pre-wrap text-sm">{project.description}</div>
+            </div>
+          )}
+
+          <div className="flex items-center gap-4 mt-8">
+            {project.live_url && (
+              <a href={project.live_url} target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-2 px-5 py-2.5 bg-bp-primary hover:bg-bp-primary/90 text-black text-[13px] font-bold font-mono rounded-lg transition-colors">
+                <ExternalLink className="w-4 h-4" /> Live Site
+              </a>
+            )}
+            {project.github_url && (
+              <a href={project.github_url} target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-2 px-5 py-2.5 bg-white/[0.04] border border-bp-border hover:border-bp-primary/40 text-bp-text-muted hover:text-bp-primary text-[13px] font-mono rounded-lg transition-colors">
+                <Github className="w-4 h-4" /> GitHub
+              </a>
+            )}
+          </div>
+        </div>
+      </PageTransition>
     </main>
   );
 }
