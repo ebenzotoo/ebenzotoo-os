@@ -1,56 +1,36 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-outfit), 'Outfit', sans-serif;
-  --font-heading: var(--font-outfit), 'Outfit', sans-serif;
-  --font-mono: var(--font-fira), 'Fira Code', monospace;
+  --font-mono:    var(--font-plex-mono), 'IBM Plex Mono', monospace;
+  --font-heading: var(--font-grotesk), 'Space Grotesk', sans-serif;
 
-  --color-os-bg:             #0A0A0F;
-  --color-os-surface:        #141418;
-  --color-os-surface-2:      #1E1E28;
-  --color-os-border:         rgba(255,255,255,0.08);
-  --color-os-border-hover:   rgba(249,115,22,0.4);
-  --color-os-text-main:      #E8EDF5;
-  --color-os-text-muted:     #6B7A99;
-  --color-os-primary:        #F97316;
-  --color-os-primary-light:  #FB923C;
-  --color-os-secondary:      #3A86FF;
-  --color-os-gold:           #D4AF37;
-
-  /* Legacy aliases — keep so clean mode and admin don't break */
-  --color-os-accent-blue:       #3A86FF;
-  --color-os-accent-green:      #F97316;
-  --color-os-accent-gold:       #D4AF37;
-  --color-os-accent-gold-muted: rgba(212,175,55,0.10);
-  --color-os-panel:             #141418;
-
-  /* Legacy vscode tokens */
-  --color-vscode-bg:           #0A0A0F;
-  --color-vscode-sidebar:      #141418;
-  --color-vscode-activity:     #1E1E28;
-  --color-vscode-panel:        #141418;
-  --color-vscode-border:       rgba(255,255,255,0.08);
-  --color-vscode-text-main:    #E8EDF5;
-  --color-vscode-text-muted:   #6B7A99;
-  --color-vscode-accent-blue:  #3A86FF;
-  --color-vscode-accent-green: #F97316;
+  --color-bp-bg:             #13151A;
+  --color-bp-surface:        #191B21;
+  --color-bp-surface-2:      #20222A;
+  --color-bp-border:         rgba(255,255,255,0.08);
+  --color-bp-border-hover:   rgba(249,115,22,0.4);
+  --color-bp-text-main:      #F5F7FA;
+  --color-bp-text-muted:     #6B7A99;
+  --color-bp-primary:        #F97316;
+  --color-bp-primary-light:  #FB923C;
+  --color-bp-secondary:      #6FA8D6;
+  --color-bp-gold:           #D4AF37;
 }
 
 body {
-  background-color: var(--color-vscode-bg);
-  color: var(--color-vscode-text-main);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bp-bg);
+  color: var(--color-bp-text-main);
+  font-family: var(--font-mono);
   -webkit-font-smoothing: antialiased;
 }
 
-/* Custom scrollbar to match the OS feel */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+* {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }
-::-webkit-scrollbar-track {
-  background: transparent;
-}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
   background-color: rgba(249,115,22,0.15);
   border-radius: 9999px;
@@ -59,18 +39,48 @@ body {
   background-color: rgba(249,115,22,0.30);
 }
 
-/* Glassmorphism card standard */
-.glass-card {
-  background: rgba(255,255,255,0.04);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.08);
-  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+/* Flat panel standard (replaces old glassmorphism .glass-card) */
+.sheet-card {
+  background: var(--color-bp-surface);
+  border: 1px solid var(--color-bp-border);
+  border-radius: 14px;
+  transition: border-color 0.2s, transform 0.2s;
 }
-.glass-card:hover {
-  border-color: rgba(249,115,22,0.4);
-  box-shadow: 0 8px 32px rgba(249,115,22,0.12);
+.sheet-card:hover {
+  border-color: var(--color-bp-primary-light);
   transform: translateY(-2px);
+}
+
+/* Ambient schematic grid texture */
+.bp-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+/* Corner registration marks */
+.corner-tl, .corner-tr, .corner-bl, .corner-br {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: var(--color-bp-primary);
+  opacity: 0.6;
+}
+.corner-tl { top: 10px;    left: 10px;   border-left: 1.5px solid;  border-top: 1.5px solid; }
+.corner-tr { top: 10px;    right: 10px;  border-right: 1.5px solid; border-top: 1.5px solid; }
+.corner-bl { bottom: 10px; left: 10px;   border-left: 1.5px solid;  border-bottom: 1.5px solid; }
+.corner-br { bottom: 10px; right: 10px;  border-right: 1.5px solid; border-bottom: 1.5px solid; }
+
+/* Section/FIG labels */
+.fig-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-bp-primary);
+  margin-bottom: 10px;
 }
 
 /* CSS marquee animation */
@@ -84,205 +94,4 @@ body {
 }
 .marquee-track:hover {
   animation-play-state: paused;
-}
-
-* {
-  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* ─── Clean / Simple Mode ───────────────────────────────────────────────── */
-
-html[data-theme="clean"] {
-  --color-os-bg:                #F8FAFC;
-  --color-os-surface:           #FFFFFF;
-  --color-os-surface-hover:     #F1F5F9;
-  --color-os-border:            #E2E8F0;
-  --color-os-text-main:         #1E293B;
-  --color-os-text-muted:        #64748B;
-  --color-os-accent-blue:       #2563EB;
-  --color-os-accent-green:      #16A34A;
-  --color-os-accent-gold:       #B45309;
-  --color-os-accent-gold-muted: rgba(180,83,9,0.08);
-}
-
-html[data-theme="clean"] body {
-  background: #F8FAFC;
-  color: #1E293B;
-}
-
-/* Scrollbar */
-html[data-theme="clean"] ::-webkit-scrollbar-thumb {
-  background-color: rgba(0,0,0,0.1);
-}
-html[data-theme="clean"] ::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0,0,0,0.2);
-}
-
-/* ── Main element: let it flow naturally (no overflow scroll in clean mode) ── */
-html[data-theme="clean"] main {
-  overflow-y: visible !important;
-  flex: none !important;
-  padding-bottom: 0 !important;
-}
-
-/* ── Hide residual OS chrome still in page JSX ── */
-
-/* SYSTEM_INFO sticky top bar */
-html[data-theme="clean"] .bg-\[\#0A0F1C\]\/90 {
-  display: none !important;
-}
-
-/* Ghost watermarks */
-html[data-theme="clean"] .text-white\/\[0\.03\] {
-  display: none !important;
-}
-
-/* bg-[#0D1117] → white (used by project cards, notification dropdown, etc.) */
-html[data-theme="clean"] .bg-\[\#0D1117\] {
-  background-color: #FFFFFF !important;
-  border-color: #E2E8F0 !important;
-}
-
-/* ── Content cards ── */
-html[data-theme="clean"] .bg-white\/\[0\.03\],
-html[data-theme="clean"] .bg-white\/\[0\.02\] {
-  background-color: #FFFFFF !important;
-  border-color: #E2E8F0 !important;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.06) !important;
-}
-
-/* Terminal-style blocks (bio, code snippets) */
-html[data-theme="clean"] .bg-\[\#111827\]\/80,
-html[data-theme="clean"] .bg-\[\#111827\]\/60,
-html[data-theme="clean"] .bg-\[\#111827\]\/40 {
-  background-color: #F8FAFC !important;
-  border-color: #E2E8F0 !important;
-}
-
-/* Lab: header bar of experiment cards */
-html[data-theme="clean"] .bg-\[\#0A0F1C\] {
-  background-color: #F1F5F9 !important;
-}
-
-/* Lab: code editor dark panel */
-html[data-theme="clean"] .bg-\[\#050810\]\/50 {
-  background-color: #F8FAFC !important;
-}
-
-/* Skill bar track */
-html[data-theme="clean"] .bg-white\/5 {
-  background-color: #F1F5F9 !important;
-}
-
-/* Inline code in notes */
-html[data-theme="clean"] .bg-white\/10 {
-  background-color: #F1F5F9 !important;
-}
-
-/* ── Typography ── */
-html[data-theme="clean"] .text-white {
-  color: #1E293B !important;
-}
-html[data-theme="clean"] .hover\:text-white:hover {
-  color: #0F172A !important;
-}
-
-html[data-theme="clean"] .text-\[\#D4AF37\] {
-  color: #B45309 !important;
-}
-
-html[data-theme="clean"] .text-\[\#F9A41E\] {
-  color: #2563EB !important;
-}
-html[data-theme="clean"] .bg-\[\#F9A41E\]\/10 {
-  background-color: #EFF6FF !important;
-  border-color: #BFDBFE !important;
-}
-
-/* ── Borders ── */
-html[data-theme="clean"] .border-white\/20,
-html[data-theme="clean"] .border-white\/10,
-html[data-theme="clean"] .border-white\/5 {
-  border-color: #E2E8F0 !important;
-}
-
-html[data-theme="clean"] .border-\[\#D4AF37\]\/60,
-html[data-theme="clean"] .border-\[\#D4AF37\]\/30,
-html[data-theme="clean"] .border-\[\#D4AF37\]\/20 {
-  border-color: #CBD5E1 !important;
-}
-
-/* ── Images: full colour, no grayscale ── */
-html[data-theme="clean"] .grayscale {
-  filter: none !important;
-}
-html[data-theme="clean"] .opacity-50 {
-  opacity: 1 !important;
-}
-
-/* Availability badge */
-html[data-theme="clean"] .bg-green-500\/10 {
-  background-color: #F0FDF4 !important;
-  border-color: #BBF7D0 !important;
-}
-
-/* ── OS / Clean structural content switching ── */
-.os-only   { display: block; }
-.clean-only { display: none;  }
-
-html[data-theme="clean"] .os-only   { display: none  !important; }
-html[data-theme="clean"] .clean-only { display: block !important; }
-
-/* PageTransition in clean mode: auto height, not fixed */
-html[data-theme="clean"] main > div {
-  height: auto !important;
-  flex: none !important;
-}
-
-/* ── Admin panel: always dark, immune to clean mode overrides ──────────────── */
-html[data-theme="clean"] [data-admin] body,
-html[data-theme="clean"] [data-admin] {
-  color: rgba(255, 255, 255, 0.7);
-}
-html[data-theme="clean"] [data-admin] .bg-white\/5 {
-  background-color: rgba(255, 255, 255, 0.05) !important;
-}
-html[data-theme="clean"] [data-admin] .bg-white\/10 {
-  background-color: rgba(255, 255, 255, 0.10) !important;
-}
-html[data-theme="clean"] [data-admin] .bg-white\/\[0\.03\],
-html[data-theme="clean"] [data-admin] .bg-white\/\[0\.02\] {
-  background-color: rgba(255, 255, 255, 0.03) !important;
-  border-color: rgba(255, 255, 255, 0.08) !important;
-  box-shadow: none !important;
-}
-html[data-theme="clean"] [data-admin] .text-white {
-  color: rgba(255, 255, 255, 0.9) !important;
-}
-html[data-theme="clean"] [data-admin] .hover\:text-white:hover {
-  color: #ffffff !important;
-}
-html[data-theme="clean"] [data-admin] .border-white\/10,
-html[data-theme="clean"] [data-admin] .border-white\/5,
-html[data-theme="clean"] [data-admin] .border-white\/20 {
-  border-color: rgba(255, 255, 255, 0.10) !important;
-}
-html[data-theme="clean"] [data-admin] .bg-\[\#0A0F1C\]\/90 {
-  display: flex !important;
-  background-color: rgba(10, 15, 28, 0.9) !important;
-}
-html[data-theme="clean"] [data-admin] .bg-\[\#0A0F1C\]\/60 {
-  background-color: rgba(10, 15, 28, 0.6) !important;
-}
-html[data-theme="clean"] [data-admin] .bg-\[\#0A0F1C\] {
-  background-color: #0A0F1C !important;
-}
-html[data-theme="clean"] [data-admin] .bg-\[\#050810\] {
-  background-color: #050810 !important;
-}
-html[data-theme="clean"] [data-admin] .text-\[\#D4AF37\] {
-  color: #D4AF37 !important;
-}
-html[data-theme="clean"] [data-admin] .border-\[\#D4AF37\]\/30 {
-  border-color: rgba(212, 175, 55, 0.3) !important;
 }
