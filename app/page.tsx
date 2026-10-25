@@ -98,7 +98,7 @@ export default function Home() {
 
           {/* Trusted By */}
           <section>
-            <span className="fig-label">FIG.01A — TRUSTED BY</span>
+            <h2 className="fig-label">FIG.01A — TRUSTED BY</h2>
             <div className="grid grid-cols-3 gap-3">
               {clients.map((client) => (
                 <div key={client.name} className="sheet-card p-4 flex flex-col items-center justify-center gap-2">
@@ -116,7 +116,7 @@ export default function Home() {
 
           {/* Experience */}
           <section>
-            <span className="fig-label">FIG.01B — EXPERIENCE</span>
+            <h2 className="fig-label">FIG.01B — EXPERIENCE</h2>
             <div className="flex flex-col gap-6 border-l-2 border-bp-border pl-6">
               {jobs.map((job) => (
                 <div key={job.role} className="relative">
