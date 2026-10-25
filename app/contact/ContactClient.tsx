@@ -56,7 +56,8 @@ export default function ContactClient({ config }: { config: Config }) {
       } else {
         setStatus("error");
       }
-    } catch {
+    } catch (err) {
+      console.error("Contact form submission failed:", err);
       setStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -127,24 +128,27 @@ export default function ContactClient({ config }: { config: Config }) {
 
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                 <div className="flex flex-col gap-2">
-                  <label className="text-xs font-mono text-bp-text-muted tracking-wider">NAME</label>
+                  <label htmlFor="contact-name" className="text-xs font-mono text-bp-text-muted tracking-wider">NAME</label>
                   <input
+                    id="contact-name"
                     type="text" required value={name} onChange={(e) => setName(e.target.value)}
                     placeholder="Enter your name"
                     className="w-full bg-bp-surface border border-bp-border rounded-lg px-4 py-3 text-[14px] text-bp-text-main placeholder:text-bp-text-muted/40 focus:outline-none focus:border-bp-primary focus:ring-1 focus:ring-bp-primary/20 transition-colors"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label className="text-xs font-mono text-bp-text-muted tracking-wider">EMAIL</label>
+                  <label htmlFor="contact-email" className="text-xs font-mono text-bp-text-muted tracking-wider">EMAIL</label>
                   <input
+                    id="contact-email"
                     type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
                     className="w-full bg-bp-surface border border-bp-border rounded-lg px-4 py-3 text-[14px] text-bp-text-main placeholder:text-bp-text-muted/40 focus:outline-none focus:border-bp-primary focus:ring-1 focus:ring-bp-primary/20 transition-colors"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label className="text-xs font-mono text-bp-text-muted tracking-wider">MESSAGE</label>
+                  <label htmlFor="contact-message" className="text-xs font-mono text-bp-text-muted tracking-wider">MESSAGE</label>
                   <textarea
+                    id="contact-message"
                     required rows={5} value={message} onChange={(e) => setMessage(e.target.value)}
                     placeholder="How can we collaborate?"
                     className="w-full bg-bp-surface border border-bp-border rounded-lg px-4 py-3 text-[14px] text-bp-text-main placeholder:text-bp-text-muted/40 focus:outline-none focus:border-bp-primary focus:ring-1 focus:ring-bp-primary/20 transition-colors resize-none"
