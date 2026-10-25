@@ -37,7 +37,7 @@ export default function About() {
           {/* Narrative */}
           <div className="flex flex-col gap-4">
             <h1 className="sr-only">About Ebenezer Zotoo</h1>
-            <span className="fig-label">FIG.02A — NARRATIVE</span>
+            <h2 className="fig-label">FIG.02A — NARRATIVE</h2>
             <p className="text-bp-text-muted leading-relaxed text-[15px]">
               I am a Digital Product Designer and Systems Builder focused on creating solutions that work — not just look good.
             </p>
@@ -54,7 +54,7 @@ export default function About() {
 
           {/* Core expertise */}
           <div>
-            <span className="fig-label">FIG.02B — CORE EXPERTISE</span>
+            <h2 className="fig-label">FIG.02B — CORE EXPERTISE</h2>
             <div className="flex flex-wrap gap-3">
               {expertise.map((skill) => (
                 <span key={skill} className="px-4 py-2 sheet-card text-sm text-bp-text-muted hover:text-bp-text-main font-mono">
@@ -66,7 +66,7 @@ export default function About() {
 
           {/* Compact role history (dates only — full timeline lives on Cover) */}
           <div>
-            <span className="fig-label">FIG.02C — ROLE HISTORY</span>
+            <h2 className="fig-label">FIG.02C — ROLE HISTORY</h2>
             <div className="flex flex-col gap-3">
               {jobs.map((job) => (
                 <div key={job.role} className="flex items-baseline justify-between gap-4 border-b border-bp-border pb-3">
